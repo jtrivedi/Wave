@@ -24,7 +24,7 @@ Consider these demos of the iOS Picture-in-Picture feature. The screen on the le
 
 Though both are “interruptible”, the Wave-based implementation handles the interruption much better, and fluidly _arcs_ to its new destination. The UIKit animation feels stiff and jerky in comparison.
 
-At its core, retargeting is the process of preserving an animation’s velocity even as its target changes, which Wave does automatically.
+At its core, [retargeting](https://developer.apple.com/videos/play/wwdc2018/803/) is the process of preserving an animation’s velocity even as its target changes, which Wave does automatically.
 
 ![Demo](./Assets/Retargeting.gif)
 
