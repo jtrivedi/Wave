@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F706E35C2845F58C00ADD288 /* Wave in Frameworks */ = {isa = PBXBuildFile; productRef = F706E35B2845F58C00ADD288 /* Wave */; };
+		F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F72189FC27EE5485001A5CCF /* Assets.xcassets */; };
+		F731390827E68AB100DCC56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731390727E68AB100DCC56C /* AppDelegate.swift */; };
+		F731390A27E68AB100DCC56C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731390927E68AB100DCC56C /* SceneDelegate.swift */; };
+		F731392C27E68C1F00DCC56C /* PictureInPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392627E68C1F00DCC56C /* PictureInPictureViewController.swift */; };
+		F731392D27E68C1F00DCC56C /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392727E68C1F00DCC56C /* SheetViewController.swift */; };
+		F731392E27E68C1F00DCC56C /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392827E68C1F00DCC56C /* GridViewController.swift */; };
+		F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */; };
+		F731393427E68CAE00DCC56C /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731393327E68CAE00DCC56C /* PathView.swift */; };
+		F76AE81127E6905B00A332E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F72189FC27EE5485001A5CCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F731390427E68AB100DCC56C /* Wave-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F731390727E68AB100DCC56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F731390927E68AB100DCC56C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F731391527E68AB100DCC56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F731391C27E68ABC00DCC56C /* Aqua */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Aqua; path = ../..; sourceTree = "<group>"; };
+		F731392627E68C1F00DCC56C /* PictureInPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureInPictureViewController.swift; path = "View Controllers/PictureInPictureViewController.swift"; sourceTree = "<group>"; };
+		F731392727E68C1F00DCC56C /* SheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SheetViewController.swift; path = "View Controllers/SheetViewController.swift"; sourceTree = "<group>"; };
+		F731392827E68C1F00DCC56C /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridViewController.swift; path = "View Controllers/GridViewController.swift"; sourceTree = "<group>"; };
+		F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		F731393327E68CAE00DCC56C /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		F76AE81027E6905B00A332E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F731390127E68AB100DCC56C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F706E35C2845F58C00ADD288 /* Wave in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F73138FB27E68AB100DCC56C = {
+			isa = PBXGroup;
+			children = (
+				F731390627E68AB100DCC56C /* Aqua-Sample */,
+				F731391B27E68ABC00DCC56C /* Packages */,
+				F731390527E68AB100DCC56C /* Products */,
+				F731391D27E68B5600DCC56C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F731390527E68AB100DCC56C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F731390427E68AB100DCC56C /* Wave-Sample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F731390627E68AB100DCC56C /* Aqua-Sample */ = {
+			isa = PBXGroup;
+			children = (
+				F731390727E68AB100DCC56C /* AppDelegate.swift */,
+				F731390927E68AB100DCC56C /* SceneDelegate.swift */,
+				F731392227E68C1900DCC56C /* View Controllers */,
+				F731393527E68CB100DCC56C /* Utilities */,
+				F72189FC27EE5485001A5CCF /* Assets.xcassets */,
+				F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */,
+				F731391527E68AB100DCC56C /* Info.plist */,
+			);
+			name = "Aqua-Sample";
+			path = "Wave-Sample";
+			sourceTree = "<group>";
+		};
+		F731391B27E68ABC00DCC56C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				F731391C27E68ABC00DCC56C /* Aqua */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		F731391D27E68B5600DCC56C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F731392227E68C1900DCC56C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F731392627E68C1F00DCC56C /* PictureInPictureViewController.swift */,
+				F731392827E68C1F00DCC56C /* GridViewController.swift */,
+				F731392727E68C1F00DCC56C /* SheetViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F731393527E68CB100DCC56C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */,
+				F731393327E68CAE00DCC56C /* PathView.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F731390327E68AB100DCC56C /* Wave-Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample" */;
+			buildPhases = (
+				F731390027E68AB100DCC56C /* Sources */,
+				F731390127E68AB100DCC56C /* Frameworks */,
+				F731390227E68AB100DCC56C /* Resources */,
+				F71A9EDB284445270050F4E9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wave-Sample";
+			packageProductDependencies = (
+				F706E35B2845F58C00ADD288 /* Wave */,
+			);
+			productName = "Aqua-Sample";
+			productReference = F731390427E68AB100DCC56C /* Wave-Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F73138FC27E68AB100DCC56C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					F731390327E68AB100DCC56C = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = F73138FF27E68AB100DCC56C /* Build configuration list for PBXProject "Wave-Sample" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F73138FB27E68AB100DCC56C;
+			packageReferences = (
+			);
+			productRefGroup = F731390527E68AB100DCC56C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F731390327E68AB100DCC56C /* Wave-Sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F731390227E68AB100DCC56C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */,
+				F76AE81127E6905B00A332E8 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F71A9EDB284445270050F4E9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F731390027E68AB100DCC56C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F731390827E68AB100DCC56C /* AppDelegate.swift in Sources */,
+				F731390A27E68AB100DCC56C /* SceneDelegate.swift in Sources */,
+				F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */,
+				F731393427E68CAE00DCC56C /* PathView.swift in Sources */,
+				F731392D27E68C1F00DCC56C /* SheetViewController.swift in Sources */,
+				F731392E27E68C1F00DCC56C /* GridViewController.swift in Sources */,
+				F731392C27E68C1F00DCC56C /* PictureInPictureViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F76AE81027E6905B00A332E8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F731391627E68AB100DCC56C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F731391727E68AB100DCC56C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F731391927E68AB100DCC56C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GV9FX44FW5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wave-Sample/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.janumtrivedi.Wave-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F731391A27E68AB100DCC56C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GV9FX44FW5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Wave-Sample/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.janumtrivedi.Wave-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F73138FF27E68AB100DCC56C /* Build configuration list for PBXProject "Wave-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F731391627E68AB100DCC56C /* Debug */,
+				F731391727E68AB100DCC56C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F731391927E68AB100DCC56C /* Debug */,
+				F731391A27E68AB100DCC56C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F706E35B2845F58C00ADD288 /* Wave */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Wave;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F73138FC27E68AB100DCC56C /* Project object */;
+}
