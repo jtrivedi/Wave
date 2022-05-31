@@ -49,7 +49,7 @@
 		F73138FB27E68AB100DCC56C = {
 			isa = PBXGroup;
 			children = (
-				F731390627E68AB100DCC56C /* Aqua-Sample */,
+				F731390627E68AB100DCC56C /* Wave-Sample */,
 				F731391B27E68ABC00DCC56C /* Packages */,
 				F731390527E68AB100DCC56C /* Products */,
 				F731391D27E68B5600DCC56C /* Frameworks */,
@@ -64,7 +64,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F731390627E68AB100DCC56C /* Aqua-Sample */ = {
+		F731390627E68AB100DCC56C /* Wave-Sample */ = {
 			isa = PBXGroup;
 			children = (
 				F731390727E68AB100DCC56C /* AppDelegate.swift */,
@@ -75,7 +75,6 @@
 				F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */,
 				F731391527E68AB100DCC56C /* Info.plist */,
 			);
-			name = "Aqua-Sample";
 			path = "Wave-Sample";
 			sourceTree = "<group>";
 		};
