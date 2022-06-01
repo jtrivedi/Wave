@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-public extension CGFloat {
+extension CGFloat {
 
     /**
      Returns a float value that is rounded to the nearest pixel boundary,
      taking into account the device's display scale.
      */
-    var scaledIntegral: CGFloat {
+    public var scaledIntegral: CGFloat {
         let scale = UIScreen.main.scale
         return floor(self * scale) / scale
     }
@@ -26,4 +26,5 @@ public extension CGFloat {
     var radiansToDegrees: CGFloat {
         self * 180 / .pi
     }
+    
 }

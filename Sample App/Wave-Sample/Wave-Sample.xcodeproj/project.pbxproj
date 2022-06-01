@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F702B19928470D3100F8D848 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F702B19828470D3100F8D848 /* CGRect+Extensions.swift */; };
 		F706E35C2845F58C00ADD288 /* Wave in Frameworks */ = {isa = PBXBuildFile; productRef = F706E35B2845F58C00ADD288 /* Wave */; };
 		F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F72189FC27EE5485001A5CCF /* Assets.xcassets */; };
 		F731390827E68AB100DCC56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731390727E68AB100DCC56C /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F702B19828470D3100F8D848 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		F72189FC27EE5485001A5CCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F731390427E68AB100DCC56C /* Wave-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F731390727E68AB100DCC56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */,
 				F731393327E68CAE00DCC56C /* PathView.swift */,
+				F702B19828470D3100F8D848 /* CGRect+Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */,
 				F731393427E68CAE00DCC56C /* PathView.swift in Sources */,
 				F731392D27E68C1F00DCC56C /* SheetViewController.swift in Sources */,
+				F702B19928470D3100F8D848 /* CGRect+Extensions.swift in Sources */,
 				F731392E27E68C1F00DCC56C /* GridViewController.swift in Sources */,
 				F731392C27E68C1F00DCC56C /* PictureInPictureViewController.swift in Sources */,
 			);

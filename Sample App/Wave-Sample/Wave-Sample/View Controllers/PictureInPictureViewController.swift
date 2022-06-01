@@ -71,7 +71,11 @@ class PictureInPictureViewController: UIViewController {
 
         switch sender.state {
         case .began, .changed:
-            let targetPiPViewCenter = (initialTouchLocation + touchTranslation)
+
+            let targetPiPViewCenter = CGPoint(
+                x: initialTouchLocation.x + touchTranslation.x,
+                y: initialTouchLocation.y + touchTranslation.y
+            )
 
             // We want the dragged view to closely follow the user's touch (not exactly 1:1, but close).
             // So animating using the `interactiveSpring` that has a lower `response` value.
@@ -223,7 +227,7 @@ extension PictureInPictureViewController {
             origin = CGPoint(x: (view.bounds.width - size.width - marginX), y: (view.bounds.height - size.height - safeAreaBottom - marginY))
         }
 
-        let center = origin + CGPoint(x: size.width / 2.0, y: size.height / 2.0)
+        let center = CGPoint(x: origin.x + size.width / 2.0, y: origin.y + size.height / 2.0)
 
         return center
     }

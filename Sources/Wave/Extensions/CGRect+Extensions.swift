@@ -8,7 +8,20 @@
 import Foundation
 import UIKit
 
-public extension CGRect {
+extension CGRect {
+
+    /**
+     Returns a rect whose `origin` and `size` are rounded to the nearest pixel boundary,
+     taking into account the device's display scale.
+     */
+    public var scaledIntegral: CGRect {
+        CGRect(
+            x: origin.x.scaledIntegral,
+            y: origin.y.scaledIntegral,
+            width: size.width.scaledIntegral,
+            height: size.height.scaledIntegral
+        )
+    }
 
     /**
      Creates a `CGRect` of a given size, centered at a given point.
@@ -23,19 +36,6 @@ public extension CGRect {
     }
 
     /**
-     Returns a rect whose `origin` and `size` are rounded to the nearest pixel boundary,
-     taking into account the device's display scale.
-     */
-    var scaledIntegral: CGRect {
-        CGRect(
-            x: origin.x.scaledIntegral,
-            y: origin.y.scaledIntegral,
-            width: size.width.scaledIntegral,
-            height: size.height.scaledIntegral
-        )
-    }
-
-    /**
      The center point of the rect.
      */
     var center: CGPoint {
@@ -46,34 +46,6 @@ public extension CGRect {
             origin.x = newValue.x - size.width / 2.0
             origin.y = newValue.y - size.height / 2.0
         }
-    }
-
-    /**
-     The top-left point of the rect.
-     */
-    var topLeft: CGPoint {
-        CGPoint(x: minX, y: minY)
-    }
-
-    /**
-     The top-right point of the rect.
-     */
-    var topRight: CGPoint {
-        CGPoint(x: maxX, y: minY)
-    }
-
-    /**
-     The bottom-left point of the rect.
-     */
-    var bottomLeft: CGPoint {
-        CGPoint(x: minX, y: maxY)
-    }
-
-    /**
-     The bottom-right point of the rect.
-     */
-    var bottomRight: CGPoint {
-        CGPoint(x: maxX, y: maxY)
     }
 
 }

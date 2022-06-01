@@ -31,7 +31,7 @@ extension UIColor {
     }
 
     /// The RGBA components associated with a `UIColor` instance.
-    private var components: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+    var components: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         let components = self.cgColor.components!
         if components.count == 2 {
             return (r: components[0], g: components[0], b: components[0], a: components[1])
