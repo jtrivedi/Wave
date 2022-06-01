@@ -141,3 +141,6 @@ Exploring the provided sample app is a great way to get started with Wave.
 
 Simply open the `Wave-Sample` Xcode project and hit “Run”. The full source code for the Picture-in-Picture demo is available there, too!
 
+### Acknowledgements
+
+Special thanks to [Ben Oztalay](https://github.com/boztalay) for helping architect the underlying physics of Wave!
