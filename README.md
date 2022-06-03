@@ -68,7 +68,7 @@ if panGestureRecognizer.state == .ended {
     // Get the gesture's lift-off velocity
     let gestureVelocity = panGestureRecognizer.velocity(in: view)
 
-    Wave.animate(withSpring: animatedSpring, gestureVelocity: touchVelocity) {
+    Wave.animate(withSpring: animatedSpring, gestureVelocity: gestureVelocity) {
         // Update the `center` and `scale` properties of the view's _animator_, not the view itself.
         pipView.animator.center = pipViewDestination
         pipView.animator.scale = CGPoint(x: 1.1, y: 1.1)
