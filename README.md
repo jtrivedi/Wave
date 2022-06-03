@@ -108,9 +108,9 @@ For example, to draw the orange path of the PiP demo, we need to know the value 
 // The `valueChanged` callback provides the intermediate locations of the callback, allowing us to draw the path.
 
 let positionAnimator = Animation<CGPoint>(spring: animatedSpring)
-positionAnimator.value = pipView.center           // The presentation value
-positionAnimator.target = pipView.animator.center // The target value
-positionAnimator.velocity = touchVelocity
+positionAnimator.value = pipView.center       // The presentation value
+positionAnimator.target = pipViewDestination  // The target value
+positionAnimator.velocity = gestureVelocity
 
 positionAnimator.valueChanged = { [weak self] location in
     self?.drawPathPoint(at: location)
