@@ -65,12 +65,12 @@ if panGestureRecognizer.state == .ended {
     // Create a spring with some bounciness. `response` affects the animation's duration.
     let animatedSpring = Spring(dampingRatio: 0.68, response: 0.80)
 
-    // Get the gesture's lift-off velocity
+    // Get the gesture's lift-off velocity, and pass it into the Wave animation.
     let gestureVelocity = panGestureRecognizer.velocity(in: view)
 
-    Wave.animate(withSpring: animatedSpring, gestureVelocity: touchVelocity) {
-        // Update the `center` and `scale` properties of the view's _animator_, not the view itself.
-        pipView.animator.center = pipViewDestination
+    Wave.animate(withSpring: animatedSpring, gestureVelocity: gestureVelocity) {
+        // Update animatable properties on the view's `animator` property, _not_ the view itself.
+        pipView.animator.center = pipViewDestination     // Some target CGPoint that you calculate.
         pipView.animator.scale = CGPoint(x: 1.1, y: 1.1)
     }
 }
