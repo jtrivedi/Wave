@@ -1,5 +1,5 @@
 //
-//  WaveTests.swift
+//  UIViewAnimatablePropertyTests.swift
 //  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
@@ -8,9 +8,9 @@
 import XCTest
 @testable import Wave
 
-final class WaveTests: XCTestCase {
+final class UIViewAnimatablePropertyTests: XCTestCase {
 
-    func testFrameTargetValue() {
+    func testFrame() {
         let view = UIView()
 
         let initialFrame = CGRect(x: 0, y: 0, width: 50, height: 100)
@@ -54,7 +54,7 @@ final class WaveTests: XCTestCase {
         }
     }
 
-    func testBoundsSizeTargetValue() {
+    func testBoundsSize() {
         let view = UIView()
 
         let initialFrame = CGRect(x: 20, y: 40, width: 50, height: 100)
@@ -94,7 +94,7 @@ final class WaveTests: XCTestCase {
         }
     }
 
-    func testCenterTargetValue() {
+    func testCenter() {
         let view = UIView()
 
         let initialFrame = CGRect(x: 20, y: 40, width: 50, height: 100)
@@ -134,7 +134,7 @@ final class WaveTests: XCTestCase {
         }
     }
 
-    func testFrameTargetValuesWithoutAnimation() {
+    func testFrameValuesWithoutAnimation() {
         let initialFrame = CGRect(x: 0, y: 0, width: 50, height: 100)
 
         let view = UIView()
@@ -169,27 +169,7 @@ final class WaveTests: XCTestCase {
         }
     }
 
-    func testCornerRadiusTargetValue() {
-        let view = UIView()
-
-        let initialValue = 10.0
-        let targetValue = 20.0
-        view.layer.cornerRadius = initialValue
-
-        Wave.animate(withSpring: .defaultAnimated) {
-            view.animator.cornerRadius = targetValue
-        }
-
-        XCTAssertEqual(view.layer.cornerRadius, initialValue)
-        XCTAssertEqual(view.animator.cornerRadius, targetValue)
-
-        wait(for: .defaultAnimated) {
-            XCTAssertEqual(view.layer.cornerRadius, targetValue)
-            XCTAssertEqual(view.animator.cornerRadius, targetValue)
-        }
-    }
-
-    func testAlphaTargetValue() {
+    func testAlpha() {
         let view = UIView()
 
         let initialValue = 1.0
@@ -210,29 +190,6 @@ final class WaveTests: XCTestCase {
         }
     }
 
-    func testScaleTargetValue() {
-        let view = UIView()
-
-        let initialValue = CGPoint(x: 1.0, y: 1.0)
-        let targetValue = CGPoint(x: 0.5, y: 0.75)
-
-        Wave.animate(withSpring: .defaultAnimated) {
-            view.animator.scale = targetValue
-        }
-
-        XCTAssertEqual(view.transform.a, initialValue.x)
-        XCTAssertEqual(view.transform.d, initialValue.y)
-
-        XCTAssertEqual(view.animator.scale, targetValue)
-
-        wait(for: .defaultAnimated) {
-            XCTAssertEqual(view.transform.a, targetValue.x)
-            XCTAssertEqual(view.transform.d, targetValue.y)
-
-            XCTAssertEqual(view.animator.scale, targetValue)
-        }
-    }
-
     func testPropertyAnimation() {
         let animation = Animation<CGFloat>(spring: .defaultAnimated)
         animation.value = 0
@@ -240,8 +197,6 @@ final class WaveTests: XCTestCase {
         animation.start()
 
         animation.valueChanged = { value in
-            print(value)
-
             if value > 0.5 {
                 animation.stop(immediately: true)
             }
@@ -256,16 +211,6 @@ final class WaveTests: XCTestCase {
             XCTAssert(value > 0.5 && value < 0.55)
             XCTAssertEqual(animation.target, 1)
             XCTAssertEqual(animation.velocity, .zero)
-        }
-    }
-
-    func wait(for spring: Spring, block: (() -> Void)) {
-        let exp = expectation(description: "Waiting for spring to settle")
-        let result = XCTWaiter.wait(for: [exp], timeout: spring.settlingDuration * 1.5)
-        if result == XCTWaiter.Result.timedOut {
-            block()
-        } else {
-            XCTFail("Delay interrupted")
         }
     }
 

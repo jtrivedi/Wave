@@ -36,6 +36,10 @@ public class ViewAnimator {
         case scale
         case translation
         case cornerRadius
+
+        case shadowOpacity
+        case shadowOffset
+        case shadowRadius
     }
 
     var view: UIView
@@ -410,6 +414,10 @@ public class ViewAnimator {
                 return
             }
 
+            guard translation != newValue else {
+                return
+            }
+
             let initialValue = CGPoint(x: view.transform.tx, y: view.transform.ty)
             let targetValue = newValue
 
@@ -495,6 +503,152 @@ public class ViewAnimator {
 }
 
 extension ViewAnimator {
+
+    /// The shadow opacity of the attached `UIView`'s layer.
+    public var shadowOpacity: CGFloat {
+        get {
+            runningShadowOpacityAnimator?.target ?? CGFloat(view.layer.shadowOpacity)
+        }
+        set {
+            guard shadowOpacity != newValue else {
+                return
+            }
+
+            guard let settings = AnimationController.shared.currentAnimationParameters else {
+                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
+                    self.view.animator.shadowOpacity = newValue
+                }
+                return
+            }
+
+            let initialValue = CGFloat(view.layer.shadowOpacity)
+            let targetValue = newValue
+
+            let animationType = AnimatableProperty.shadowOpacity
+
+            // Re-targeting an animation.
+            AnimationController.shared.executeHandler(uuid: runningShadowOpacityAnimator?.groupUUID, finished: false, retargeted: true)
+
+            let animation = (runningShadowOpacityAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            animation.configure(withSettings: settings)
+
+            animation.target = targetValue
+            animation.valueChanged = { [weak self] value in
+                let clippedValue = Float(clipUnit(value: value))
+                self?.view.layer.shadowOpacity = clippedValue
+            }
+
+            animation.completion = { [weak self] event in
+                switch event {
+                case .finished:
+                    self?.view.animations.removeValue(forKey: animationType)
+                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                default:
+                    break
+                }
+            }
+
+            start(animation: animation, type: animationType, delay: settings.delay)
+        }
+    }
+
+    /// The shadow offset of the attached `UIView`'s layer.
+    public var shadowOffset: CGSize {
+        get {
+            runningShadowOffsetAnimator?.target ?? view.layer.shadowOffset
+        }
+        set {
+            guard shadowOffset != newValue else {
+                return
+            }
+
+            guard let settings = AnimationController.shared.currentAnimationParameters else {
+                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
+                    self.view.animator.shadowOffset = newValue
+                }
+                return
+            }
+
+            let initialValue = view.layer.shadowOffset
+            let targetValue = newValue
+
+            let animationType = AnimatableProperty.shadowOffset
+
+            // Re-targeting an animation.
+            AnimationController.shared.executeHandler(uuid: runningShadowOffsetAnimator?.groupUUID, finished: false, retargeted: true)
+
+            let animation = (runningShadowOffsetAnimator ?? Animation<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
+            animation.configure(withSettings: settings)
+
+            animation.target = targetValue
+            animation.valueChanged = { [weak self] value in
+                self?.view.layer.shadowOffset = value
+            }
+
+            animation.completion = { [weak self] event in
+                switch event {
+                case .finished:
+                    self?.view.animations.removeValue(forKey: animationType)
+                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                default:
+                    break
+                }
+            }
+
+            start(animation: animation, type: animationType, delay: settings.delay)
+        }
+    }
+
+    /// The shadow radius of the attached `UIView`'s layer.
+    public var shadowRadius: CGFloat {
+        get {
+            runningShadowRadiusAnimator?.target ?? CGFloat(view.layer.shadowRadius)
+        }
+        set {
+            guard shadowRadius != newValue else {
+                return
+            }
+
+            guard let settings = AnimationController.shared.currentAnimationParameters else {
+                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
+                    self.view.animator.shadowRadius = newValue
+                }
+                return
+            }
+
+            let initialValue = CGFloat(view.layer.shadowRadius)
+            let targetValue = newValue
+
+            let animationType = AnimatableProperty.shadowRadius
+
+            // Re-targeting an animation.
+            AnimationController.shared.executeHandler(uuid: runningShadowRadiusAnimator?.groupUUID, finished: false, retargeted: true)
+
+            let animation = (runningShadowRadiusAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            animation.configure(withSettings: settings)
+
+            animation.target = targetValue
+            animation.valueChanged = { [weak self] value in
+                self?.view.layer.shadowRadius = max(0, value)
+            }
+
+            animation.completion = { [weak self] event in
+                switch event {
+                case .finished:
+                    self?.view.animations.removeValue(forKey: animationType)
+                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                default:
+                    break
+                }
+            }
+
+            start(animation: animation, type: animationType, delay: settings.delay)
+        }
+    }
+}
+
+extension ViewAnimator {
+
     // MARK: - Internal
 
     private func start(animation: AnimationProviding, type: AnimatableProperty, delay: TimeInterval) {
@@ -528,5 +682,17 @@ extension ViewAnimator {
 
     private var runningCornerRadiusAnimator: Animation<CGFloat>? {
         view.animations[AnimatableProperty.cornerRadius] as? Animation<CGFloat>
+    }
+
+    private var runningShadowOpacityAnimator: Animation<CGFloat>? {
+        view.animations[AnimatableProperty.shadowOpacity] as? Animation<CGFloat>
+    }
+
+    private var runningShadowOffsetAnimator: Animation<CGSize>? {
+        view.animations[AnimatableProperty.shadowOffset] as? Animation<CGSize>
+    }
+
+    private var runningShadowRadiusAnimator: Animation<CGFloat>? {
+        view.animations[AnimatableProperty.shadowRadius] as? Animation<CGFloat>
     }
 }
