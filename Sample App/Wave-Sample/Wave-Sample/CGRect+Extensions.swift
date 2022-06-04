@@ -2,7 +2,7 @@
 //  CGRect+Extensions.swift
 //  Wave-Sample
 //
-//  Created by Janum Trivedi on 5/31/22.
+//  Copyright (c) 2022 Janum Trivedi.
 //
 
 import UIKit
