@@ -91,11 +91,12 @@ The block-based API currently supports animating the following properties. For o
 * `cornerRadius`
 * `scale`
 * `translation`
+* `shadowColor/radius/offset`
 
 Upcoming properties:
 
 * `rotation`
-* `shadow color/radius/offset/opacity`
+* `shadow color`
 
 #### Property-Based Animation
 
