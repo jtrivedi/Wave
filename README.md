@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="300" src="./Assets/Logo.png">
+    <img width="400" src="./Assets/Logo.png">
 </p>
 
 ## Wave
