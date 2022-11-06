@@ -17,7 +17,7 @@ class SheetViewController: UIViewController {
     let interactiveSpring = Spring(dampingRatio: 0.8, response: 0.2)
     let animatedSpring = Spring(dampingRatio: 0.68, response: 0.8)
 
-    lazy var sheetPresentationAnimator = Animation<CGFloat>(spring: animatedSpring)
+    lazy var sheetPresentationAnimator = SpringAnimator<CGFloat>(spring: animatedSpring)
 
     var sheetPresentationProgress: CGFloat = 0 {
         didSet {

@@ -22,7 +22,7 @@ class PictureInPictureViewController: UIViewController {
 
     /// In order to draw the path that the PiP view takes when animating to its final destination,
     /// we need the intermediate spring values. Use a separate `CGPoint` animator to get these values.
-    lazy var positionAnimator = Animation<CGPoint>(spring: animatedSpring)
+    lazy var positionAnimator = SpringAnimator<CGPoint>(spring: animatedSpring)
 
     /// The view that draws the path of the PiP view.
     lazy var pathView = PathView(frame: view.bounds)

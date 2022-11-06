@@ -74,7 +74,7 @@ final class SpringTests: XCTestCase {
         // This is an example of a performance test case.
         self.measure {
             let spring = Spring(dampingRatio: 0.15, response: 10)
-            let scalarAnimation = Animation<CGFloat>(spring: spring, value: 0, target: 100)
+            let scalarAnimator = SpringAnimator<CGFloat>(spring: spring, value: 0, target: 100)
             // 97 seconds
             let settlingDuration = spring.settlingDuration
 
@@ -85,7 +85,7 @@ final class SpringTests: XCTestCase {
             // or 1,465,750 spring calculations per second
             //
             for _ in 0...frames {
-                scalarAnimation.updateAnimation(dt: dt)
+                scalarAnimator.updateAnimation(dt: dt)
             }
         }
     }

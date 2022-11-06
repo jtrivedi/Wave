@@ -33,7 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabViewController.viewControllers = [
             PictureInPictureViewController(),
             GridViewController(),
-            SheetViewController()
+            SheetViewController(),
+            SwiftUIViewController()
         ]
 
         tabViewController.selectedIndex = 0

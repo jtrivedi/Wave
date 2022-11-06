@@ -39,9 +39,9 @@ public extension UIView {
         }
     }
 
-    internal var animations: [ViewAnimator.AnimatableProperty: AnimationProviding] {
+    internal var animators: [ViewAnimator.AnimatableProperty: AnimatorProviding] {
         get {
-            objc_getAssociatedObject(self, &ViewAnimationsAssociatedObjectHandle) as? [ViewAnimator.AnimatableProperty: AnimationProviding] ?? [:]
+            objc_getAssociatedObject(self, &ViewAnimationsAssociatedObjectHandle) as? [ViewAnimator.AnimatableProperty: AnimatorProviding] ?? [:]
         }
         set {
             objc_setAssociatedObject(self, &ViewAnimationsAssociatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)

@@ -191,7 +191,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
     }
 
     func testPropertyAnimation() {
-        let animation = Animation<CGFloat>(spring: .defaultAnimated)
+        let animation = SpringAnimator<CGFloat>(spring: .defaultAnimated)
         animation.value = 0
         animation.target = 1
         animation.start()

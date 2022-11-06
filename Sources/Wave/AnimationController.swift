@@ -13,7 +13,7 @@ internal class AnimationController {
 
     private var displayLink: CADisplayLink?
 
-    private var animations: [UUID: AnimationProviding] = [:]
+    private var animations: [UUID: AnimatorProviding] = [:]
     private var animationSettingsStack = SettingsStack()
 
     typealias CompletionBlock = ((_ finished: Bool, _ retargeted: Bool) -> Void)
@@ -35,7 +35,7 @@ internal class AnimationController {
             animationSettingsStack.pop()
     }
 
-    func runPropertyAnimation(_ animation: AnimationProviding) {
+    func runPropertyAnimation(_ animation: AnimatorProviding) {
         if animations.isEmpty {
             startDisplayLink()
         }

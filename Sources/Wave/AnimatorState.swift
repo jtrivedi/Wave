@@ -8,7 +8,7 @@
 /**
  The current state of an `Animation`.
  */
-public enum AnimationState {
+public enum AnimatorState {
     /**
      The animation is not currently running, but is ready.
      */

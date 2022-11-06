@@ -7,11 +7,11 @@
 
 import Foundation
 
-internal protocol AnimationProviding {
+internal protocol AnimatorProviding {
     var id: UUID { get }
     var groupUUID: UUID? { get }
 
-    var state: AnimationState { get }
+    var state: AnimatorState { get }
 
     func updateAnimation(dt: TimeInterval)
 
