@@ -6,7 +6,7 @@
 
 Wave is a spring-based animation engine for iOS and iPadOS. It makes it easy to create fluid, interactive, and interruptible animations that feel great.
 
-Wave has no external dependencies, and can be easily dropped into existing UIKit-based projects and apps.
+Wave has no external dependencies, and can be easily dropped into existing UIKit or SwiftUI based projects and apps.
 
 The core feature of Wave is that all animations are _re-targetable_, meaning that you can change an animation’s destination value in-flight, and the animation will gracefully _redirect_ to that new value.
 
