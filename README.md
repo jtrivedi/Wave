@@ -6,7 +6,7 @@
 
 Wave is a spring-based animation engine for iOS and iPadOS. It makes it easy to create fluid, interactive, and interruptible animations that feel great.
 
-Wave has no external dependencies, and can be easily dropped into existing UIKit-based projects and apps.
+Wave has no external dependencies, and can be easily dropped into existing UIKit or SwiftUI based projects and apps.
 
 The core feature of Wave is that all animations are _re-targetable_, meaning that you can change an animation’s destination value in-flight, and the animation will gracefully _redirect_ to that new value.
 
@@ -105,10 +105,10 @@ While the block-based API is often most convenient, you may want to animate some
 For example, to draw the orange path of the PiP demo, we need to know the value of every `CGPoint` from the view’s initial center, to its destination center:
 
 ```swift
-// When the gesture ends, create a `CGPoint` animation from the PiP view's initial center, to its target.
+// When the gesture ends, create a `CGPoint` animator from the PiP view's initial center, to its target.
 // The `valueChanged` callback provides the intermediate locations of the callback, allowing us to draw the path.
 
-let positionAnimator = Animation<CGPoint>(spring: animatedSpring)
+let positionAnimator = Animator<CGPoint>(spring: animatedSpring)
 positionAnimator.value = pipView.center       // The presentation value
 positionAnimator.target = pipViewDestination  // The target value
 positionAnimator.velocity = gestureVelocity

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class Animation<T: SpringInterpolatable>: AnimationProviding {
+public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
 
     public enum Event {
         /**
@@ -33,7 +33,7 @@ public class Animation<T: SpringInterpolatable>: AnimationProviding {
     /**
      The execution state of the animation (`inactive`, `running`, or `ended`).
      */
-    public private(set) var state: AnimationState = .inactive {
+    public private(set) var state: AnimatorState = .inactive {
         didSet {
             switch (oldValue, state) {
             case (.inactive, .running):
@@ -248,10 +248,10 @@ public class Animation<T: SpringInterpolatable>: AnimationProviding {
     }
 }
 
-extension Animation: CustomStringConvertible {
+extension SpringAnimator: CustomStringConvertible {
     public var description: String {
 """
-Animation<\(T.self)>(
+SpringAnimator<\(T.self)>(
     uuid: \(id)
     groupUUID: \(String(describing: groupUUID))
 

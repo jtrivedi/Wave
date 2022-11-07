@@ -191,26 +191,26 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
     }
 
     func testPropertyAnimation() {
-        let animation = Animation<CGFloat>(spring: .defaultAnimated)
-        animation.value = 0
-        animation.target = 1
-        animation.start()
+        let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
+        animator.value = 0
+        animator.target = 1
+        animator.start()
 
-        animation.valueChanged = { value in
+        animator.valueChanged = { value in
             if value > 0.5 {
-                animation.stop(immediately: true)
+                animator.stop(immediately: true)
             }
         }
 
         wait(for: .defaultAnimated) {
-            guard let value = animation.value else {
+            guard let value = animator.value else {
                 return
             }
 
-            XCTAssertEqual(animation.state, .inactive)
+            XCTAssertEqual(animator.state, .inactive)
             XCTAssert(value > 0.5 && value < 0.55)
-            XCTAssertEqual(animation.target, 1)
-            XCTAssertEqual(animation.velocity, .zero)
+            XCTAssertEqual(animator.target, 1)
+            XCTAssertEqual(animator.velocity, .zero)
         }
     }
 

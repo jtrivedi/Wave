@@ -126,7 +126,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningCenterAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningCenterAnimator ?? Animation<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningCenterAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.configure(withSettings: settings)
 
@@ -142,7 +142,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 case .retargeted:
                     break
@@ -177,7 +177,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBoundsOriginAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningBoundsOriginAnimator ?? Animation<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningBoundsOriginAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.configure(withSettings: settings)
 
@@ -189,7 +189,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -224,7 +224,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBoundsSizeAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningBoundsSizeAnimator ?? Animation<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningBoundsSizeAnimator ?? SpringAnimator<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.configure(withSettings: settings)
 
@@ -237,7 +237,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 case .retargeted:
                     break
@@ -271,12 +271,12 @@ public class ViewAnimator {
             }
 
             let animationType = AnimatableProperty.backgroundColor
-            let existingAnimationForType = view.animations[animationType]
+            let existingAnimationForType = view.animators[animationType]
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: existingAnimationForType?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (existingAnimationForType as? Animation<CGFloat> ?? Animation<CGFloat>(spring: settings.spring, value: 0, target: 1))
+            let animation = (existingAnimationForType as? SpringAnimator<CGFloat> ?? SpringAnimator<CGFloat>(spring: settings.spring, value: 0, target: 1))
 
             animation.configure(withSettings: settings)
 
@@ -293,7 +293,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished(at: _):
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -330,7 +330,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningAlphaAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningAlphaAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningAlphaAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -341,7 +341,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -374,7 +374,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningScaleAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningScaleAnimator ?? Animation<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningScaleAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.target = targetValue
             animation.valueChanged = { [weak self] value in
@@ -389,7 +389,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -426,7 +426,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningTranslationAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningTranslationAnimator ?? Animation<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningTranslationAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.target = targetValue
             animation.valueChanged = { [weak self] value in
@@ -441,7 +441,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -477,7 +477,7 @@ public class ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningCornerRadiusAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningCornerRadiusAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningCornerRadiusAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
 
             animation.configure(withSettings: settings)
 
@@ -489,7 +489,7 @@ public class ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -529,7 +529,7 @@ extension ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowOpacityAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningShadowOpacityAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningShadowOpacityAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -541,7 +541,7 @@ extension ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -577,7 +577,7 @@ extension ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowOffsetAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningShadowOffsetAnimator ?? Animation<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningShadowOffsetAnimator ?? SpringAnimator<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -588,7 +588,7 @@ extension ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -624,7 +624,7 @@ extension ViewAnimator {
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowRadiusAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (runningShadowRadiusAnimator ?? Animation<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
+            let animation = (runningShadowRadiusAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -635,7 +635,7 @@ extension ViewAnimator {
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
-                    self?.view.animations.removeValue(forKey: animationType)
+                    self?.view.animators.removeValue(forKey: animationType)
                     AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
                 default:
                     break
@@ -651,48 +651,48 @@ extension ViewAnimator {
 
     // MARK: - Internal
 
-    private func start(animation: AnimationProviding, type: AnimatableProperty, delay: TimeInterval) {
-        view.animations[type] = animation
+    private func start(animation: AnimatorProviding, type: AnimatableProperty, delay: TimeInterval) {
+        view.animators[type] = animation
         animation.start(afterDelay: delay)
     }
 
-    private var runningCenterAnimator: Animation<CGPoint>? {
-        view.animations[AnimatableProperty.frameCenter] as? Animation<CGPoint>
+    private var runningCenterAnimator: SpringAnimator<CGPoint>? {
+        view.animators[AnimatableProperty.frameCenter] as? SpringAnimator<CGPoint>
     }
 
-    private var runningBoundsOriginAnimator: Animation<CGPoint>? {
-        view.animations[AnimatableProperty.boundsOrigin] as? Animation<CGPoint>
+    private var runningBoundsOriginAnimator: SpringAnimator<CGPoint>? {
+        view.animators[AnimatableProperty.boundsOrigin] as? SpringAnimator<CGPoint>
     }
 
-    private var runningBoundsSizeAnimator: Animation<CGSize>? {
-        view.animations[AnimatableProperty.boundsSize] as? Animation<CGSize>
+    private var runningBoundsSizeAnimator: SpringAnimator<CGSize>? {
+        view.animators[AnimatableProperty.boundsSize] as? SpringAnimator<CGSize>
     }
 
-    private var runningScaleAnimator: Animation<CGPoint>? {
-        view.animations[AnimatableProperty.scale] as? Animation<CGPoint>
+    private var runningScaleAnimator: SpringAnimator<CGPoint>? {
+        view.animators[AnimatableProperty.scale] as? SpringAnimator<CGPoint>
     }
 
-    private var runningTranslationAnimator: Animation<CGPoint>? {
-        view.animations[AnimatableProperty.translation] as? Animation<CGPoint>
+    private var runningTranslationAnimator: SpringAnimator<CGPoint>? {
+        view.animators[AnimatableProperty.translation] as? SpringAnimator<CGPoint>
     }
 
-    private var runningAlphaAnimator: Animation<CGFloat>? {
-        view.animations[AnimatableProperty.alpha] as? Animation<CGFloat>
+    private var runningAlphaAnimator: SpringAnimator<CGFloat>? {
+        view.animators[AnimatableProperty.alpha] as? SpringAnimator<CGFloat>
     }
 
-    private var runningCornerRadiusAnimator: Animation<CGFloat>? {
-        view.animations[AnimatableProperty.cornerRadius] as? Animation<CGFloat>
+    private var runningCornerRadiusAnimator: SpringAnimator<CGFloat>? {
+        view.animators[AnimatableProperty.cornerRadius] as? SpringAnimator<CGFloat>
     }
 
-    private var runningShadowOpacityAnimator: Animation<CGFloat>? {
-        view.animations[AnimatableProperty.shadowOpacity] as? Animation<CGFloat>
+    private var runningShadowOpacityAnimator: SpringAnimator<CGFloat>? {
+        view.animators[AnimatableProperty.shadowOpacity] as? SpringAnimator<CGFloat>
     }
 
-    private var runningShadowOffsetAnimator: Animation<CGSize>? {
-        view.animations[AnimatableProperty.shadowOffset] as? Animation<CGSize>
+    private var runningShadowOffsetAnimator: SpringAnimator<CGSize>? {
+        view.animators[AnimatableProperty.shadowOffset] as? SpringAnimator<CGSize>
     }
 
-    private var runningShadowRadiusAnimator: Animation<CGFloat>? {
-        view.animations[AnimatableProperty.shadowRadius] as? Animation<CGFloat>
+    private var runningShadowRadiusAnimator: SpringAnimator<CGFloat>? {
+        view.animators[AnimatableProperty.shadowRadius] as? SpringAnimator<CGFloat>
     }
 }
