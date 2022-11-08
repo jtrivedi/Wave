@@ -77,7 +77,20 @@ internal class AnimationController {
     private func startDisplayLink() {
         if displayLink == nil {
             displayLink = CADisplayLink(target: self, selector: #selector(updateAnimations))
-            displayLink?.add(to: .current, forMode: .common)
+
+            guard let displayLink = displayLink else {
+                print("[Wave] Unable to create display link.")
+                return
+            }
+
+            displayLink.add(to: .current, forMode: .common)
+
+            if #available(iOS 15.0, *) {
+                let maximumFramesPerSecond = Float(UIScreen.main.maximumFramesPerSecond)
+                let highFPSEnabled = maximumFramesPerSecond > 60
+                let minimumFPS: Float = highFPSEnabled ? 80 : 60
+                displayLink.preferredFrameRateRange = .init(minimum: minimumFPS, maximum: maximumFramesPerSecond, preferred: maximumFramesPerSecond)
+            }
         }
     }
 
