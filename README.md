@@ -39,6 +39,8 @@ Add Wave to your app's `Package.swift` file, or selecting `File -> Add Packages`
 
 If you clone the repo, you can run the sample app, which contains a few interactive demos to understand what Wave provides.
 
+Note: To enable high frame-rate animations on ProMotion devices (i.e. 120 fps animation), you'll need to add a key/value pair in your `Info.plist`. Set the key `CADisableMinimumFrameDuration` to `true`. Without this entry, animations will be capped at 60 fps.
+
 ### Documentation
 
 There’s a full Wave [documentation site](https://Wave-jtrivedi.structure.sh) available for full API and usage documentation.
