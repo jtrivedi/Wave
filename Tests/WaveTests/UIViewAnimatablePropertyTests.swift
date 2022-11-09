@@ -169,6 +169,48 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         }
     }
 
+    func testBackgroundColor() {
+        let view = UIView()
+
+        let initialValue = UIColor.red
+        let targetValue = UIColor.blue
+
+        view.backgroundColor = initialValue
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.animator.backgroundColor = targetValue
+        }
+
+        XCTAssertEqual(view.backgroundColor?.rgbaComponents, initialValue.rgbaComponents)
+        XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.backgroundColor?.rgbaComponents, targetValue.rgbaComponents)
+            XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+        }
+    }
+
+    func testBackgroundColorClear() {
+        let view = UIView()
+
+        let initialValue = UIColor.clear
+        let targetValue = UIColor.blue.withAlphaComponent(0.5)
+
+        view.backgroundColor = initialValue
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.animator.backgroundColor = targetValue
+        }
+
+        XCTAssertEqual(view.backgroundColor?.rgbaComponents, initialValue.rgbaComponents)
+        XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.backgroundColor?.rgbaComponents, targetValue.rgbaComponents)
+            XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+        }
+    }
+
     func testAlpha() {
         let view = UIView()
 

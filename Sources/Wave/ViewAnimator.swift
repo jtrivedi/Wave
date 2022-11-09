@@ -251,8 +251,8 @@ public class ViewAnimator {
     /// The background color of the attached `UIView`.
     public var backgroundColor: UIColor {
         get {
-            if let rgba = runningBackgroundColorAnimator?.value {
-                return UIColor(red: rgba.r, green: rgba.g, blue: rgba.b, alpha: rgba.a)
+            if let targetComponents = runningBackgroundColorAnimator?.target {
+                return targetComponents.uiColor
             } else {
                 return view.backgroundColor ?? .clear
             }
@@ -295,7 +295,7 @@ public class ViewAnimator {
 
             animation.target = targetValueComponents
             animation.valueChanged = { [weak self] components in
-                self?.view.backgroundColor = UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
+                self?.view.backgroundColor = components.uiColor
             }
 
             animation.completion = { [weak self] event in
@@ -686,7 +686,7 @@ extension ViewAnimator {
     private var runningBackgroundColorAnimator: SpringAnimator<RGBAComponents>? {
         view.animators[AnimatableProperty.backgroundColor] as? SpringAnimator<RGBAComponents>
     }
-    
+
     private var runningAlphaAnimator: SpringAnimator<CGFloat>? {
         view.animators[AnimatableProperty.alpha] as? SpringAnimator<CGFloat>
     }
