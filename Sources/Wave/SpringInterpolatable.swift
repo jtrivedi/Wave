@@ -87,3 +87,31 @@ extension CGRect: SpringInterpolatable, VelocityProviding {
         return (value: newValue, velocity: newVelocity)
     }
 }
+
+extension RGBAComponents: SpringInterpolatable, VelocityProviding {
+
+    typealias ValueType = RGBAComponents
+    typealias VelocityType = RGBAComponents
+
+    static func updateValue(spring: Spring, value: RGBAComponents, target: RGBAComponents, velocity: RGBAComponents, dt: TimeInterval) -> (value: RGBAComponents, velocity: RGBAComponents) {
+        let (newR, newVelocityR) = CGFloat.updateValue(spring: spring, value: value.r, target: target.r, velocity: velocity.r, dt: dt)
+        let (newG, newVelocityG) = CGFloat.updateValue(spring: spring, value: value.g, target: target.g, velocity: velocity.g, dt: dt)
+        let (newB, newVelocityB) = CGFloat.updateValue(spring: spring, value: value.b, target: target.b, velocity: velocity.b, dt: dt)
+        let (newA, newVelocityA) = CGFloat.updateValue(spring: spring, value: value.a, target: target.a, velocity: velocity.a, dt: dt)
+
+        let newValue = RGBAComponents(r: newR, g: newG, b: newB, a: newA)
+        let newVelocity = RGBAComponents(r: newVelocityR, g: newVelocityG, b: newVelocityB, a: newVelocityA)
+
+        return (value: newValue, newVelocity)
+    }
+
+    var scaledIntegral: RGBAComponents {
+        self
+    }
+
+    static var zero: RGBAComponents {
+        RGBAComponents(r: 0, g: 0, b: 0, a: 0)
+    }
+
+
+}

@@ -30,8 +30,8 @@ public class ViewAnimator {
         case boundsSize
         case boundsOrigin
 
-        case alpha
         case backgroundColor
+        case alpha
 
         case scale
         case translation
@@ -249,9 +249,13 @@ public class ViewAnimator {
     }
 
     /// The background color of the attached `UIView`.
-    public var backgroundColor: UIColor? {
+    public var backgroundColor: UIColor {
         get {
-            view.backgroundColor
+            if let targetComponents = runningBackgroundColorAnimator?.target {
+                return targetComponents.uiColor
+            } else {
+                return view.backgroundColor ?? .clear
+            }
         }
         set {
             guard backgroundColor != newValue else {
@@ -265,31 +269,35 @@ public class ViewAnimator {
                 return
             }
 
-            guard let targetValue = newValue else {
-                view.backgroundColor = nil
-                return
-            }
+            // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero.
+            let initialValue = view.backgroundColor ?? .clear
+
+            // Animating to `clear` or `nil` really just animates the alpha component down to zero. Retain the other color components.
+            let targetValue = (newValue == UIColor.clear) ? backgroundColor.withAlphaComponent(0) : newValue
 
             let animationType = AnimatableProperty.backgroundColor
-            let existingAnimationForType = view.animators[animationType]
 
             // Re-targeting an animation.
-            AnimationController.shared.executeHandler(uuid: existingAnimationForType?.groupUUID, finished: false, retargeted: true)
+            AnimationController.shared.executeHandler(uuid: runningBackgroundColorAnimator?.groupUUID, finished: false, retargeted: true)
 
-            let animation = (existingAnimationForType as? SpringAnimator<CGFloat> ?? SpringAnimator<CGFloat>(spring: settings.spring, value: 0, target: 1))
+            let initialValueComponents = RGBAComponents(color: initialValue)
+            let targetValueComponents = RGBAComponents(color: targetValue)
+
+            let animation = (runningBackgroundColorAnimator ??
+                             SpringAnimator<RGBAComponents>(
+                                spring: settings.spring,
+                                value:  initialValueComponents,
+                                target: targetValueComponents
+                             )
+            )
 
             animation.configure(withSettings: settings)
 
-            let initialColor = view.backgroundColor
-
-            animation.valueChanged = { [weak self] progress in
-                if let initialColor = initialColor {
-                    self?.view.backgroundColor = UIColor.interpolate(from: initialColor, to: targetValue, with: progress)
-                }
+            animation.target = targetValueComponents
+            animation.valueChanged = { [weak self] components in
+                self?.view.backgroundColor = components.uiColor
             }
 
-            animation.value = 0
-            animation.target = 1.0
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished(at: _):
@@ -303,7 +311,6 @@ public class ViewAnimator {
             start(animation: animation, type: animationType, delay: settings.delay)
         }
     }
-
 
     /// The alpha of the attached `UIView`.
     public var alpha: CGFloat {
@@ -674,6 +681,10 @@ extension ViewAnimator {
 
     private var runningTranslationAnimator: SpringAnimator<CGPoint>? {
         view.animators[AnimatableProperty.translation] as? SpringAnimator<CGPoint>
+    }
+
+    private var runningBackgroundColorAnimator: SpringAnimator<RGBAComponents>? {
+        view.animators[AnimatableProperty.backgroundColor] as? SpringAnimator<RGBAComponents>
     }
 
     private var runningAlphaAnimator: SpringAnimator<CGFloat>? {

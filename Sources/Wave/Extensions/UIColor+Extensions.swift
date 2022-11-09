@@ -8,6 +8,33 @@
 import Foundation
 import UIKit
 
+struct RGBAComponents: Equatable {
+    let r: CGFloat
+    let g: CGFloat
+    let b: CGFloat
+    let a: CGFloat
+
+    init(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+    }
+
+    init(color: UIColor) {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+        self.init(r: r, g: g, b: b, a: a)
+    }
+
+    var uiColor: UIColor {
+        UIColor(red: r, green: g, blue: b, alpha: a)
+    }
+}
+
 extension UIColor {
 
     /**
@@ -19,8 +46,8 @@ extension UIColor {
      */
     public static func interpolate(from fromColor: UIColor, to toColor: UIColor, with progress: CGFloat) -> UIColor {
         let progress = clipUnit(value: progress)
-        let fromComponents = fromColor.components
-        let toComponents = toColor.components
+        let fromComponents = fromColor.rgbaComponents
+        let toComponents = toColor.rgbaComponents
 
         let r = (1 - progress) * fromComponents.r + progress * toComponents.r
         let g = (1 - progress) * fromComponents.g + progress * toComponents.g
@@ -30,13 +57,7 @@ extension UIColor {
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
 
-    /// The RGBA components associated with a `UIColor` instance.
-    var components: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
-        let components = self.cgColor.components!
-        if components.count == 2 {
-            return (r: components[0], g: components[0], b: components[0], a: components[1])
-        } else {
-            return (r: components[0], g: components[1], b: components[2], a: components[3])
-        }
+    var rgbaComponents: RGBAComponents {
+        RGBAComponents(color: self)
     }
 }
