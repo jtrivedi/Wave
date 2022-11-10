@@ -10,7 +10,7 @@ import UIKit
 private var ViewAnimatorAssociatedObjectHandle: UInt8 = 1 << 4
 private var ViewAnimationsAssociatedObjectHandle: UInt8 = 1 << 5
 
-public extension UIView {
+extension UIView {
 
     /**
      Use the `animator` property to set any animatable properties on a `UIView` in an ``Wave.animateWith(...)`` animation block.
@@ -25,7 +25,7 @@ public extension UIView {
      
      See ``ViewAnimator`` for a list of supported animatable properties on `UIView`.
      */
-    var animator: ViewAnimator {
+    public var animator: ViewAnimator {
         get {
             if let viewAnimator = objc_getAssociatedObject(self, &ViewAnimatorAssociatedObjectHandle) as? ViewAnimator {
                 return viewAnimator

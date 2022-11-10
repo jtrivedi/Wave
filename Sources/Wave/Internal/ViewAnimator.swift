@@ -8,20 +8,7 @@
 import Foundation
 import UIKit
 
-/**
- The `ViewAnimator` class contains the supported UIView animatable properties, like `frame`, `center`, `cornerRadius`, and more.
- 
- In an Wave animation block, change these values to create an animation, like so:
- 
- Example usage:
- ```swift
- Wave.animateWith(spring: .defaultAnimated) {
-    myView.animator.center = CGPoint(x: 100, y: 100)
-    myView.animator.alpha = 0.5
- }
- ```
- */
-public class ViewAnimator {
+extension ViewAnimator {
 
     internal enum AnimatableProperty: Int {
         case frameCenter
@@ -37,16 +24,7 @@ public class ViewAnimator {
         case translation
     }
 
-    var view: UIView
-
-    init(view: UIView) {
-        self.view = view
-    }
-
-    // MARK: - Public
-
-    /// The bounds of the attached `UIView`.
-    public var bounds: CGRect {
+    var _bounds: CGRect {
         get {
             CGRect(origin: view.animator.boundsOrigin, size: view.animator.boundsSize)
         }
@@ -63,8 +41,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The frame of the attached `UIView`.
-    public var frame: CGRect {
+    var _frame: CGRect {
         get {
             CGRect(aroundPoint: view.animator.center, size: view.animator.boundsSize)
         }
@@ -81,8 +58,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The origin of the attached `UIView`.
-    public var origin: CGPoint {
+    var _origin: CGPoint {
         get {
             view.animator.frame.origin
         }
@@ -96,8 +72,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The center of the attached `UIView`.
-    public var center: CGPoint {
+    var _center: CGPoint {
         get {
             runningCenterAnimator?.target ?? view.center
         }
@@ -148,7 +123,7 @@ public class ViewAnimator {
         }
     }
 
-    private var boundsOrigin: CGPoint {
+    var boundsOrigin: CGPoint {
         get {
             runningBoundsOriginAnimator?.target ?? view.bounds.origin
         }
@@ -195,7 +170,7 @@ public class ViewAnimator {
         }
     }
 
-    private var boundsSize: CGSize {
+    var boundsSize: CGSize {
         get {
             runningBoundsSizeAnimator?.target ?? view.bounds.size
         }
@@ -243,8 +218,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The background color of the attached `UIView`.
-    public var backgroundColor: UIColor {
+    var _backgroundColor: UIColor {
         get {
             if let targetComponents = runningBackgroundColorAnimator?.target {
                 return targetComponents.uiColor
@@ -307,8 +281,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The alpha of the attached `UIView`.
-    public var alpha: CGFloat {
+    var _alpha: CGFloat {
         get {
             view.layer.animator.opacity
         }
@@ -317,9 +290,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The corner radius of the attached `UIView`'s `layer`.
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var cornerRadius: CGFloat {
+    var _cornerRadius: CGFloat {
         get {
             view.layer.animator.cornerRadius
         }
@@ -328,9 +299,8 @@ public class ViewAnimator {
         }
     }
 
-    /// The border color of the attached `UIView`'s `layer`.
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var borderColor: UIColor {
+
+    var _borderColor: UIColor {
         get {
             UIColor(cgColor: view.layer.animator.borderColor)
         }
@@ -339,9 +309,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The border width of the attached `UIView`'s `layer`.
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var borderWidth: CGFloat {
+    var _borderWidth: CGFloat {
         get {
             view.layer.animator.borderWidth
         }
@@ -350,9 +318,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The shadow color of the attached `UIView`'s `layer'.`
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var shadowColor: UIColor {
+    var _shadowColor: UIColor {
         get {
             UIColor(cgColor: view.layer.animator.shadowColor)
         }
@@ -361,9 +327,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The shadow opacity of the attached `UIView`'s `layer'.`
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var shadowOpacity: CGFloat {
+    var _shadowOpacity: CGFloat {
         get {
             view.layer.animator.shadowOpacity
         }
@@ -372,9 +336,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The shadow offset of the attached `UIView`'s `layer'.`
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var shadowOffset: CGSize {
+    var _shadowOffset: CGSize {
         get {
             view.layer.animator.shadowOffset
         }
@@ -383,9 +345,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The shadow radius of the attached `UIView`'s `layer'.`
-    /// This is a convenience API that forwards to the `CALayer`'s `animator`.
-    public var shadowRadius: CGFloat {
+    var _shadowRadius: CGFloat {
         get {
             view.layer.animator.shadowRadius
         }
@@ -394,8 +354,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The affine scale transform of the attached `UIView`'s `layer`.
-    public var scale: CGPoint {
+    var _scale: CGPoint {
         get {
             let currentScale = CGPoint(x: view.transform.a, y: view.transform.d)
             return runningScaleAnimator?.target ?? currentScale
@@ -442,8 +401,7 @@ public class ViewAnimator {
         }
     }
 
-    /// The affine translation transform of the attached `UIView`'s `layer`.
-    public var translation: CGPoint {
+    var _translation: CGPoint {
         get {
             let currentTranslation = CGPoint(x: view.transform.tx, y: view.transform.ty)
             return runningTranslationAnimator?.target ?? currentTranslation

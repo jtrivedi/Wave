@@ -17,7 +17,7 @@ internal class AnimationController {
     private var animationSettingsStack = SettingsStack()
 
     typealias CompletionBlock = ((_ finished: Bool, _ retargeted: Bool) -> Void)
-    var groupAnimationCompletionBlocks: [UUID: CompletionBlock] = [:]
+    private var groupAnimationCompletionBlocks: [UUID: CompletionBlock] = [:]
 
     var currentAnimationParameters: AnimationParameters? {
         animationSettingsStack.currentSettings

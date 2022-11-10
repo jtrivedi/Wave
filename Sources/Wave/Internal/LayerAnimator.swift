@@ -8,20 +8,7 @@
 import Foundation
 import UIKit
 
-/**
- The `LayerAnimator` class contains the supported `CALayer` animatable properties, like `cornerRadius`, `shadowColor`, `shadowOpacity`, and more.
-
- In an Wave animation block, change these values to create an animation, like so:
-
- Example usage:
- ```swift
- Wave.animateWith(spring: .defaultAnimated) {
-    myView.layer.animator.cornerRadius = 12
-    myView.layer.animator.shadowOpacity = 0.5
- }
- ```
- */
-public class LayerAnimator {
+extension LayerAnimator {
 
     internal enum AnimatableProperty: Int {
         case cornerRadius
@@ -36,16 +23,7 @@ public class LayerAnimator {
         case shadowRadius
     }
 
-    var layer: CALayer
-
-    init(layer: CALayer) {
-        self.layer = layer
-    }
-
-    // MARK: - Public
-
-    /// The corner radius of the attached `layer`.
-    public var cornerRadius: CGFloat {
+    var _cornerRadius: CGFloat {
         get {
             runningCornerRadiusAnimator?.target ?? layer.cornerRadius
         }
@@ -92,8 +70,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The opacity of the attached layer.
-    public var opacity: CGFloat {
+    var _opacity: CGFloat {
         get {
             runningOpacityAnimator?.target ?? CGFloat(layer.opacity)
         }
@@ -139,8 +116,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The border color of the attached layer.
-    public var borderColor: CGColor {
+    var _borderColor: CGColor {
         get {
             if let targetComponents = runningBorderColorAnimator?.target {
                 return targetComponents.uiColor.cgColor
@@ -214,8 +190,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The border width of the attached `layer`.
-    public var borderWidth: CGFloat {
+    var _borderWidth: CGFloat {
         get {
             runningBorderWidthAnimator?.target ?? layer.borderWidth
         }
@@ -262,8 +237,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The shadow opacity of the attached layer.
-    public var shadowOpacity: CGFloat {
+    var _shadowOpacity: CGFloat {
         get {
             runningShadowOpacityAnimator?.target ?? CGFloat(layer.shadowOpacity)
         }
@@ -310,8 +284,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The shadow color of the attached layer.
-    public var shadowColor: CGColor {
+    var _shadowColor: CGColor {
         get {
             if let targetComponents = runningShadowColorAnimator?.target {
                 return targetComponents.uiColor.cgColor
@@ -386,7 +359,7 @@ public class LayerAnimator {
     }
 
     /// The shadow offset of the attached layer.
-    public var shadowOffset: CGSize {
+    var _shadowOffset: CGSize {
         get {
             runningShadowOffsetAnimator?.target ?? layer.shadowOffset
         }
@@ -432,8 +405,7 @@ public class LayerAnimator {
         }
     }
 
-    /// The shadow radius of the attached layer.
-    public var shadowRadius: CGFloat {
+    var _shadowRadius: CGFloat {
         get {
             runningShadowRadiusAnimator?.target ?? CGFloat(layer.shadowRadius)
         }

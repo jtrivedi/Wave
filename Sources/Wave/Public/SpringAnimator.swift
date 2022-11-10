@@ -1,11 +1,10 @@
 //
-//  Animation.swift
+//  SpringAnimator.swift
 //  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import Foundation
 import UIKit
 
 public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {

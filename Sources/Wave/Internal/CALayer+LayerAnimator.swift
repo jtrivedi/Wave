@@ -11,7 +11,7 @@ import UIKit
 private var LayerAnimatorAssociatedObjectHandle: UInt8 = 1 << 4
 private var LayerAnimationsAssociatedObjectHandle: UInt8 = 1 << 5
 
-public extension CALayer {
+extension CALayer {
 
     /**
      Use the `animator` property to set any animatable properties on a `CALayer` in an ``Wave.animateWith(...)`` animation block.
@@ -26,7 +26,7 @@ public extension CALayer {
 
      See ``LayerAnimator`` for a list of supported animatable properties on `UIView`.
      */
-    var animator: LayerAnimator {
+    public var animator: LayerAnimator {
         get {
             if let layerAnimator = objc_getAssociatedObject(self, &LayerAnimatorAssociatedObjectHandle) as? LayerAnimator {
                 return layerAnimator
