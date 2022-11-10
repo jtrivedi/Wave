@@ -113,5 +113,4 @@ extension RGBAComponents: SpringInterpolatable, VelocityProviding {
         RGBAComponents(r: 0, g: 0, b: 0, a: 0)
     }
 
-
 }

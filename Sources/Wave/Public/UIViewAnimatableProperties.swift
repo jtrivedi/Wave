@@ -122,7 +122,7 @@ public class ViewAnimator {
     }
 
     // MARK: - Internal
-    
+
     let view: UIView
 
     init(view: UIView) {
@@ -130,4 +130,3 @@ public class ViewAnimator {
     }
 
 }
-

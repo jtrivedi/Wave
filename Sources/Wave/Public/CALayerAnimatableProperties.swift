@@ -79,5 +79,5 @@ public class LayerAnimator {
     init(layer: CALayer) {
         self.layer = layer
     }
-    
+
 }

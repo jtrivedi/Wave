@@ -164,7 +164,7 @@ extension LayerAnimator {
             let animation = (runningBorderColorAnimator ??
                              SpringAnimator<RGBAComponents>(
                                 spring: settings.spring,
-                                value:  initialValueComponents,
+                                value: initialValueComponents,
                                 target: targetValueComponents
                              )
             )
@@ -332,7 +332,7 @@ extension LayerAnimator {
             let animation = (runningShadowColorAnimator ??
                              SpringAnimator<RGBAComponents>(
                                 spring: settings.spring,
-                                value:  initialValueComponents,
+                                value: initialValueComponents,
                                 target: targetValueComponents
                              )
             )

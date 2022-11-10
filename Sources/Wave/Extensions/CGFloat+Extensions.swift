@@ -26,5 +26,5 @@ extension CGFloat {
     var radiansToDegrees: CGFloat {
         self * 180 / .pi
     }
-    
+
 }

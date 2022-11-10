@@ -255,7 +255,7 @@ extension ViewAnimator {
             let animation = (runningBackgroundColorAnimator ??
                              SpringAnimator<RGBAComponents>(
                                 spring: settings.spring,
-                                value:  initialValueComponents,
+                                value: initialValueComponents,
                                 target: targetValueComponents
                              )
             )
@@ -298,7 +298,6 @@ extension ViewAnimator {
             view.layer.animator.cornerRadius = newValue
         }
     }
-
 
     var _borderColor: UIColor {
         get {
@@ -451,7 +450,7 @@ extension ViewAnimator {
             start(animation: animation, type: animationType, delay: settings.delay)
         }
     }
-    
+
 }
 
 extension ViewAnimator {
@@ -490,5 +489,5 @@ extension ViewAnimator {
     private var runningAlphaAnimator: SpringAnimator<CGFloat>? {
         view.animators[AnimatableProperty.alpha] as? SpringAnimator<CGFloat>
     }
-    
+
 }
