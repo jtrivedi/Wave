@@ -84,6 +84,47 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
         }
     }
 
+    func testBorderWidth() {
+        let view = UIView()
+
+        let initialValue = 10.0
+        let targetValue = 20.0
+        view.layer.borderWidth = initialValue
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.layer.animator.borderWidth = targetValue
+        }
+
+        XCTAssertEqual(view.layer.borderWidth, initialValue)
+        XCTAssertEqual(view.layer.animator.borderWidth, targetValue)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.layer.borderWidth, targetValue)
+            XCTAssertEqual(view.layer.animator.borderWidth, targetValue)
+        }
+    }
+
+    func testBorderColor() {
+        let view = UIView()
+
+        let initialValue = UIColor.red
+        let targetValue = UIColor.blue
+
+        view.layer.borderColor = initialValue.cgColor
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.layer.animator.borderColor = targetValue.cgColor
+        }
+
+        XCTAssertEqual(view.layer.borderColor, initialValue.cgColor)
+        XCTAssertEqual(view.layer.animator.borderColor, targetValue.cgColor)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.layer.borderColor, targetValue.cgColor)
+            XCTAssertEqual(view.layer.animator.borderColor, targetValue.cgColor)
+        }
+    }
+
     // MARK: - Shadows
 
     func testShadowOpacity() {
