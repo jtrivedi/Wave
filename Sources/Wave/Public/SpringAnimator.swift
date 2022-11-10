@@ -37,7 +37,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         didSet {
             switch (oldValue, state) {
             case (.inactive, .running):
-                self.startTime = .now
+                self.startTime = CACurrentMediaTime()
 
             default:
                 break
@@ -73,7 +73,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
             }
 
             if state == .running {
-                self.startTime = .now
+                self.startTime = CACurrentMediaTime()
 
                 let event = Event.retargeted(from: oldValue, to: newValue)
                 completion?(event)
@@ -117,8 +117,6 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
     var groupUUID: UUID?
 
     var startTime: TimeInterval?
-
-    var relativePriority: Int = 0
 
     /**
      Creates a new animation with a given `Spring`, and optionally, an initial and target value.
@@ -191,7 +189,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
 
     var runningTime: TimeInterval? {
         if let startTime = startTime {
-            return (.now - startTime)
+            return (CACurrentMediaTime() - startTime)
         } else {
             return nil
         }
@@ -266,8 +264,6 @@ SpringAnimator<\(T.self)>(
 
     callback: \(String(describing: valueChanged))
     completion: \(String(describing: completion))
-
-    priority: \(relativePriority)
 )
 """
     }

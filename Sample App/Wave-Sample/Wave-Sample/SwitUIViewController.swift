@@ -2,7 +2,7 @@
 //  SwitUIViewController.swift
 //  Wave-Sample
 //
-//  Created by Janum Trivedi on 11/2/22.
+//  Copyright (c) 2022 Janum Trivedi
 //
 
 import SwiftUI

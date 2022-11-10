@@ -21,6 +21,4 @@ internal protocol AnimatorProviding {
     func reset()
 
     var mode: AnimationMode { get set }
-
-    var relativePriority: Int { get set }
 }

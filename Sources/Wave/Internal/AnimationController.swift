@@ -54,11 +54,7 @@ internal class AnimationController {
 
         let dt = (displayLink.targetTimestamp - displayLink.timestamp)
 
-        let sortedAnimations = animations.values.sorted { lhs, rhs in
-            lhs.relativePriority > rhs.relativePriority
-        }
-
-        for animation in sortedAnimations {
+        for animation in animations.values {
             if animation.state == .ended {
                 animation.reset()
                 animations.removeValue(forKey: animation.id)
