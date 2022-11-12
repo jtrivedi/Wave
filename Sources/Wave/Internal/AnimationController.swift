@@ -17,7 +17,7 @@ internal class AnimationController {
     private var animationSettingsStack = SettingsStack()
 
     typealias CompletionBlock = ((_ finished: Bool, _ retargeted: Bool) -> Void)
-    var groupAnimationCompletionBlocks: [UUID: CompletionBlock] = [:]
+    private var groupAnimationCompletionBlocks: [UUID: CompletionBlock] = [:]
 
     var currentAnimationParameters: AnimationParameters? {
         animationSettingsStack.currentSettings
@@ -54,11 +54,7 @@ internal class AnimationController {
 
         let dt = (displayLink.targetTimestamp - displayLink.timestamp)
 
-        let sortedAnimations = animations.values.sorted { lhs, rhs in
-            lhs.relativePriority > rhs.relativePriority
-        }
-
-        for animation in sortedAnimations {
+        for animation in animations.values {
             if animation.state == .ended {
                 animation.reset()
                 animations.removeValue(forKey: animation.id)

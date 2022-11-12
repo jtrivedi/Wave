@@ -17,7 +17,7 @@ public class Wave {
      
      **Note**: For animations to work correctly, you must set values on the view's `animator`, not just the view itself. For example, to animate a view's alpha, use `myView.animator.alpha = 1.0` instead of `myView.alpha = 1.0`.
      
-     For a full list of the various `UIView` animatable properties that Wave supports, see `ViewAnimator`.
+     For a full list of the various `UIView` and `CALayer` animatable properties that Wave supports, see `ViewAnimator` and `LayerAnimator`.
      
      **Example Usage:**
      ```
@@ -26,8 +26,12 @@ public class Wave {
      box.backgroundColor = .systemMint
      
      Wave.animateWith(spring: Spring(dampingRatio: 0.6, response: 1.2)) {
-         box.animator.center = view.center
-         box.animator.backgroundColor = .systemBlue
+        // Animate some `UIView` properties
+        box.animator.center = view.center
+        box.animator.backgroundColor = .systemBlue
+
+        // And one on `CALayer`
+        box.layer.animator.cornerRadius = 10.0
      }
      ```
      

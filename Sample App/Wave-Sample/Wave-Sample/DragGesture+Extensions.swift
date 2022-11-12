@@ -2,7 +2,7 @@
 //  DragGesture+Extensions.swift
 //  Wave-Sample
 //
-//  Created by Janum Trivedi on 11/5/22.
+//  Source: https://stackoverflow.com/a/73426600
 //
 
 import SwiftUI

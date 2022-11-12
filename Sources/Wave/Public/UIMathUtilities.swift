@@ -5,7 +5,6 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import Foundation
 import UIKit
 
 public func rubberband(value: CGFloat, range: ClosedRange<CGFloat>, interval: CGFloat, c: CGFloat = 0.55) -> CGFloat {

@@ -121,7 +121,7 @@ public class Spring: Equatable {
     // MARK: - Equatable
 
     public static func == (lhs: Spring, rhs: Spring) -> Bool {
-        return lhs.dampingRatio == rhs.dampingRatio && lhs.response == rhs.response && lhs.mass == rhs.mass
+        lhs.dampingRatio == rhs.dampingRatio && lhs.response == rhs.response && lhs.mass == rhs.mass
     }
 
     static func stiffness(response: CGFloat, mass: CGFloat) -> CGFloat {
@@ -156,7 +156,7 @@ public class Spring: Equatable {
 
     static func undampedNaturalFrequency(stiffness: CGFloat, mass: CGFloat) -> CGFloat {
         // ωn
-        return sqrt(stiffness / mass)
+        sqrt(stiffness / mass)
     }
 
 }
