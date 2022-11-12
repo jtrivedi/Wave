@@ -109,11 +109,12 @@ extension ViewAnimator {
                 self?.view.center = value
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 case .retargeted:
                     break
                 }
@@ -156,11 +157,12 @@ extension ViewAnimator {
                 self?.view.bounds.origin = boundsOrigin
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -204,11 +206,12 @@ extension ViewAnimator {
                 strongSelf.view.bounds = CGRect(origin: strongSelf.view.bounds.origin, size: size)
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 case .retargeted:
                     break
                 }
@@ -267,11 +270,12 @@ extension ViewAnimator {
                 self?.view.backgroundColor = components.uiColor
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished(at: _):
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -386,11 +390,12 @@ extension ViewAnimator {
                 strongSelf.view.transform = transform
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -437,11 +442,12 @@ extension ViewAnimator {
                 strongSelf.view.transform = transform
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.view.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }

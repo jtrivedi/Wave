@@ -56,11 +56,12 @@ extension LayerAnimator {
                 self?.layer.cornerRadius = value
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -102,11 +103,12 @@ extension LayerAnimator {
                 self?.layer.opacity = Float(clipUnit(value: value))
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -176,11 +178,12 @@ extension LayerAnimator {
                 self?.layer.borderColor = components.uiColor.cgColor
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished(at: _):
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -223,11 +226,12 @@ extension LayerAnimator {
                 self?.layer.borderWidth = value
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -270,11 +274,12 @@ extension LayerAnimator {
                 self?.layer.shadowOpacity = clippedValue
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -344,11 +349,12 @@ extension LayerAnimator {
                 self?.layer.shadowColor = components.uiColor.cgColor
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished(at: _):
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -391,11 +397,12 @@ extension LayerAnimator {
                 self?.layer.shadowOffset = value
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
@@ -437,11 +444,12 @@ extension LayerAnimator {
                 self?.layer.shadowRadius = max(0, value)
             }
 
+            let groupUUID = animation.groupUUID
             animation.completion = { [weak self] event in
                 switch event {
                 case .finished:
                     self?.layer.animators.removeValue(forKey: animationType)
-                    AnimationController.shared.executeHandler(uuid: animation.groupUUID, finished: true, retargeted: false)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
                 default:
                     break
                 }
