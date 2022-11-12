@@ -1,5 +1,5 @@
 //
-//  UIViewAnimatableProperties.swift
+//  AnimatableUIViewProperties.swift
 //  
 //
 //  Copyright (c) 2022 Janum Trivedi.
@@ -123,7 +123,7 @@ public class ViewAnimator {
 
     // MARK: - Internal
 
-    let view: UIView
+    weak var view: UIView!
 
     init(view: UIView) {
         self.view = view

@@ -1,5 +1,5 @@
 //
-//  CALayerAnimatableProperties.swift
+//  AnimatableCALayerProperties.swift
 //  
 //
 //  Copyright (c) 2022 Janum Trivedi.
@@ -74,7 +74,7 @@ public class LayerAnimator {
 
     // MARK: - Internal
 
-    let layer: CALayer
+    weak var layer: CALayer!
 
     init(layer: CALayer) {
         self.layer = layer
