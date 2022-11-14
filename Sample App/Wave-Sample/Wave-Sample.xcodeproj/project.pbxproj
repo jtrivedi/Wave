@@ -31,7 +31,7 @@
 		F702B19828470D3100F8D848 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		F72189FC27EE5485001A5CCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7238434291310B300BA6402 /* SwitUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitUIViewController.swift; sourceTree = "<group>"; };
-		F731390427E68AB100DCC56C /* Wave-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F731390427E68AB100DCC56C /* Wave-Sample-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F731390727E68AB100DCC56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F731390927E68AB100DCC56C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F731391527E68AB100DCC56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		F731390527E68AB100DCC56C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F731390427E68AB100DCC56C /* Wave-Sample.app */,
+				F731390427E68AB100DCC56C /* Wave-Sample-iOS.app */,
 				F7A63C262922A68100A21E70 /* Wave-Sample-macOS.app */,
 			);
 			name = Products;
@@ -157,9 +157,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F731390327E68AB100DCC56C /* Wave-Sample */ = {
+		F731390327E68AB100DCC56C /* Wave-Sample-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample" */;
+			buildConfigurationList = F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample-iOS" */;
 			buildPhases = (
 				F731390027E68AB100DCC56C /* Sources */,
 				F731390127E68AB100DCC56C /* Frameworks */,
@@ -170,12 +170,12 @@
 			);
 			dependencies = (
 			);
-			name = "Wave-Sample";
+			name = "Wave-Sample-iOS";
 			packageProductDependencies = (
 				F706E35B2845F58C00ADD288 /* Wave */,
 			);
 			productName = "Aqua-Sample";
-			productReference = F731390427E68AB100DCC56C /* Wave-Sample.app */;
+			productReference = F731390427E68AB100DCC56C /* Wave-Sample-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F7A63C252922A68100A21E70 /* Wave-Sample-macOS */ = {
@@ -231,7 +231,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F731390327E68AB100DCC56C /* Wave-Sample */,
+				F731390327E68AB100DCC56C /* Wave-Sample-iOS */,
 				F7A63C252922A68100A21E70 /* Wave-Sample-macOS */,
 			);
 		};
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample" */ = {
+		F731391827E68AB100DCC56C /* Build configuration list for PBXNativeTarget "Wave-Sample-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F731391927E68AB100DCC56C /* Debug */,
