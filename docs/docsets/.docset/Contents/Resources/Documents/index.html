@@ -254,7 +254,7 @@
 <pre class="highlight swift"><code><span class="c1">// When the gesture ends, create a `CGPoint` animator from the PiP view's initial center, to its target.</span>
 <span class="c1">// The `valueChanged` callback provides the intermediate locations of the callback, allowing us to draw the path.</span>
 
-<span class="k">let</span> <span class="nv">positionAnimator</span> <span class="o">=</span> <span class="kt">Animator</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">positionAnimator</span> <span class="o">=</span> <span class="kt">SpringAnimator</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">)</span>
 <span class="n">positionAnimator</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">pipView</span><span class="o">.</span><span class="n">center</span>       <span class="c1">// The presentation value</span>
 <span class="n">positionAnimator</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">pipViewDestination</span>  <span class="c1">// The target value</span>
 <span class="n">positionAnimator</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">gestureVelocity</span>
