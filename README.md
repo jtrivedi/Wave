@@ -110,7 +110,7 @@ For example, to draw the orange path of the PiP demo, we need to know the value 
 // When the gesture ends, create a `CGPoint` animator from the PiP view's initial center, to its target.
 // The `valueChanged` callback provides the intermediate locations of the callback, allowing us to draw the path.
 
-let positionAnimator = Animator<CGPoint>(spring: animatedSpring)
+let positionAnimator = SpringAnimator<CGPoint>(spring: animatedSpring)
 positionAnimator.value = pipView.center       // The presentation value
 positionAnimator.target = pipViewDestination  // The target value
 positionAnimator.velocity = gestureVelocity
