@@ -6,9 +6,8 @@
 //
 
 import Foundation
-
-import QuartzCore
 import CoreGraphics
+import QuartzCore
 
 private var LayerAnimatorAssociatedObjectHandle: UInt8 = 1 << 4
 private var LayerAnimationsAssociatedObjectHandle: UInt8 = 1 << 5

@@ -5,8 +5,8 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import QuartzCore
 import CoreGraphics
+import QuartzCore
 
 public func rubberband(value: CGFloat, range: ClosedRange<CGFloat>, interval: CGFloat, c: CGFloat = 0.55) -> CGFloat {
     // * x = distance from the edge

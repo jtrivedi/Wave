@@ -5,8 +5,8 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import QuartzCore
 import CoreGraphics
+import QuartzCore
 
 /**
  `Spring` determines the timing curve and settling duration of an animation.

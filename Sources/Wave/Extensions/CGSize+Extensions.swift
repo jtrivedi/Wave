@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import QuartzCore
 
 extension CGSize {
 

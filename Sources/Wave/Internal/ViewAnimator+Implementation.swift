@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreGraphics
+import QuartzCore
 
 #if os(iOS)
 import UIKit
