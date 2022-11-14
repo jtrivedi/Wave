@@ -5,15 +5,48 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
+import Foundation
+import QuartzCore
+
+#if os(iOS)
 import UIKit
+typealias DisplayLinkProvider = CADisplayLinkProvider
+#elseif os(macOS)
+import AppKit
+import CoreVideo
+typealias DisplayLinkProvider = CVDisplayLinkProvider
+#endif
 
 internal class AnimationController {
 
     static let shared = AnimationController()
 
-    private var displayLink: CADisplayLink?
+    private lazy var displayLinkProvider: DisplayLinkProvider = {
+        DisplayLinkProvider { [weak self] dt in
+            guard let strongSelf = self else { return }
+
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+
+            for animation in strongSelf.animations.values {
+                if animation.state == .ended {
+                    animation.reset()
+                    strongSelf.animations.removeValue(forKey: animation.id)
+                } else {
+                    animation.updateAnimation(dt: dt)
+                }
+            }
+
+            CATransaction.commit()
+
+            if strongSelf.animations.isEmpty {
+                strongSelf.displayLinkProvider.stop()
+            }
+        }
+    }()
 
     private var animations: [UUID: AnimatorProviding] = [:]
+
     private var animationSettingsStack = SettingsStack()
 
     typealias CompletionBlock = ((_ finished: Bool, _ retargeted: Bool) -> Void)
@@ -37,62 +70,10 @@ internal class AnimationController {
 
     func runPropertyAnimation(_ animation: AnimatorProviding) {
         if animations.isEmpty {
-            startDisplayLink()
+            displayLinkProvider.start()
         }
 
         animations[animation.id] = animation
-    }
-
-    @objc
-    private func updateAnimations() {
-        guard let displayLink = displayLink else {
-            fatalError("Can't update animations without a display link")
-        }
-
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-
-        let dt = (displayLink.targetTimestamp - displayLink.timestamp)
-
-        for animation in animations.values {
-            if animation.state == .ended {
-                animation.reset()
-                animations.removeValue(forKey: animation.id)
-            } else {
-                animation.updateAnimation(dt: dt)
-            }
-        }
-
-        CATransaction.commit()
-
-        if animations.isEmpty {
-            stopDisplayLink()
-        }
-    }
-
-    private func startDisplayLink() {
-        if displayLink == nil {
-            displayLink = CADisplayLink(target: self, selector: #selector(updateAnimations))
-
-            guard let displayLink = displayLink else {
-                print("[Wave] Unable to create display link.")
-                return
-            }
-
-            displayLink.add(to: .current, forMode: .common)
-
-            if #available(iOS 15.0, *) {
-                let maximumFramesPerSecond = Float(UIScreen.main.maximumFramesPerSecond)
-                let highFPSEnabled = maximumFramesPerSecond > 60
-                let minimumFPS: Float = highFPSEnabled ? 80 : 60
-                displayLink.preferredFrameRateRange = .init(minimum: minimumFPS, maximum: maximumFramesPerSecond, preferred: maximumFramesPerSecond)
-            }
-        }
-    }
-
-    private func stopDisplayLink() {
-        displayLink?.remove(from: .current, forMode: .common)
-        displayLink = nil
     }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {

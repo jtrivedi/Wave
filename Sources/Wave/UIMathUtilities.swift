@@ -5,7 +5,8 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import UIKit
+import QuartzCore
+import CoreGraphics
 
 public func rubberband(value: CGFloat, range: ClosedRange<CGFloat>, interval: CGFloat, c: CGFloat = 0.55) -> CGFloat {
     // * x = distance from the edge
@@ -32,14 +33,14 @@ public func rubberband(value: CGFloat, range: ClosedRange<CGFloat>, interval: CG
 /**
  Projects a scalar value based on a scalar velocity.
  */
-public func project(value: CGFloat, velocity: CGFloat, decelerationRate: CGFloat = UIScrollView.DecelerationRate.normal.rawValue) -> CGFloat {
+public func project(value: CGFloat, velocity: CGFloat, decelerationRate: CGFloat = 0.998) -> CGFloat {
     value + project(initialVelocity: velocity, decelerationRate: decelerationRate)
 }
 
 /**
  Projects a 2D point based on a 2D velocity.
  */
-public func project(point: CGPoint, velocity: CGPoint, decelerationRate: CGFloat = UIScrollView.DecelerationRate.normal.rawValue) -> CGPoint {
+public func project(point: CGPoint, velocity: CGPoint, decelerationRate: CGFloat = 0.998) -> CGPoint {
     CGPoint(
         x: point.x + project(initialVelocity: velocity.x, decelerationRate: decelerationRate),
         y: point.y + project(initialVelocity: velocity.y, decelerationRate: decelerationRate)

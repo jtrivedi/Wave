@@ -1,11 +1,34 @@
 //
 //  AnimatableUIViewProperties.swift
-//  
+//  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
+#if os(iOS)
+
 import UIKit
+
+public extension UIView {
+
+    /**
+     Use the `animator` property to set any animatable properties on a `UIView` in an ``Wave.animateWith(...)`` animation block.
+
+     Example usage:
+     ```
+     Wave.animateWith(spring: spring) {
+        myView.animator.center = CGPoint(x: 100, y: 100)
+        myView.animator.alpha = 0.5
+     }
+     ```
+
+     See ``ViewAnimator`` for a list of supported animatable properties on `UIView`.
+     */
+    var animator: ViewAnimator {
+        get { _animator }
+        set { _animator = newValue }
+    }
+}
 
 /**
  The `ViewAnimator` class contains the supported UIView animatable properties, like `frame`, `center`, `backgroundColor`, and more.
@@ -130,3 +153,5 @@ public class ViewAnimator {
     }
 
 }
+
+#endif

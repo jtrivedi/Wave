@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F731390327E68AB100DCC56C"
-               BuildableName = "Wave-Sample.app"
-               BlueprintName = "Wave-Sample"
+               BuildableName = "Wave-Sample-iOS.app"
+               BlueprintName = "Wave-Sample-iOS"
                ReferencedContainer = "container:Wave-Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F731390327E68AB100DCC56C"
-            BuildableName = "Wave-Sample.app"
-            BlueprintName = "Wave-Sample"
+            BuildableName = "Wave-Sample-iOS.app"
+            BlueprintName = "Wave-Sample-iOS"
             ReferencedContainer = "container:Wave-Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F731390327E68AB100DCC56C"
-            BuildableName = "Wave-Sample.app"
-            BlueprintName = "Wave-Sample"
+            BuildableName = "Wave-Sample-iOS.app"
+            BlueprintName = "Wave-Sample-iOS"
             ReferencedContainer = "container:Wave-Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

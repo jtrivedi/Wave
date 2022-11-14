@@ -1,11 +1,13 @@
 //
-//  ViewAnimator.swift
+//  ViewAnimator+Implementation.swift
 //  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
 import Foundation
+
+#if os(iOS)
 import UIKit
 
 extension ViewAnimator {
@@ -497,3 +499,5 @@ extension ViewAnimator {
     }
 
 }
+
+#endif

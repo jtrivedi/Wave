@@ -5,6 +5,7 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
+#if os(iOS)
 import UIKit
 
 private var ViewAnimatorAssociatedObjectHandle: UInt8 = 1 << 4
@@ -25,7 +26,7 @@ extension UIView {
      
      See ``ViewAnimator`` for a list of supported animatable properties on `UIView`.
      */
-    public var animator: ViewAnimator {
+    var _animator: ViewAnimator {
         get {
             if let viewAnimator = objc_getAssociatedObject(self, &ViewAnimatorAssociatedObjectHandle) as? ViewAnimator {
                 return viewAnimator
@@ -39,7 +40,7 @@ extension UIView {
         }
     }
 
-    internal var animators: [ViewAnimator.AnimatableProperty: AnimatorProviding] {
+    var animators: [ViewAnimator.AnimatableProperty: AnimatorProviding] {
         get {
             objc_getAssociatedObject(self, &ViewAnimationsAssociatedObjectHandle) as? [ViewAnimator.AnimatableProperty: AnimatorProviding] ?? [:]
         }
@@ -48,3 +49,5 @@ extension UIView {
         }
     }
 }
+
+#endif

@@ -1,12 +1,15 @@
 //
 //  CALayerAnimatablePropertyTests.swift
-//  
+//  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
 import XCTest
 @testable import Wave
+
+#if os(iOS)
+import UIKit
 
 final class CALayerAnimatablePropertyTests: XCTestCase {
 
@@ -191,3 +194,5 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
     }
 
 }
+
+#endif

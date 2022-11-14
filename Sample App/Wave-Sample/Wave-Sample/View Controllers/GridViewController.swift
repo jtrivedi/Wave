@@ -140,7 +140,7 @@ class GridViewController: UIViewController {
             let maxDistance = lastBox.center.distance(to: firstBox.center)
             let distanceFromCenter = $0.center.distance(to: firstBox.center)
             let progress = mapRange(distanceFromCenter, 0, maxDistance, 0, 1)
-            $0.backgroundColor = UIColor.interpolate(from: .systemBlue, to: .systemMint, with: progress)
+            $0.backgroundColor = UIColor.interpolate(from: .systemBlue, to: .systemPurple, with: progress)
         }
     }
 

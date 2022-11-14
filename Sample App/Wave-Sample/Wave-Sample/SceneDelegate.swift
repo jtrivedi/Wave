@@ -28,7 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let tabViewController = UITabBarController()
         tabViewController.tabBar.standardAppearance = tabBarAppearance
-        tabViewController.tabBar.scrollEdgeAppearance = tabBarAppearance
+
+        if #available(iOS 15.0, *) {
+            tabViewController.tabBar.scrollEdgeAppearance = tabBarAppearance
+        } else {
+            // Fallback on earlier versions
+        }
 
         tabViewController.viewControllers = [
             PictureInPictureViewController(),

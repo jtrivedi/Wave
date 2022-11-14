@@ -8,6 +8,9 @@
 import XCTest
 @testable import Wave
 
+#if os(iOS)
+import UIKit
+
 final class UIViewAnimatablePropertyTests: XCTestCase {
 
     func testFrame() {
@@ -257,3 +260,5 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
     }
 
 }
+
+#endif

@@ -1,18 +1,20 @@
 //
-//  LayerAnimator.swift
-//  
+//  LayerAnimator+Implementation.swift
+//  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi
 //
 
 import Foundation
-import UIKit
+import CoreGraphics
+import QuartzCore
 
 extension LayerAnimator {
 
     internal enum AnimatableProperty: Int {
         case cornerRadius
         case opacity
+        case backgroundColor
 
         case borderColor
         case borderWidth
@@ -118,12 +120,87 @@ extension LayerAnimator {
         }
     }
 
+    var _backgroundColor: CGColor {
+        get {
+            if let targetComponents = runningBackgroundColorAnimator?.target {
+                return targetComponents.uiColor.cgColor
+            } else {
+                return layer.backgroundColor ?? WaveColor.clear.cgColor
+            }
+        }
+
+        set {
+            guard backgroundColor != newValue else {
+                return
+            }
+
+            guard let settings = AnimationController.shared.currentAnimationParameters else {
+                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
+                    self.layer.animator.backgroundColor = newValue
+                }
+                return
+            }
+
+            // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
+            let initialValue: WaveColor
+            if let backgroundColor = layer.backgroundColor {
+                initialValue = WaveColor(_cgColor: backgroundColor)
+            } else {
+                initialValue = WaveColor.clear
+            }
+
+            // Animating to `clear` or `nil` really just animates the alpha component down to zero. Retain the other color components.
+            let targetValue: WaveColor
+            if WaveColor(cgColor: newValue) == .clear {
+                targetValue = WaveColor(_cgColor: backgroundColor).withAlphaComponent(0)
+            } else {
+                targetValue = WaveColor(_cgColor: newValue)
+            }
+
+            let animationType = AnimatableProperty.backgroundColor
+
+            // Re-targeting an animation.
+            AnimationController.shared.executeHandler(uuid: runningBackgroundColorAnimator?.groupUUID, finished: false, retargeted: true)
+
+            let initialValueComponents = RGBAComponents(color: initialValue)
+            let targetValueComponents = RGBAComponents(color: targetValue)
+
+            let animation = (runningBackgroundColorAnimator ??
+                             SpringAnimator<RGBAComponents>(
+                                spring: settings.spring,
+                                value: initialValueComponents,
+                                target: targetValueComponents
+                             )
+            )
+
+            animation.configure(withSettings: settings)
+
+            animation.target = targetValueComponents
+            animation.valueChanged = { [weak self] components in
+                self?.layer.backgroundColor = components.uiColor.cgColor
+            }
+
+            let groupUUID = animation.groupUUID
+            animation.completion = { [weak self] event in
+                switch event {
+                case .finished(at: _):
+                    self?.layer.animators.removeValue(forKey: animationType)
+                    AnimationController.shared.executeHandler(uuid: groupUUID, finished: true, retargeted: false)
+                default:
+                    break
+                }
+            }
+
+            start(animation: animation, type: animationType, delay: settings.delay)
+        }
+    }
+
     var _borderColor: CGColor {
         get {
             if let targetComponents = runningBorderColorAnimator?.target {
                 return targetComponents.uiColor.cgColor
             } else {
-                return layer.borderColor ?? UIColor.black.cgColor
+                return layer.borderColor ?? WaveColor.black.cgColor
             }
         }
 
@@ -140,19 +217,19 @@ extension LayerAnimator {
             }
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
-            let initialValue: UIColor
+            let initialValue: WaveColor
             if let borderColor = layer.borderColor {
-                initialValue = UIColor(cgColor: borderColor)
+                initialValue = WaveColor(_cgColor: borderColor)
             } else {
-                initialValue = UIColor.black
+                initialValue = WaveColor.black
             }
 
             // Animating to `clear` or `nil` really just animates the alpha component down to zero. Retain the other color components.
-            let targetValue: UIColor
-            if UIColor(cgColor: newValue) == .clear {
-                targetValue = UIColor(cgColor: borderColor).withAlphaComponent(0)
+            let targetValue: WaveColor
+            if WaveColor(cgColor: newValue) == .clear {
+                targetValue = WaveColor(_cgColor: borderColor).withAlphaComponent(0)
             } else {
-                targetValue = UIColor(cgColor: newValue)
+                targetValue = WaveColor(_cgColor: newValue)
             }
 
             let animationType = AnimatableProperty.borderColor
@@ -294,7 +371,7 @@ extension LayerAnimator {
             if let targetComponents = runningShadowColorAnimator?.target {
                 return targetComponents.uiColor.cgColor
             } else {
-                return layer.backgroundColor ?? UIColor.clear.cgColor
+                return layer.backgroundColor ?? WaveColor.clear.cgColor
             }
         }
 
@@ -311,19 +388,19 @@ extension LayerAnimator {
             }
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
-            let initialValue: UIColor
+            let initialValue: WaveColor
             if let shadowColor = layer.shadowColor {
-                initialValue = UIColor(cgColor: shadowColor)
+                initialValue = WaveColor(_cgColor: shadowColor)
             } else {
-                initialValue = UIColor.clear
+                initialValue = WaveColor.clear
             }
 
             // Animating to `clear` or `nil` really just animates the alpha component down to zero. Retain the other color components.
-            let targetValue: UIColor
-            if UIColor(cgColor: newValue) == .clear {
-                targetValue = UIColor(cgColor: shadowColor).withAlphaComponent(0)
+            let targetValue: WaveColor
+            if WaveColor(cgColor: newValue) == .clear {
+                targetValue = WaveColor(_cgColor: shadowColor).withAlphaComponent(0)
             } else {
-                targetValue = UIColor(cgColor: newValue)
+                targetValue = WaveColor(_cgColor: newValue)
             }
 
             let animationType = AnimatableProperty.shadowColor
@@ -476,6 +553,10 @@ extension LayerAnimator {
 
     private var runningOpacityAnimator: SpringAnimator<CGFloat>? {
         layer.animators[AnimatableProperty.opacity] as? SpringAnimator<CGFloat>
+    }
+
+    private var runningBackgroundColorAnimator: SpringAnimator<RGBAComponents>? {
+        layer.animators[AnimatableProperty.backgroundColor] as? SpringAnimator<RGBAComponents>
     }
 
     private var runningBorderColorAnimator: SpringAnimator<RGBAComponents>? {
