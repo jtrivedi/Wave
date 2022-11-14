@@ -48,13 +48,16 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Animation.html">Animation</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Animation/Event.html">– Event</a>
+                <a class="nav-group-task-link" href="../Classes/LayerAnimator.html">LayerAnimator</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Spring.html">Spring</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpringAnimator.html">SpringAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpringAnimator/Event.html">– Event</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/ViewAnimator.html">ViewAnimator</a>
@@ -71,13 +74,16 @@
                 <a class="nav-group-task-link" href="../Enums/AnimationMode.html">AnimationMode</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/AnimationState.html">AnimationState</a>
+                <a class="nav-group-task-link" href="../Enums/AnimatorState.html">AnimatorState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CALayer.html">CALayer</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/CGFloat.html">CGFloat</a>
               </li>
@@ -89,6 +95,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:4Wave14RGBAComponentsV">RGBAComponents</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/UIColor.html">UIColor</a>
@@ -183,7 +192,7 @@
 
 <p><strong>Note</strong>: For animations to work correctly, you must set values on the view&rsquo;s <code>animator</code>, not just the view itself. For example, to animate a view&rsquo;s alpha, use <code>myView.animator.alpha = 1.0</code> instead of <code>myView.alpha = 1.0</code>.</p>
 
-<p>For a full list of the various <code>UIView</code> animatable properties that Wave supports, see <code><a href="../Classes/ViewAnimator.html">ViewAnimator</a></code>.</p>
+<p>For a full list of the various <code>UIView</code> and <code>CALayer</code> animatable properties that Wave supports, see <code><a href="../Classes/ViewAnimator.html">ViewAnimator</a></code> and <code><a href="../Classes/LayerAnimator.html">LayerAnimator</a></code>.</p>
 
 <p><strong>Example Usage:</strong></p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">box</span> <span class="o">=</span> <span class="kt">UIView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">))</span>
@@ -191,8 +200,12 @@
 <span class="n">box</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemMint</span>
 
 <span class="kt">Wave</span><span class="o">.</span><span class="nf">animateWith</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="kt">Spring</span><span class="p">(</span><span class="nv">dampingRatio</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">box</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">center</span>
-    <span class="n">box</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemBlue</span>
+   <span class="c1">// Animate some `UIView` properties</span>
+   <span class="n">box</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">center</span>
+   <span class="n">box</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">systemBlue</span>
+
+   <span class="c1">// And one on `CALayer`</span>
+   <span class="n">box</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -301,7 +314,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-05-31)</p>
+      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-11-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

@@ -47,13 +47,16 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Animation.html">Animation</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Animation/Event.html">– Event</a>
+                <a class="nav-group-task-link" href="Classes/LayerAnimator.html">LayerAnimator</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Spring.html">Spring</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SpringAnimator.html">SpringAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SpringAnimator/Event.html">– Event</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/ViewAnimator.html">ViewAnimator</a>
@@ -70,13 +73,16 @@
                 <a class="nav-group-task-link" href="Enums/AnimationMode.html">AnimationMode</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/AnimationState.html">AnimationState</a>
+                <a class="nav-group-task-link" href="Enums/AnimatorState.html">AnimatorState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CALayer.html">CALayer</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGFloat.html">CGFloat</a>
               </li>
@@ -88,6 +94,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions.html#/s:4Wave14RGBAComponentsV">RGBAComponents</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIColor.html">UIColor</a>
@@ -142,13 +151,13 @@
           <div class="section-content top-matter">
             
             <p align="center">
-    <img width="300" src="./Assets/Logo.png">
+    <img width="400" src="./Assets/Logo.png">
 </p>
 <h2 id='wave' class='heading'>Wave</h2>
 
 <p>Wave is a spring-based animation engine for iOS and iPadOS. It makes it easy to create fluid, interactive, and interruptible animations that feel great.</p>
 
-<p>Wave has no external dependencies, and can be easily dropped into existing UIKit-based projects and apps.</p>
+<p>Wave has no external dependencies, and can be easily dropped into existing UIKit or SwiftUI based projects and apps.</p>
 
 <p>The core feature of Wave is that all animations are <em>re-targetable</em>, meaning that you can change an animation’s destination value in-flight, and the animation will gracefully <em>redirect</em> to that new value.</p>
 
@@ -170,9 +179,9 @@
 
 <p>Though both are “interruptible”, the Wave-based implementation handles the interruption much better, and fluidly <em>arcs</em> to its new destination. The UIKit animation feels stiff and jerky in comparison.</p>
 
-<p>At its core, retargeting is the process of preserving an animation’s velocity even as its target changes, which Wave does automatically.</p>
+<p>At its core, <a href="https://developer.apple.com/videos/play/wwdc2018/803/">retargeting</a> is the process of preserving an animation’s velocity even as its target changes, which Wave does automatically.</p>
 
-<p><img src="./img/Retargeting.gif" alt="Demo"></p>
+<p><img src="./Assets/Retargeting.gif" alt="Demo"></p>
 <h3 id='installation' class='heading'>Installation</h3>
 
 <p>Add Wave to your app&rsquo;s <code>Package.swift</code> file, or selecting <code>File -&gt; Add Packages</code> in Xcode:</p>
@@ -180,6 +189,8 @@
 </code></pre>
 
 <p>If you clone the repo, you can run the sample app, which contains a few interactive demos to understand what Wave provides.</p>
+
+<p>Note: To enable high frame-rate animations on ProMotion devices (i.e. 120 fps animation), you&rsquo;ll need to add a key/value pair in your <code>Info.plist</code>. Set the key <code>CADisableMinimumFrameDuration</code> to <code>true</code>. Without this entry, animations will be capped at 60 fps.</p>
 <h3 id='documentation' class='heading'>Documentation</h3>
 
 <p>There’s a full Wave <a href="https://Wave-jtrivedi.structure.sh">documentation site</a> available for full API and usage documentation.</p>
@@ -200,12 +211,12 @@
     <span class="c1">// Create a spring with some bounciness. `response` affects the animation's duration.</span>
     <span class="k">let</span> <span class="nv">animatedSpring</span> <span class="o">=</span> <span class="kt">Spring</span><span class="p">(</span><span class="nv">dampingRatio</span><span class="p">:</span> <span class="mf">0.68</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="mf">0.80</span><span class="p">)</span>
 
-    <span class="c1">// Get the gesture's lift-off velocity</span>
+    <span class="c1">// Get the gesture's lift-off velocity, and pass it into the Wave animation.</span>
     <span class="k">let</span> <span class="nv">gestureVelocity</span> <span class="o">=</span> <span class="n">panGestureRecognizer</span><span class="o">.</span><span class="nf">velocity</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
 
-    <span class="kt">Wave</span><span class="o">.</span><span class="nf">animate</span><span class="p">(</span><span class="nv">withSpring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">,</span> <span class="nv">gestureVelocity</span><span class="p">:</span> <span class="n">touchVelocity</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Update the `center` and `scale` properties of the view's _animator_, not the view itself.</span>
-        <span class="n">pipView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">pipViewDestination</span>
+    <span class="kt">Wave</span><span class="o">.</span><span class="nf">animate</span><span class="p">(</span><span class="nv">withSpring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">,</span> <span class="nv">gestureVelocity</span><span class="p">:</span> <span class="n">gestureVelocity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Update animatable properties on the view's `animator` property, _not_ the view itself.</span>
+        <span class="n">pipView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">pipViewDestination</span>     <span class="c1">// Some target CGPoint that you calculate.</span>
         <span class="n">pipView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -226,26 +237,27 @@
 <li><code>cornerRadius</code></li>
 <li><code>scale</code></li>
 <li><code>translation</code></li>
+<li><code>shadowColor/radius/offset/opacity</code></li>
+<li><code>borderColor/borderWidth</code></li>
 </ul>
 
 <p>Upcoming properties:</p>
 
 <ul>
 <li><code>rotation</code></li>
-<li><code>shadow color/radius/offset/opacity</code></li>
 </ul>
 <h4 id='property-based-animation' class='heading'>Property-Based Animation</h4>
 
 <p>While the block-based API is often most convenient, you may want to animate something that the block-based API doesn’t yet support (e.x. rotation). Or, you may want the flexibility of getting the intermediate spring values and driving an animation yourself (e.x. a progress value).</p>
 
 <p>For example, to draw the orange path of the PiP demo, we need to know the value of every <code>CGPoint</code> from the view’s initial center, to its destination center:</p>
-<pre class="highlight swift"><code><span class="c1">// When the gesture ends, create a `CGPoint` animation from the PiP view's initial center, to its target.</span>
+<pre class="highlight swift"><code><span class="c1">// When the gesture ends, create a `CGPoint` animator from the PiP view's initial center, to its target.</span>
 <span class="c1">// The `valueChanged` callback provides the intermediate locations of the callback, allowing us to draw the path.</span>
 
-<span class="k">let</span> <span class="nv">positionAnimator</span> <span class="o">=</span> <span class="kt">Animation</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">)</span>
-<span class="n">positionAnimator</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">pipView</span><span class="o">.</span><span class="n">center</span>           <span class="c1">// The presentation value</span>
-<span class="n">positionAnimator</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">pipView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="c1">// The target value</span>
-<span class="n">positionAnimator</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">touchVelocity</span>
+<span class="k">let</span> <span class="nv">positionAnimator</span> <span class="o">=</span> <span class="kt">Animator</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="n">animatedSpring</span><span class="p">)</span>
+<span class="n">positionAnimator</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">pipView</span><span class="o">.</span><span class="n">center</span>       <span class="c1">// The presentation value</span>
+<span class="n">positionAnimator</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">pipViewDestination</span>  <span class="c1">// The target value</span>
+<span class="n">positionAnimator</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">gestureVelocity</span>
 
 <span class="n">positionAnimator</span><span class="o">.</span><span class="n">valueChanged</span> <span class="o">=</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">location</span> <span class="k">in</span>
     <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">drawPathPoint</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="n">location</span><span class="p">)</span>
@@ -269,6 +281,9 @@
 <p>Exploring the provided sample app is a great way to get started with Wave.</p>
 
 <p>Simply open the <code><a href="Classes/Wave.html">Wave</a></code> Xcode project and hit “Run”. The full source code for the Picture-in-Picture demo is available there, too!</p>
+<h3 id='acknowledgements' class='heading'>Acknowledgements</h3>
+
+<p>Special thanks to <a href="https://github.com/boztalay">Ben Oztalay</a> for helping architect the underlying physics of Wave!</p>
 
           </div>
         </section>
@@ -277,7 +292,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-05-31)</p>
+      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-11-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

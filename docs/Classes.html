@@ -48,13 +48,16 @@
             <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Animation.html">Animation</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/Animation/Event.html">– Event</a>
+                <a class="nav-group-task-link" href="Classes/LayerAnimator.html">LayerAnimator</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/Spring.html">Spring</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SpringAnimator.html">SpringAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SpringAnimator/Event.html">– Event</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/ViewAnimator.html">ViewAnimator</a>
@@ -71,13 +74,16 @@
                 <a class="nav-group-task-link" href="Enums/AnimationMode.html">AnimationMode</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/AnimationState.html">AnimationState</a>
+                <a class="nav-group-task-link" href="Enums/AnimatorState.html">AnimatorState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CALayer.html">CALayer</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGFloat.html">CGFloat</a>
               </li>
@@ -89,6 +95,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions.html#/s:4Wave14RGBAComponentsV">RGBAComponents</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIColor.html">UIColor</a>
@@ -154,9 +163,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4Wave9AnimationC"></a>
-                    <a name="//apple_ref/swift/Class/Animation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4Wave9AnimationC">Animation</a>
+                    <a name="/s:4Wave13LayerAnimatorC"></a>
+                    <a name="//apple_ref/swift/Class/LayerAnimator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Wave13LayerAnimatorC">LayerAnimator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -164,15 +173,61 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
-                        <a href="Classes/Animation.html" class="slightly-smaller">See more</a>
+                        <p>The <code>LayerAnimator</code> class contains the supported <code>CALayer</code> animatable properties, like <code>cornerRadius</code>, <code>shadowColor</code>, <code>shadowOpacity</code>, and more.</p>
+
+<p>In an Wave animation block, change these values to create an animation, like so:</p>
+
+<p>Example usage:</p>
+<pre class="highlight swift"><code><span class="kt">Wave</span><span class="o">.</span><span class="nf">animateWith</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="o">.</span><span class="n">defaultAnimated</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">myView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">cornerRadius</span> <span class="o">=</span> <span class="mi">12</span>
+   <span class="n">myView</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">shadowOpacity</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+</code></pre>
+
+                        <a href="Classes/LayerAnimator.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Animation</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">AnimationProviding</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SpringInterpolatable.html">SpringInterpolatable</a></span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Animation</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LayerAnimator</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:4Wave12ViewAnimatorC"></a>
+                    <a name="//apple_ref/swift/Class/ViewAnimator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Wave12ViewAnimatorC">ViewAnimator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>ViewAnimator</code> class contains the supported UIView animatable properties, like <code>frame</code>, <code>center</code>, <code>backgroundColor</code>, and more.</p>
+
+<p>In an Wave animation block, change these values to create an animation, like so:</p>
+
+<p>Example usage:</p>
+<pre class="highlight swift"><code><span class="kt">Wave</span><span class="o">.</span><span class="nf">animateWith</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="o">.</span><span class="n">defaultAnimated</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">myView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+   <span class="n">myView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+</code></pre>
+
+                        <a href="Classes/ViewAnimator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ViewAnimator</span></code></pre>
 
                         </div>
                       </div>
@@ -213,9 +268,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:4Wave12ViewAnimatorC"></a>
-                    <a name="//apple_ref/swift/Class/ViewAnimator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:4Wave12ViewAnimatorC">ViewAnimator</a>
+                    <a name="/s:4Wave14SpringAnimatorC"></a>
+                    <a name="//apple_ref/swift/Class/SpringAnimator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:4Wave14SpringAnimatorC">SpringAnimator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -223,24 +278,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>ViewAnimator</code> class contains the supported UIView animatable properties, like <code>frame</code>, <code>center</code>, <code>cornerRadius</code>, and more.</p>
-
-<p>In an Wave animation block, change these values to create an animation, like so:</p>
-
-<p>Example usage:</p>
-<pre class="highlight swift"><code><span class="kt">Wave</span><span class="o">.</span><span class="nf">animateWith</span><span class="p">(</span><span class="nv">spring</span><span class="p">:</span> <span class="n">spring</span><span class="p">)</span> <span class="p">{</span>
-<span class="n">myView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">myView</span><span class="o">.</span><span class="n">animator</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="p">}</span>
-</code></pre>
-
-                        <a href="Classes/ViewAnimator.html" class="slightly-smaller">See more</a>
+                        
+                        <a href="Classes/SpringAnimator.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ViewAnimator</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SpringAnimator</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">AnimatorProviding</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SpringInterpolatable.html">SpringInterpolatable</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SpringAnimator</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -282,7 +328,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-05-31)</p>
+      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-11-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

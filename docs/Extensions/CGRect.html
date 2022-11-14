@@ -48,13 +48,16 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Animation.html">Animation</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Animation/Event.html">– Event</a>
+                <a class="nav-group-task-link" href="../Classes/LayerAnimator.html">LayerAnimator</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Spring.html">Spring</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpringAnimator.html">SpringAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SpringAnimator/Event.html">– Event</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/ViewAnimator.html">ViewAnimator</a>
@@ -71,13 +74,16 @@
                 <a class="nav-group-task-link" href="../Enums/AnimationMode.html">AnimationMode</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/AnimationState.html">AnimationState</a>
+                <a class="nav-group-task-link" href="../Enums/AnimatorState.html">AnimatorState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CALayer.html">CALayer</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/CGFloat.html">CGFloat</a>
               </li>
@@ -89,6 +95,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:4Wave14RGBAComponentsV">RGBAComponents</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/UIColor.html">UIColor</a>
@@ -145,7 +154,7 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">CGRect</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CGRect</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CGRect</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SpringInterpolatable.html">SpringInterpolatable</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/VelocityProviding.html">VelocityProviding</a></span></code></pre>
 
                 </div>
@@ -158,76 +167,6 @@
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE11aroundPoint4size12integralizedABSo7CGPointV_So6CGSizeVSbtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(aroundPoint:size:integralized:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE11aroundPoint4size12integralizedABSo7CGPointV_So6CGSizeVSbtcfc">init(aroundPoint:<wbr>size:<wbr>integralized:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Creates a <code>CGRect</code> of a given size, centered at a given point.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="n">aroundPoint</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span> <span class="nv">integralized</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>point</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The desired center point of the new rect.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>size</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The desired size of the new rect.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>integralized</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Whether the components of the rect should be integralized, such that it falls on pixel boundaries. See <code><a href="../Extensions/CGRect.html#/s:So6CGRectV4WaveE14scaledIntegralABvp">scaledIntegral</a></code> for more information.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -249,142 +188,7 @@ taking into account the device&rsquo;s display scale.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">scaledIntegral</span><span class="p">:</span> <span class="kt">CGRect</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE6centerSo7CGPointVvp"></a>
-                    <a name="//apple_ref/swift/Property/center" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE6centerSo7CGPointVvp">center</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The center point of the rect.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE7topLeftSo7CGPointVvp"></a>
-                    <a name="//apple_ref/swift/Property/topLeft" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE7topLeftSo7CGPointVvp">topLeft</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The top-left point of the rect.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">topLeft</span><span class="p">:</span> <span class="kt">CGPoint</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE8topRightSo7CGPointVvp"></a>
-                    <a name="//apple_ref/swift/Property/topRight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE8topRightSo7CGPointVvp">topRight</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The top-right point of the rect.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">topRight</span><span class="p">:</span> <span class="kt">CGPoint</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE10bottomLeftSo7CGPointVvp"></a>
-                    <a name="//apple_ref/swift/Property/bottomLeft" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE10bottomLeftSo7CGPointVvp">bottomLeft</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The bottom-left point of the rect.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bottomLeft</span><span class="p">:</span> <span class="kt">CGPoint</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So6CGRectV4WaveE11bottomRightSo7CGPointVvp"></a>
-                    <a name="//apple_ref/swift/Property/bottomRight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So6CGRectV4WaveE11bottomRightSo7CGPointVvp">bottomRight</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The bottom-right point of the rect.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bottomRight</span><span class="p">:</span> <span class="kt">CGPoint</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">scaledIntegral</span><span class="p">:</span> <span class="kt">CGRect</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -477,7 +281,7 @@ taking into account the device&rsquo;s display scale.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-05-31)</p>
+      <p>&copy; 2022 <a class="link" href="https://github.com/jtrivedi" target="_blank" rel="external noopener">Janum Trivedi</a>. All rights reserved. (Last updated: 2022-11-14)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
