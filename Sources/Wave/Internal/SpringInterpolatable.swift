@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public protocol SpringInterpolatable: Equatable {
     associatedtype ValueType: SpringInterpolatable

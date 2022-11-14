@@ -6,7 +6,27 @@
 //
 
 import Foundation
+
+#if os(iOS)
 import UIKit
+public typealias WaveColor = UIColor
+
+extension UIColor {
+    convenience init(_cgColor: CGColor) {
+        self.init(cgColor: _cgColor)
+    }
+}
+
+#elseif os(macOS)
+import AppKit
+public typealias WaveColor = NSColor
+extension NSColor {
+    convenience init(_cgColor: CGColor) {
+        // To revisit: shouldn't force unwrap this.
+        self.init(cgColor: _cgColor)!
+    }
+}
+#endif
 
 struct RGBAComponents: Equatable {
     let r: CGFloat
@@ -21,7 +41,7 @@ struct RGBAComponents: Equatable {
         self.a = a
     }
 
-    init(color: UIColor) {
+    init(color: WaveColor) {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -30,12 +50,12 @@ struct RGBAComponents: Equatable {
         self.init(r: r, g: g, b: b, a: a)
     }
 
-    var uiColor: UIColor {
-        UIColor(red: r, green: g, blue: b, alpha: a)
+    var uiColor: WaveColor {
+        WaveColor(red: r, green: g, blue: b, alpha: a)
     }
 }
 
-extension UIColor {
+extension WaveColor {
 
     /**
      Returns a `UIColor` by interpolating between two other `UIColor`s.
@@ -44,7 +64,7 @@ extension UIColor {
      - Parameter progress:  The interpolation progess; must be a `CGFloat` from 0 to 1
      - Returns: The interpolated `UIColor` for the given progress point
      */
-    public static func interpolate(from fromColor: UIColor, to toColor: UIColor, with progress: CGFloat) -> UIColor {
+    public static func interpolate(from fromColor: WaveColor, to toColor: WaveColor, with progress: CGFloat) -> WaveColor {
         let progress = clipUnit(value: progress)
         let fromComponents = fromColor.rgbaComponents
         let toComponents = toColor.rgbaComponents
@@ -54,7 +74,7 @@ extension UIColor {
         let b = (1 - progress) * fromComponents.b + progress * toComponents.b
         let a = (1 - progress) * fromComponents.a + progress * toComponents.a
 
-        return UIColor(red: r, green: g, blue: b, alpha: a)
+        return WaveColor(red: r, green: g, blue: b, alpha: a)
     }
 
     var rgbaComponents: RGBAComponents {

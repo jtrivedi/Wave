@@ -5,7 +5,7 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import UIKit
+import QuartzCore
 
 public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
 

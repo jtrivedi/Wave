@@ -8,6 +8,9 @@
 import XCTest
 @testable import Wave
 
+#if os(iOS)
+import UIKit
+
 final class CALayerAnimatablePropertyTests: XCTestCase {
 
     // MARK: - Affine Transformations
@@ -191,3 +194,5 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
     }
 
 }
+
+#endif

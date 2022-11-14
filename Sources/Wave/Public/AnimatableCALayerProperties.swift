@@ -5,7 +5,29 @@
 //  Copyright (c) 2022 Janum Trivedi.
 //
 
-import UIKit
+import CoreGraphics
+import QuartzCore
+
+public extension CALayer {
+
+    /**
+     Use the `animator` property to set any animatable properties on a `CALayer` in an ``Wave.animateWith(...)`` animation block.
+
+     Example usage:
+     ```
+     Wave.animateWith(spring: spring) {
+         myView.layer.animator.shadowColor = UIColor.black.cgColor
+         myView.layer.animator.shadowOpacity = 0.3
+     }
+     ```
+
+     See ``LayerAnimator`` for a list of supported animatable properties on `UIView`.
+     */
+    var animator: LayerAnimator {
+        get { _animator }
+        set { _animator = newValue }
+    }
+}
 
 /**
  The `LayerAnimator` class contains the supported `CALayer` animatable properties, like `cornerRadius`, `shadowColor`, `shadowOpacity`, and more.
@@ -34,6 +56,12 @@ public class LayerAnimator {
     public var opacity: CGFloat {
         get { _opacity }
         set { _opacity = newValue }
+    }
+
+    /// The background color of the attached layer.
+    public var backgroundColor: CGColor {
+        get { _backgroundColor }
+        set { _backgroundColor = newValue }
     }
 
     /// The border color of the attached layer.

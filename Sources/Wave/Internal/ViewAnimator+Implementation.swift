@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+#if os(iOS)
 import UIKit
 
 extension ViewAnimator {
@@ -497,3 +499,5 @@ extension ViewAnimator {
     }
 
 }
+
+#endif
