@@ -1,5 +1,5 @@
 //
-//  ViewAnimator.swift
+//  ViewAnimator+Implementation.swift
 //  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.

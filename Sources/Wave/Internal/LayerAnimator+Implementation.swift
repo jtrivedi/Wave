@@ -1,6 +1,6 @@
 //
-//  LayerAnimator.swift
-//  
+//  LayerAnimator+Implementation.swift
+//  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi
 //

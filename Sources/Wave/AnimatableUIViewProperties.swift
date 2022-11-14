@@ -1,6 +1,6 @@
 //
 //  AnimatableUIViewProperties.swift
-//  
+//  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
 //
