@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Wave-Sample-macOS
 //
-//  Copyright (c) 2022 Janum Trivedi.
+//  Created by Janum Trivedi on 11/14/22.
 //
 
 import Cocoa

@@ -23,18 +23,6 @@ class ViewController: NSViewController {
         return button
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(button)
-
-        // Configure the button's initial layout/style without animation
-        layoutBox(mode: .nonAnimated, shouldRound: rounded)
-
-        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(sender:)))
-        button.addGestureRecognizer(clickGesture)
-    }
-
     @objc
     func handleClick(sender: NSClickGestureRecognizer) {
         rounded.toggle()
@@ -48,6 +36,25 @@ class ViewController: NSViewController {
             button.layer?.animator.cornerRadius    = rounded ? 24 : 4
             button.layer?.animator.backgroundColor = rounded ? NSColor.systemGreen.cgColor : NSColor.systemBlue.cgColor
         }
+    }
+
+    // MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(button)
+
+        // Configure the button's initial layout/style without animation
+        layoutBox(mode: .nonAnimated, shouldRound: rounded)
+
+        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(sender:)))
+        button.addGestureRecognizer(clickGesture)
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.title = "Wave with AppKit"
     }
 
     override func viewDidLayout() {

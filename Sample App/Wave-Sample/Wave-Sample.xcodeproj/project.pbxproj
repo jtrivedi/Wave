@@ -19,6 +19,11 @@
 		F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */; };
 		F731393427E68CAE00DCC56C /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731393327E68CAE00DCC56C /* PathView.swift */; };
 		F76AE81127E6905B00A332E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */; };
+		F7A63C292922A68100A21E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A63C282922A68100A21E70 /* AppDelegate.swift */; };
+		F7A63C2B2922A68100A21E70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A63C2A2922A68100A21E70 /* ViewController.swift */; };
+		F7A63C2D2922A68200A21E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A63C2C2922A68200A21E70 /* Assets.xcassets */; };
+		F7A63C302922A68200A21E70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A63C2E2922A68200A21E70 /* Main.storyboard */; };
+		F7A63C362922A6DC00A21E70 /* Wave in Frameworks */ = {isa = PBXBuildFile; productRef = F7A63C352922A6DC00A21E70 /* Wave */; };
 		F7F2B2BF2917543100E17E44 /* DragGesture+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2B2BE2917543100E17E44 /* DragGesture+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +42,12 @@
 		F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		F731393327E68CAE00DCC56C /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		F76AE81027E6905B00A332E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F7A63C262922A68100A21E70 /* Wave-Sample-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A63C282922A68100A21E70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F7A63C2A2922A68100A21E70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7A63C2C2922A68200A21E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7A63C2F2922A68200A21E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F7A63C312922A68200A21E70 /* Wave_Sample_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wave_Sample_macOS.entitlements; sourceTree = "<group>"; };
 		F7F2B2BE2917543100E17E44 /* DragGesture+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DragGesture+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +60,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7A63C232922A68100A21E70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A63C362922A6DC00A21E70 /* Wave in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				F731390627E68AB100DCC56C /* Wave-Sample */,
+				F7A63C272922A68100A21E70 /* Wave-Sample-macOS */,
 				F731391B27E68ABC00DCC56C /* Packages */,
 				F731390527E68AB100DCC56C /* Products */,
 				F731391D27E68B5600DCC56C /* Frameworks */,
@@ -66,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				F731390427E68AB100DCC56C /* Wave-Sample.app */,
+				F7A63C262922A68100A21E70 /* Wave-Sample-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +142,18 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		F7A63C272922A68100A21E70 /* Wave-Sample-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				F7A63C282922A68100A21E70 /* AppDelegate.swift */,
+				F7A63C2A2922A68100A21E70 /* ViewController.swift */,
+				F7A63C2C2922A68200A21E70 /* Assets.xcassets */,
+				F7A63C2E2922A68200A21E70 /* Main.storyboard */,
+				F7A63C312922A68200A21E70 /* Wave_Sample_macOS.entitlements */,
+			);
+			path = "Wave-Sample-macOS";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +178,26 @@
 			productReference = F731390427E68AB100DCC56C /* Wave-Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F7A63C252922A68100A21E70 /* Wave-Sample-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7A63C342922A68200A21E70 /* Build configuration list for PBXNativeTarget "Wave-Sample-macOS" */;
+			buildPhases = (
+				F7A63C222922A68100A21E70 /* Sources */,
+				F7A63C232922A68100A21E70 /* Frameworks */,
+				F7A63C242922A68100A21E70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wave-Sample-macOS";
+			packageProductDependencies = (
+				F7A63C352922A6DC00A21E70 /* Wave */,
+			);
+			productName = "Wave-Sample-macOS";
+			productReference = F7A63C262922A68100A21E70 /* Wave-Sample-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -152,11 +205,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					F731390327E68AB100DCC56C = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					F7A63C252922A68100A21E70 = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -176,6 +232,7 @@
 			projectRoot = "";
 			targets = (
 				F731390327E68AB100DCC56C /* Wave-Sample */,
+				F7A63C252922A68100A21E70 /* Wave-Sample-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +244,15 @@
 			files = (
 				F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */,
 				F76AE81127E6905B00A332E8 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7A63C242922A68100A21E70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A63C2D2922A68200A21E70 /* Assets.xcassets in Resources */,
+				F7A63C302922A68200A21E70 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +296,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7A63C222922A68100A21E70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A63C2B2922A68100A21E70 /* ViewController.swift in Sources */,
+				F7A63C292922A68100A21E70 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -239,6 +314,14 @@
 				F76AE81027E6905B00A332E8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F7A63C2E2922A68200A21E70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7A63C2F2922A68200A21E70 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -421,6 +504,62 @@
 			};
 			name = Release;
 		};
+		F7A63C322922A68200A21E70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Wave-Sample-macOS/Wave_Sample_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.janumtrivedi.Wave-Sample-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F7A63C332922A68200A21E70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Wave-Sample-macOS/Wave_Sample_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.janumtrivedi.Wave-Sample-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -442,10 +581,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F7A63C342922A68200A21E70 /* Build configuration list for PBXNativeTarget "Wave-Sample-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7A63C322922A68200A21E70 /* Debug */,
+				F7A63C332922A68200A21E70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		F706E35B2845F58C00ADD288 /* Wave */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Wave;
+		};
+		F7A63C352922A6DC00A21E70 /* Wave */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Wave;
 		};
