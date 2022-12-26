@@ -1,5 +1,5 @@
 //
-//  SwitUIViewController.swift
+//  SwiftUIViewController.swift
 //  Wave-Sample
 //
 //  Copyright (c) 2022 Janum Trivedi

@@ -10,7 +10,6 @@
 		F702B19928470D3100F8D848 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F702B19828470D3100F8D848 /* CGRect+Extensions.swift */; };
 		F706E35C2845F58C00ADD288 /* Wave in Frameworks */ = {isa = PBXBuildFile; productRef = F706E35B2845F58C00ADD288 /* Wave */; };
 		F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F72189FC27EE5485001A5CCF /* Assets.xcassets */; };
-		F7238435291310B300BA6402 /* SwitUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7238434291310B300BA6402 /* SwitUIViewController.swift */; };
 		F731390827E68AB100DCC56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731390727E68AB100DCC56C /* AppDelegate.swift */; };
 		F731390A27E68AB100DCC56C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731390927E68AB100DCC56C /* SceneDelegate.swift */; };
 		F731392C27E68C1F00DCC56C /* PictureInPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392627E68C1F00DCC56C /* PictureInPictureViewController.swift */; };
@@ -19,6 +18,7 @@
 		F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */; };
 		F731393427E68CAE00DCC56C /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F731393327E68CAE00DCC56C /* PathView.swift */; };
 		F76AE81127E6905B00A332E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76AE80F27E6905B00A332E8 /* LaunchScreen.storyboard */; };
+		F77E5E8C295A28F700DCF44B /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E5E8B295A28F700DCF44B /* SwiftUIViewController.swift */; };
 		F7A63C292922A68100A21E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A63C282922A68100A21E70 /* AppDelegate.swift */; };
 		F7A63C2B2922A68100A21E70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A63C2A2922A68100A21E70 /* ViewController.swift */; };
 		F7A63C2D2922A68200A21E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A63C2C2922A68200A21E70 /* Assets.xcassets */; };
@@ -30,7 +30,6 @@
 /* Begin PBXFileReference section */
 		F702B19828470D3100F8D848 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		F72189FC27EE5485001A5CCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F7238434291310B300BA6402 /* SwitUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitUIViewController.swift; sourceTree = "<group>"; };
 		F731390427E68AB100DCC56C /* Wave-Sample-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F731390727E68AB100DCC56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F731390927E68AB100DCC56C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +41,7 @@
 		F731392F27E68C6900DCC56C /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		F731393327E68CAE00DCC56C /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		F76AE81027E6905B00A332E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F77E5E8B295A28F700DCF44B /* SwiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftUIViewController.swift; path = "View Controllers/SwiftUIViewController.swift"; sourceTree = "<group>"; };
 		F7A63C262922A68100A21E70 /* Wave-Sample-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A63C282922A68100A21E70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7A63C2A2922A68100A21E70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				F731392627E68C1F00DCC56C /* PictureInPictureViewController.swift */,
 				F731392827E68C1F00DCC56C /* GridViewController.swift */,
 				F731392727E68C1F00DCC56C /* SheetViewController.swift */,
-				F7238434291310B300BA6402 /* SwitUIViewController.swift */,
+				F77E5E8B295A28F700DCF44B /* SwiftUIViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 				F731390A27E68AB100DCC56C /* SceneDelegate.swift in Sources */,
 				F731393027E68C6900DCC56C /* InstantPanGestureRecognizer.swift in Sources */,
 				F731393427E68CAE00DCC56C /* PathView.swift in Sources */,
-				F7238435291310B300BA6402 /* SwitUIViewController.swift in Sources */,
+				F77E5E8C295A28F700DCF44B /* SwiftUIViewController.swift in Sources */,
 				F731392D27E68C1F00DCC56C /* SheetViewController.swift in Sources */,
 				F702B19928470D3100F8D848 /* CGRect+Extensions.swift in Sources */,
 				F731392E27E68C1F00DCC56C /* GridViewController.swift in Sources */,
