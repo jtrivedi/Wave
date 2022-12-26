@@ -101,7 +101,6 @@ extension ViewAnimator {
             AnimationController.shared.executeHandler(uuid: runningCenterAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningCenterAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
-
             animation.configure(withSettings: settings)
 
             if let gestureVelocity = settings.gestureVelocity {
@@ -153,7 +152,6 @@ extension ViewAnimator {
             AnimationController.shared.executeHandler(uuid: runningBoundsOriginAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningBoundsOriginAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
-
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -201,7 +199,6 @@ extension ViewAnimator {
             AnimationController.shared.executeHandler(uuid: runningBoundsSizeAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningBoundsSizeAnimator ?? SpringAnimator<CGSize>(spring: settings.spring, value: initialValue, target: targetValue))
-
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -383,6 +380,7 @@ extension ViewAnimator {
             AnimationController.shared.executeHandler(uuid: runningScaleAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningScaleAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            animation.configure(withSettings: settings)
 
             animation.target = targetValue
             animation.valueChanged = { [weak self] value in
@@ -435,6 +433,7 @@ extension ViewAnimator {
             AnimationController.shared.executeHandler(uuid: runningTranslationAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningTranslationAnimator ?? SpringAnimator<CGPoint>(spring: settings.spring, value: initialValue, target: targetValue))
+            animation.configure(withSettings: settings)
 
             animation.target = targetValue
             animation.valueChanged = { [weak self] value in

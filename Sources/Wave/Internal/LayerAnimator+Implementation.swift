@@ -50,7 +50,6 @@ extension LayerAnimator {
             AnimationController.shared.executeHandler(uuid: runningCornerRadiusAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningCornerRadiusAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
-
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
@@ -295,7 +294,6 @@ extension LayerAnimator {
             AnimationController.shared.executeHandler(uuid: runningBorderWidthAnimator?.groupUUID, finished: false, retargeted: true)
 
             let animation = (runningBorderWidthAnimator ?? SpringAnimator<CGFloat>(spring: settings.spring, value: initialValue, target: targetValue))
-
             animation.configure(withSettings: settings)
 
             animation.target = targetValue
