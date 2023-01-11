@@ -97,6 +97,19 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         }
     }
 
+    func testNonAnimatedBoundsSize() {
+        let v = UIView()
+
+        let initialBoundsSize = CGSize(width: 50, height: 50)
+        let targetFrameSize = CGSize(width: 25, height: 25)
+
+        v.bounds.size = initialBoundsSize
+        v.animator.scale = CGPoint(x: 0.5, y: 0.5)
+
+        XCTAssertEqual(v.bounds.size, initialBoundsSize)
+        XCTAssertEqual(v.frame.size, targetFrameSize)
+    }
+
     func testCenter() {
         let view = UIView()
 
