@@ -216,7 +216,9 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         let newValue: T.ValueType
         let newVelocity: T.VelocityType
 
-        if spring.response > .zero && mode != .nonAnimated {
+        let isAnimated = spring.response > .zero && mode != .nonAnimated
+
+        if isAnimated {
             (newValue, newVelocity) = T.updateValue(spring: spring, value: value, target: target, velocity: velocity, dt: dt)
         } else {
             newValue = target
@@ -226,7 +228,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         self.value = newValue
         self.velocity = newVelocity
 
-        let animationFinished = runningTime >= (self.settlingTime)
+        let animationFinished = (runningTime >= settlingTime) || !isAnimated
 
         if animationFinished {
             self.value = target
