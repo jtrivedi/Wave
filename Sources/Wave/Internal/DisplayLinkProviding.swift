@@ -35,7 +35,7 @@ class CADisplayLinkProvider: DisplayLinkProviding {
         if #available(iOS 15.0, *) {
             let maximumFramesPerSecond = Float(UIScreen.main.maximumFramesPerSecond)
             let highFPSEnabled = maximumFramesPerSecond > 60
-            let minimumFPS: Float = highFPSEnabled ? 80 : 60
+            let minimumFPS: Float = min(highFPSEnabled ? 80 : 60, maximumFramesPerSecond)
             displayLinkProvider?.preferredFrameRateRange = .init(minimum: minimumFPS, maximum: maximumFramesPerSecond, preferred: maximumFramesPerSecond)
         }
     }
