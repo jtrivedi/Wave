@@ -1,5 +1,5 @@
 //
-//  AnimationProviding.swift
+//  AnimatorProviding.swift
 //  Wave
 //
 //  Copyright (c) 2022 Janum Trivedi.
@@ -19,6 +19,4 @@ internal protocol AnimatorProviding {
     func stop(immediately: Bool)
 
     func reset()
-
-    var mode: AnimationMode { get set }
 }

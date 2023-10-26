@@ -21,7 +21,7 @@ final class SpringTests: XCTestCase {
         XCTAssertEqual(s.mass, 1.0)
 
         XCTAssertEqual(s.stiffness, 61.6850, accuracy: epsilon)
-        XCTAssertEqual(s.dampingCoefficient, 15.7079, accuracy: epsilon)
+        XCTAssertEqual(s.damping, 15.7079, accuracy: epsilon)
 
         let durationBoost = 1.25
         XCTAssertEqual(s.settlingDuration, 1.17269 * durationBoost, accuracy: epsilon)
@@ -35,7 +35,7 @@ final class SpringTests: XCTestCase {
         XCTAssertEqual(s.mass, 1.0)
 
         XCTAssertEqual(s.stiffness, 61.6850, accuracy: epsilon)
-        XCTAssertEqual(s.dampingCoefficient, 9.4247, accuracy: epsilon)
+        XCTAssertEqual(s.damping, 9.4247, accuracy: epsilon)
 
         XCTAssertEqual(s.settlingDuration, 1.9544, accuracy: epsilon)
     }

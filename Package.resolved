@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "decomposed",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/b3ll/Decomposed.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "225ec7726a70ae586a5e0d65b450551d4f15b298"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -47,5 +47,15 @@ extension CGRect {
             origin.y = newValue.y - size.height / 2.0
         }
     }
+    
+    /// A size centered that specifies the height and width of the rectangle. Changing this value keeps the rectangle centered.
+    var sizeCentered: CGSize {
+        get { size }
+        set {
+            let old = self
+            size = newValue
+            self.center = old.center
+        }
+    }
 
 }
