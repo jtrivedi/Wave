@@ -74,7 +74,7 @@ public enum Wave {
         - animations: A block containing the changes to your objects' animatable properties. Note that for animations to work correctly, you must set values on the object's `animator`, not just the object itself.
         - completion: A block to be executed when the specified animations have either finished or retargeted to a new value.
      */
-    @available(macOS 14.0, *)
+    @available(macOS 14.0, iOS 17.0, tvOS 17.0, *)
     public static func animate(
         withSpring spring: SwiftUI.Spring,
         delay: TimeInterval = 0,
