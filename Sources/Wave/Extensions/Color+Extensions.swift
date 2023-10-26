@@ -55,32 +55,11 @@ struct RGBAComponents: Equatable {
 }
 
 extension WaveColor {
-
-    /**
-     Returns a `UIColor` by interpolating between two other `UIColor`s.
-     - Parameter fromColor: The `UIColor` to interpolate from
-     - Parameter toColor:   The `UIColor` to interpolate to (e.g. when fully interpolated)
-     - Parameter progress:  The interpolation progess; must be a `CGFloat` from 0 to 1
-     - Returns: The interpolated `UIColor` for the given progress point
-     */
-    public static func interpolate(from fromColor: WaveColor, to toColor: WaveColor, with progress: CGFloat) -> WaveColor {
-        let progress = clipUnit(value: progress)
-        let fromComponents = fromColor.rgbaComponents
-        let toComponents = toColor.rgbaComponents
-
-        let r = (1 - progress) * fromComponents.r + progress * toComponents.r
-        let g = (1 - progress) * fromComponents.g + progress * toComponents.g
-        let b = (1 - progress) * fromComponents.b + progress * toComponents.b
-        let a = (1 - progress) * fromComponents.a + progress * toComponents.a
-
-        return WaveColor(red: r, green: g, blue: b, alpha: a)
-    }
-
     var rgbaComponents: RGBAComponents {
         RGBAComponents(color: self)
     }
     
-    var isVisible: Bool {
+    internal var isVisible: Bool {
         self.alphaComponent != 0.0
     }
 }
