@@ -5,7 +5,6 @@
 //  Created by Florian Zand on 12.10.23.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS)
 #if os(macOS)
 import AppKit
 #elseif canImport(UIKit)
@@ -207,9 +206,6 @@ extension SwiftUI.Spring {
         velocity = V(vel)
     }
 }
-#endif
-
-
 
 
 

@@ -5,37 +5,8 @@
 //  Created by Florian Zand on 07.10.23.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS)
-
 import Foundation
 import QuartzCore
-
-/// An object that provides animatable properties that can be accessed via `animator`.
-public protocol AnimatablePropertyProvider: AnyObject {
-    associatedtype Provider: AnimatablePropertyProvider = Self
-    
-    var animator: PropertyAnimator<Provider> { get }
-}
-
-extension AnimatablePropertyProvider  {
-    /**
-     Use the `animator` property to set any animatable properties in an ``Wave/animate(withSpring:delay:gestureVelocity:animations:completion:)`` animation block.
-     
-     If an animatable property is changed outside an animation block, it stops animating and changes to the new value imminently..
-     
-     Example usage:
-     ```swift
-     Wave.animate(withSpring: .smooth) {
-        myView.animator.center = CGPoint(x: 100, y: 100)
-        myView.animator.alpha = 0.5
-     }
-     ```
-     */
-    public var animator: PropertyAnimator<Self> {
-        get { getAssociatedValue(key: "Animator", object: self, initialValue: PropertyAnimator(self)) }
-        set { set(associatedValue: newValue, key: "Animator", object: self) }
-    }
-}
 
 /// Provides animatable properties of an object conforming to `AnimatablePropertyProvider`.
 public class PropertyAnimator<Object: AnimatablePropertyProvider> {
@@ -208,9 +179,6 @@ internal extension PropertyAnimator {
         animation.start(afterDelay: settings.delay)
     }
 }
-
-#endif
-
 
 
 

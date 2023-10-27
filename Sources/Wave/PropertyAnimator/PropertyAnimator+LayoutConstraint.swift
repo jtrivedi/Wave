@@ -5,7 +5,6 @@
 //  Created by Florian Zand on 29.09.23.
 //
 
-#if os(macOS) || os(iOS) || os(tvOS)
 #if os(macOS)
 import AppKit
 #elseif canImport(UIKit)
@@ -41,5 +40,3 @@ public struct LayoutConstraintsAnimator<Object: Collection> where Object.Element
         collection.forEach({ $0.animator.constant = constant })
     }
 }
-
-#endif
