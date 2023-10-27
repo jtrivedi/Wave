@@ -84,7 +84,7 @@ class SheetViewController: UIViewController {
         }
 
         if sender.state == .began || sender.state == .changed {
-            sheetPresentationAnimator.spring = .defaultNonAnimated
+            sheetPresentationAnimator.spring = .nonAnimated
 
             let targetProgress = progressForTranslation(translation.y)
             sheetPresentationAnimator.target = targetProgress

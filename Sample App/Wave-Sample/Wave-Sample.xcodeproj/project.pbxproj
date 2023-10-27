@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		728F0F742AEB422E00080D3B /* PictureInPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F732AEB422E00080D3B /* PictureInPictureViewController.swift */; };
+		728F0F762AEB42EC00080D3B /* Comparable+Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F752AEB42EC00080D3B /* Comparable+Clamp.swift */; };
+		728F0F782AEB430B00080D3B /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F772AEB430B00080D3B /* CGPoint+Extension.swift */; };
+		728F0F7A2AEB434800080D3B /* NSBezierPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F792AEB434800080D3B /* NSBezierPath+Extension.swift */; };
+		728F0F7C2AEB43F100080D3B /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F7B2AEB43F100080D3B /* PathView.swift */; };
+		728F0F7E2AEB44DE00080D3B /* NSView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F7D2AEB44DE00080D3B /* NSView+Extension.swift */; };
+		728F0F812AEB45CE00080D3B /* CGRect+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F802AEB45CE00080D3B /* CGRect+Extension.swift */; };
+		728F0F832AEB52FF00080D3B /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728F0F822AEB52FF00080D3B /* GridViewController.swift */; };
 		F702B19928470D3100F8D848 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F702B19828470D3100F8D848 /* CGRect+Extensions.swift */; };
 		F706E35C2845F58C00ADD288 /* Wave in Frameworks */ = {isa = PBXBuildFile; productRef = F706E35B2845F58C00ADD288 /* Wave */; };
 		F72189FD27EE5485001A5CCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F72189FC27EE5485001A5CCF /* Assets.xcassets */; };
@@ -28,6 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		728F0F732AEB422E00080D3B /* PictureInPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureInPictureViewController.swift; sourceTree = "<group>"; };
+		728F0F752AEB42EC00080D3B /* Comparable+Clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Clamp.swift"; sourceTree = "<group>"; };
+		728F0F772AEB430B00080D3B /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
+		728F0F792AEB434800080D3B /* NSBezierPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+Extension.swift"; sourceTree = "<group>"; };
+		728F0F7B2AEB43F100080D3B /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		728F0F7D2AEB44DE00080D3B /* NSView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extension.swift"; sourceTree = "<group>"; };
+		728F0F802AEB45CE00080D3B /* CGRect+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
+		728F0F822AEB52FF00080D3B /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		F702B19828470D3100F8D848 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		F72189FC27EE5485001A5CCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F731390427E68AB100DCC56C /* Wave-Sample-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wave-Sample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +87,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		728F0F7F2AEB455700080D3B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				728F0F7B2AEB43F100080D3B /* PathView.swift */,
+				728F0F752AEB42EC00080D3B /* Comparable+Clamp.swift */,
+				728F0F772AEB430B00080D3B /* CGPoint+Extension.swift */,
+				728F0F7D2AEB44DE00080D3B /* NSView+Extension.swift */,
+				728F0F792AEB434800080D3B /* NSBezierPath+Extension.swift */,
+				728F0F802AEB45CE00080D3B /* CGRect+Extension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		F73138FB27E68AB100DCC56C = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +176,9 @@
 			children = (
 				F7A63C282922A68100A21E70 /* AppDelegate.swift */,
 				F7A63C2A2922A68100A21E70 /* ViewController.swift */,
+				728F0F732AEB422E00080D3B /* PictureInPictureViewController.swift */,
+				728F0F822AEB52FF00080D3B /* GridViewController.swift */,
+				728F0F7F2AEB455700080D3B /* Utilities */,
 				F7A63C2C2922A68200A21E70 /* Assets.xcassets */,
 				F7A63C2E2922A68200A21E70 /* Main.storyboard */,
 				F7A63C312922A68200A21E70 /* Wave_Sample_macOS.entitlements */,
@@ -300,8 +332,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728F0F812AEB45CE00080D3B /* CGRect+Extension.swift in Sources */,
+				728F0F7A2AEB434800080D3B /* NSBezierPath+Extension.swift in Sources */,
 				F7A63C2B2922A68100A21E70 /* ViewController.swift in Sources */,
 				F7A63C292922A68100A21E70 /* AppDelegate.swift in Sources */,
+				728F0F7C2AEB43F100080D3B /* PathView.swift in Sources */,
+				728F0F762AEB42EC00080D3B /* Comparable+Clamp.swift in Sources */,
+				728F0F832AEB52FF00080D3B /* GridViewController.swift in Sources */,
+				728F0F7E2AEB44DE00080D3B /* NSView+Extension.swift in Sources */,
+				728F0F742AEB422E00080D3B /* PictureInPictureViewController.swift in Sources */,
+				728F0F782AEB430B00080D3B /* CGPoint+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = QPSD3KKBMU;
+				DEVELOPMENT_TEAM = 6RCPU7FS5Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Wave-Sample/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = NO;
@@ -482,7 +522,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QPSD3KKBMU;
+				DEVELOPMENT_TEAM = 6RCPU7FS5Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Wave-Sample/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = NO;

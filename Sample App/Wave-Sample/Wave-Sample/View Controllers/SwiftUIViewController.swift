@@ -42,16 +42,15 @@ struct SwiftUIView: View {
                     offsetAnimator.target = CGPoint(x: value.translation.width, y: value.translation.height)
 
                     // Don't animate the box's position when we're dragging it.
-                    offsetAnimator.mode = .nonAnimated
+                    offsetAnimator.spring = .nonAnimated
                     offsetAnimator.start()
                 }
                 .onEnded { value in
                     // Animate the box to its original location (i.e. with zero translation).
                     offsetAnimator.target = .zero
 
-                    // We want the box to animate to its original location, so use an `animated` mode.
-                    // This is different than the
-                    offsetAnimator.mode = .animated
+                    // We want the box to animate to its original location, so change the spring.
+                    offsetAnimator.spring = Spring(dampingRatio: 0.72, response: 0.7)
 
                     // Take the velocity of the gesture, and give it to the animator.
                     // This makes the throw animation feel natural and continuous.

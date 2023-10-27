@@ -35,11 +35,6 @@ extension AnimatablePropertyProvider  {
         get { getAssociatedValue(key: "Animator", object: self, initialValue: PropertyAnimator(self)) }
         set { set(associatedValue: newValue, key: "Animator", object: self) }
     }
-    
-    internal var _animations: [String: AnimatorProviding] {
-        get { getAssociatedValue(key: "_animations", object: self, initialValue: [:]) }
-        set { set(associatedValue: newValue, key: "_animations", object: self) }
-    }
 }
 
 /// Provides animatable properties of an object conforming to `AnimatablePropertyProvider`.
@@ -48,6 +43,11 @@ public class PropertyAnimator<Object: AnimatablePropertyProvider> {
     
     internal init(_ object: Object) {
         self.object = object
+    }
+    
+    internal var animations: [String: AnimatorProviding] {
+        get { getAssociatedValue(key: "animations", object: self, initialValue: [:]) }
+        set { set(associatedValue: newValue, key: "animations", object: self) }
     }
 }
 
@@ -62,19 +62,21 @@ public extension PropertyAnimator {
         set { setValue(newValue, for: keyPath) }
     }
     
+    /// The current animation velocity of the specified keypath, or `nil` if there isn't an animation for the keypath.
     func animationVelocity<Value: AnimatableData>(for keyPath: KeyPath<PropertyAnimator, Value>) -> Value? {
         if let animation = self.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
-        } else if let animation = (object as? WaveView)?.optionalLayer?._animations[keyPath.stringValue] as? SpringAnimator<Value> {
+        } else if let animation = (object as? WaveView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
         }
         return nil
     }
     
+    /// The current animation velocity of the specified keypath, or `nil` if there isn't an animation for the keypath.
     func animationVelocity<Value: AnimatableData>(for keyPath: KeyPath<PropertyAnimator, Value?>) -> Value? {
         if let animation = self.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
-        } else if let animation = (object as? WaveView)?.optionalLayer?._animations[keyPath.stringValue] as? SpringAnimator<Value> {
+        } else if let animation = (object as? WaveView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
         }
         return nil
@@ -82,11 +84,6 @@ public extension PropertyAnimator {
 }
 
 internal extension PropertyAnimator {
-    var animations: [String: AnimatorProviding] {
-        get { object._animations }
-        set { object._animations = newValue }
-    }
-        
     func animation<Val>(for keyPath: WritableKeyPath<Object, Val?>, key: String? = nil) -> SpringAnimator<Val>? {
         return animations[key ?? keyPath.stringValue] as? SpringAnimator<Val>
     }
