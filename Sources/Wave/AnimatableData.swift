@@ -14,7 +14,32 @@ import SwiftUI
 import Decomposed
 import simd
 
-/// A protocol that describes an animatable value type.
+/**
+ A protocol that describes an animatable value type.
+ 
+ A double array  (``AnimatableVector``) conforms to `VectorArithmetic` and can be used as animatable data.
+ 
+ Example:
+ ```swift
+ public struct SomeStruct {
+    let value1: CGFloat
+    let value2: CGFloat
+ }
+ 
+ extension SomeStruct: AnimatableData {
+    public var animatableData: AnimatableVector {
+        [value1, value2]
+    }
+ 
+    public init(_ animatableData: AnimatableVector) {
+        self.value1 = animatableData[0]
+        self.value1 = animatableData[1]
+    }
+ 
+    public static var zero: Self = SomeStruct(value1: 0, value2: 0)
+ }
+ ```
+ */
 public protocol AnimatableData: Equatable, Comparable {
     /// The type defining the data to animate.
     associatedtype AnimatableData: VectorArithmetic = Self

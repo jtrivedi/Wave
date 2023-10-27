@@ -9,6 +9,7 @@ import SwiftUI
 import Accelerate
 import Foundation
 
+/// A double array (that can be used as animatable data to conform ``AnimatableData``.
 public typealias AnimatableVector = Array<Double>
 
 extension AnimatableVector: AdditiveArithmetic, VectorArithmetic {
