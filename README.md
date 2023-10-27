@@ -129,7 +129,7 @@ Both the block-based and property-based APIs support completion blocks. If an an
 However, if an animation’s target was changed in-flight (“retargeted”), `finished` will be false, while `retargeted` will be true.
 
 ```swift
-Wave.animate(withSpring: Spring.defaultAnimated) {
+Wave.animate(withSpring: Spring.init()) {
     myView.animator.backgroundColor = .systemBlue
 } completion: { finished, retargeted in
     print(finished, retargeted)

@@ -24,7 +24,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.frame, initialFrame)
         XCTAssertEqual(view.animator.frame, initialFrame)
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.frame = targetFrame
         }
 
@@ -51,7 +51,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertNotEqual(view.frame, view.animator.frame)
         XCTAssertNotEqual(view.bounds, view.animator.bounds)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.frame, view.animator.frame)
             XCTAssertEqual(view.bounds, view.animator.bounds)
         }
@@ -71,7 +71,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         let referenceView = UIView(frame: initialFrame)
         referenceView.bounds.size = targetSize
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.bounds.size = targetSize
         }
 
@@ -91,7 +91,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.frame.origin, initialFrame.origin)
         XCTAssertEqual(view.animator.frame.origin, referenceView.frame.origin)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.frame, view.animator.frame)
             XCTAssertEqual(view.bounds, view.animator.bounds)
         }
@@ -111,7 +111,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         let referenceView = UIView(frame: initialFrame)
         referenceView.center = targetCenter
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.center = targetCenter
         }
 
@@ -131,7 +131,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.frame.origin, initialFrame.origin)
         XCTAssertEqual(view.animator.frame.origin, referenceView.frame.origin)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.frame, view.animator.frame)
             XCTAssertEqual(view.bounds, view.animator.bounds)
         }
@@ -166,7 +166,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.center, initialFrame.center)
         XCTAssertEqual(view.animator.center, initialFrame.center)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.frame, view.animator.frame)
             XCTAssertEqual(view.bounds, view.animator.bounds)
         }
@@ -180,16 +180,16 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
 
         view.backgroundColor = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.backgroundColor = targetValue
         }
 
         XCTAssertEqual(view.backgroundColor?.rgbaComponents, initialValue.rgbaComponents)
-        XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+        XCTAssertEqual(view.animator.backgroundColor, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.backgroundColor?.rgbaComponents, targetValue.rgbaComponents)
-            XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+            XCTAssertEqual(view.animator.backgroundColor, targetValue)
         }
     }
 
@@ -201,16 +201,16 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
 
         view.backgroundColor = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.backgroundColor = targetValue
         }
 
         XCTAssertEqual(view.backgroundColor?.rgbaComponents, initialValue.rgbaComponents)
-        XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+        XCTAssertEqual(view.animator.backgroundColor, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.backgroundColor?.rgbaComponents, targetValue.rgbaComponents)
-            XCTAssertEqual(view.animator.backgroundColor.rgbaComponents, targetValue.rgbaComponents)
+            XCTAssertEqual(view.animator.backgroundColor, targetValue)
         }
     }
 
@@ -222,21 +222,21 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
 
         view.alpha = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.alpha = targetValue
         }
 
         XCTAssertEqual(view.alpha, initialValue)
         XCTAssertEqual(view.animator.alpha, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.alpha, targetValue)
             XCTAssertEqual(view.animator.alpha, targetValue)
         }
     }
 
     func testPropertyAnimation() {
-        let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
+        let animator = SpringAnimator<CGFloat>(spring: .init())
         animator.value = 0
         animator.target = 1
         animator.start()
@@ -247,7 +247,7 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
             }
         }
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             guard let value = animator.value else {
                 return
             }

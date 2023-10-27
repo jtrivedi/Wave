@@ -23,7 +23,7 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.transform = CGAffineTransform(scaleX: initialValue.x, y: initialValue.y)
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.scale = targetValue
         }
 
@@ -32,7 +32,7 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         XCTAssertEqual(view.animator.scale, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.transform.a, targetValue.x)
             XCTAssertEqual(view.transform.d, targetValue.y)
 
@@ -48,7 +48,7 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.transform = CGAffineTransform(translationX: initialValue.x, y: initialValue.y)
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.animator.translation = targetValue
         }
 
@@ -57,7 +57,7 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         XCTAssertEqual(view.animator.translation, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.transform.tx, targetValue.x)
             XCTAssertEqual(view.transform.ty, targetValue.y)
 
@@ -74,14 +74,14 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
         let targetValue = 20.0
         view.layer.cornerRadius = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.layer.animator.cornerRadius = targetValue
         }
 
         XCTAssertEqual(view.layer.cornerRadius, initialValue)
         XCTAssertEqual(view.layer.animator.cornerRadius, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.layer.cornerRadius, targetValue)
             XCTAssertEqual(view.layer.animator.cornerRadius, targetValue)
         }
@@ -94,14 +94,14 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
         let targetValue = 20.0
         view.layer.borderWidth = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.layer.animator.borderWidth = targetValue
         }
 
         XCTAssertEqual(view.layer.borderWidth, initialValue)
         XCTAssertEqual(view.layer.animator.borderWidth, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.layer.borderWidth, targetValue)
             XCTAssertEqual(view.layer.animator.borderWidth, targetValue)
         }
@@ -115,16 +115,16 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.layer.borderColor = initialValue.cgColor
 
-        Wave.animate(withSpring: .defaultAnimated) {
-            view.layer.animator.borderColor = targetValue.cgColor
+        Wave.animate(withSpring: .init()) {
+            view.layer.animator.borderColor = targetValue
         }
 
         XCTAssertEqual(view.layer.borderColor, initialValue.cgColor)
-        XCTAssertEqual(view.layer.animator.borderColor, targetValue.cgColor)
+        XCTAssertEqual(view.layer.animator.borderColor, targetValue)
 
-        wait(for: .defaultAnimated) {
+        wait(for: .init()) {
             XCTAssertEqual(view.layer.borderColor, targetValue.cgColor)
-            XCTAssertEqual(view.layer.animator.borderColor, targetValue.cgColor)
+            XCTAssertEqual(view.layer.animator.borderColor, targetValue)
         }
     }
 
@@ -138,14 +138,14 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.layer.shadowOpacity = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.layer.animator.shadowOpacity = CGFloat(targetValue)
         }
 
         XCTAssertEqual(view.layer.shadowOpacity, initialValue)
         XCTAssertEqual(Float(view.layer.animator.shadowOpacity), targetValue)
 
-        wait(for: Spring.defaultAnimated) {
+        wait(for: Spring.init()) {
             XCTAssertEqual(view.layer.shadowOpacity, targetValue)
             XCTAssertEqual(Float(view.layer.animator.shadowOpacity), targetValue)
         }
@@ -159,14 +159,14 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.layer.shadowOffset = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.layer.animator.shadowOffset = targetValue
         }
 
         XCTAssertEqual(view.layer.shadowOffset, initialValue)
         XCTAssertEqual(view.layer.animator.shadowOffset, targetValue)
 
-        wait(for: Spring.defaultAnimated) {
+        wait(for: Spring.init()) {
             XCTAssertEqual(view.layer.shadowOffset, targetValue)
             XCTAssertEqual(view.layer.animator.shadowOffset, targetValue)
         }
@@ -180,14 +180,14 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
 
         view.layer.shadowRadius = initialValue
 
-        Wave.animate(withSpring: .defaultAnimated) {
+        Wave.animate(withSpring: .init()) {
             view.layer.animator.shadowRadius = targetValue
         }
 
         XCTAssertEqual(view.layer.shadowRadius, initialValue)
         XCTAssertEqual(view.layer.animator.shadowRadius, targetValue)
 
-        wait(for: Spring.defaultAnimated) {
+        wait(for: Spring.init()) {
             XCTAssertEqual(view.layer.shadowRadius, targetValue)
             XCTAssertEqual(view.layer.animator.shadowRadius, targetValue)
         }

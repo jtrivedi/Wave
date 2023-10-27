@@ -52,6 +52,7 @@ struct RGBAComponents: Equatable {
     var uiColor: WaveColor {
         WaveColor(red: r, green: g, blue: b, alpha: a)
     }
+    
 }
 
 extension WaveColor {
@@ -70,28 +71,35 @@ public extension WaveColor {
      The red component as CGFloat between 0.0 to 1.0.
      */
     var redComponent: CGFloat {
-      return rgbaComponents().red
+      return rgbaComponents.r
     }
 
     /**
      The green component as CGFloat between 0.0 to 1.0.
      */
     var greenComponent: CGFloat {
-      return rgbaComponents().green
+      return rgbaComponents.g
     }
 
     /**
      The blue component as CGFloat between 0.0 to 1.0.
      */
     var blueComponent: CGFloat {
-      return rgbaComponents().blue
+      return rgbaComponents.b
     }
 
     /**
      The alpha component as CGFloat between 0.0 to 1.0.
      */
     var alphaComponent: CGFloat {
-      return rgbaComponents().alpha
+      return rgbaComponents.a
+    }
+}
+
+public extension CGColor {
+    /// The clear color in the Generic gray color space.
+    static var clear: CGColor {
+        return UIColor.clear.cgColor
     }
 }
 #endif

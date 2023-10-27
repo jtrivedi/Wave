@@ -208,7 +208,7 @@ extension PropertyAnimator where Object: NSControl {
 #elseif canImport(UIKit)
 extension PropertyAnimator where Object: UIImageView {
     /// The tint color of the image.
-    public var tintColor: NSUIColor {
+    public var tintColor: WaveColor {
         get { self[\.tintColor] }
         set { self[\.tintColor] = newValue }
     }
@@ -216,7 +216,7 @@ extension PropertyAnimator where Object: UIImageView {
 
 extension PropertyAnimator where Object: UIButton {
     /// The tint color of the button.
-    public var tintColor: NSUIColor {
+    public var tintColor: WaveColor {
         get { self[\.tintColor] }
         set { self[\.tintColor] = newValue }
     }
@@ -224,7 +224,7 @@ extension PropertyAnimator where Object: UIButton {
 
 extension PropertyAnimator where Object: UILabel {
     /// The text color of the label.
-    public var textColor: NSUIColor {
+    public var textColor: WaveColor {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
@@ -238,7 +238,7 @@ extension PropertyAnimator where Object: UILabel {
 
 extension PropertyAnimator where Object: UITextView {
     /// The text color of the text view.
-    public var textColor: NSUIColor? {
+    public var textColor: WaveColor? {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
