@@ -173,7 +173,7 @@ extension CGColor: AnimatableData {
     }
 }
 
-extension Array: AnimatableData, Comparable where Self.Element == Double { }
+extension Array: AnimatableData, Comparable where Self.Element: VectorArithmetic { }
 
 extension CGAffineTransform: AnimatableData {
     @inlinable public init(_ animatableData: AnimatableVector) {
