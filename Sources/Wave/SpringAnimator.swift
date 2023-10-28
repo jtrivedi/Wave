@@ -134,20 +134,27 @@ public class SpringAnimator<T: AnimatableData>: AnimatorProviding   {
         let start = {
             AnimationController.shared.runPropertyAnimation(self)
         }
+        
+        delayTask?.cancel()
 
         if delay == .zero {
             start()
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            let task = DispatchWorkItem {
                 start()
             }
+            delayTask = task
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: task)
         }
     }
+    
+    internal var delayTask: DispatchWorkItem? = nil
 
     /**
      Stops the animation at the current value.
      */
     public func stop(immediately: Bool = true) {
+        delayTask?.cancel()
         if immediately {
             state = .ended
 
