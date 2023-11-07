@@ -40,7 +40,7 @@ struct RGBAComponents: Equatable {
         self.a = a
     }
 
-    init(color: WaveColor) {
+    init(color: NSUIColor) {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -49,13 +49,13 @@ struct RGBAComponents: Equatable {
         self.init(r: r, g: g, b: b, a: a)
     }
 
-    var uiColor: WaveColor {
-        WaveColor(red: r, green: g, blue: b, alpha: a)
+    var uiColor: NSUIColor {
+        NSUIColor(red: r, green: g, blue: b, alpha: a)
     }
     
 }
 
-extension WaveColor {
+extension NSUIColor {
     var rgbaComponents: RGBAComponents {
         RGBAComponents(color: self)
     }
@@ -66,7 +66,7 @@ extension WaveColor {
 }
 
 #if os(iOS) || os(tvOS)
-public extension WaveColor {
+public extension NSUIColor {
     /**
      The red component as CGFloat between 0.0 to 1.0.
      */

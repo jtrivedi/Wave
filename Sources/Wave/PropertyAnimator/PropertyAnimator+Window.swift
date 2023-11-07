@@ -14,7 +14,7 @@ public typealias WindowAnimator = PropertyAnimator<NSWindow>
 
 extension PropertyAnimator where Object: NSWindow {
     /// The background color of the window.
-    public var backgroundColor: WaveColor {
+    public var backgroundColor: NSUIColor {
         get { self[\.backgroundColor] }
         set { self[\.backgroundColor] = newValue }
     }

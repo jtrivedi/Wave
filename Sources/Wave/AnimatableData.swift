@@ -134,13 +134,13 @@ extension CATransform3D: AnimatableData {
     }
 }
 
-extension AnimatableData where Self: WaveColor {
+extension AnimatableData where Self: NSUIColor {
     public init(_ animatableData: AnimatableVector) {
         self.init(red: animatableData[0], green: animatableData[1], blue: animatableData[2], alpha: animatableData[3])
     }
 }
 
-extension WaveColor: AnimatableData {
+extension NSUIColor: AnimatableData {
     public var animatableData: AnimatableVector {
                 let rgba = self.rgbaComponents
         return [rgba.r, rgba.g, rgba.b, rgba.a]
@@ -153,14 +153,14 @@ extension WaveColor: AnimatableData {
 
 extension AnimatableData where Self: CGColor {
     public init(_ animatableData: AnimatableVector) {
-        self = WaveColor(animatableData).cgColor as! Self
+        self = NSUIColor(animatableData).cgColor as! Self
       //  self.init(red: animatableData[0], green: animatableData[1], blue: animatableData[2], alpha: animatableData[3])
     }
 }
 
 extension CGColor: AnimatableData {
     public var animatableData: AnimatableVector {
-        let rgba = self.waveColor?.rgbaComponents ?? .init(r: 0, g: 0, b: 0, a: 0)
+        let rgba = self.nsUIColor?.rgbaComponents ?? .init(r: 0, g: 0, b: 0, a: 0)
         return [rgba.r, rgba.g, rgba.b, rgba.a]
     }
     
@@ -168,8 +168,8 @@ extension CGColor: AnimatableData {
         Self(red: 0, green: 0, blue: 0, alpha: 0)
     }
     
-    internal var waveColor: WaveColor? {
-        return WaveColor(cgColor: self)
+    internal var nsUIColor: NSUIColor? {
+        return NSUIColor(cgColor: self)
     }
 }
 

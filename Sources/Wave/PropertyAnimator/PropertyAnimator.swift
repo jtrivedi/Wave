@@ -37,7 +37,7 @@ public extension PropertyAnimator {
     func animationVelocity<Value: AnimatableData>(for keyPath: KeyPath<PropertyAnimator, Value>) -> Value? {
         if let animation = self.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
-        } else if let animation = (object as? WaveView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
+        } else if let animation = (object as? NSUIView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
         }
         return nil
@@ -47,7 +47,7 @@ public extension PropertyAnimator {
     func animationVelocity<Value: AnimatableData>(for keyPath: KeyPath<PropertyAnimator, Value?>) -> Value? {
         if let animation = self.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
-        } else if let animation = (object as? WaveView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
+        } else if let animation = (object as? NSUIView)?.optionalLayer?.animator.animations[keyPath.stringValue] as? SpringAnimator<Value> {
             return animation.velocity
         }
         return nil
@@ -87,8 +87,8 @@ internal extension PropertyAnimator {
         var targetValue = newValue
         
         if Value.self == CGColor.self {
-            let iniVal = (initialValue as! CGColor).waveColor
-            let tarVal = (newValue as! CGColor).waveColor
+            let iniVal = (initialValue as! CGColor).nsUIColor
+            let tarVal = (newValue as! CGColor).nsUIColor
             if iniVal?.isVisible == false || iniVal == nil {
                 initialValue = (tarVal?.withAlphaComponent(0.0).cgColor ?? .clear) as! Value
             }
@@ -141,8 +141,8 @@ internal extension PropertyAnimator {
         var targetValue = newValue ?? Value.zero
         
         if Value.self == CGColor.self {
-            let iniVal = (object[keyPath: keyPath] as! Optional<CGColor>)?.waveColor
-            let tarVal = (newValue as! Optional<CGColor>)?.waveColor
+            let iniVal = (object[keyPath: keyPath] as! Optional<CGColor>)?.nsUIColor
+            let tarVal = (newValue as! Optional<CGColor>)?.nsUIColor
             if iniVal?.isVisible == false || iniVal == nil {
                 initialValue = (tarVal?.withAlphaComponent(0.0).cgColor ?? .clear) as! Value
             }

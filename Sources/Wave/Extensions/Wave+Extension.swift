@@ -11,7 +11,7 @@ import AppKit
 import UIKit
 #endif
 
-extension WaveView {
+extension NSUIView {
     internal var optionalLayer: CALayer? {
         self.layer
     }
@@ -51,8 +51,8 @@ extension WaveView {
 
      Using this property turns the view into a layer-backed view. The value can be animated via `animator()`.
      */
-    public dynamic var borderColor: WaveColor? {
-        get { optionalLayer?.borderColor?.waveColor }
+    public dynamic var borderColor: NSUIColor? {
+        get { optionalLayer?.borderColor?.nsUIColor }
         set {
             #if os(macOS)
             wantsLayer = true
@@ -66,8 +66,8 @@ extension WaveView {
 
      Using this property turns the view into a layer-backed view. The value can be animated via `animator()`.
      */
-    public dynamic var shadowColor: WaveColor? {
-        get { optionalLayer?.shadowColor?.waveColor }
+    public dynamic var shadowColor: NSUIColor? {
+        get { optionalLayer?.shadowColor?.nsUIColor }
         set { optionalLayer?.shadowColor = newValue?.cgColor }
     }
     

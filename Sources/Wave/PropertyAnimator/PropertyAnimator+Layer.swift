@@ -30,8 +30,8 @@ extension PropertyAnimator where Object: CALayer {
     }
     
     /// The background color of the layer.
-    public var backgroundColor: WaveColor? {
-        get { self[\.backgroundColor]?.waveColor }
+    public var backgroundColor: NSUIColor? {
+        get { self[\.backgroundColor]?.nsUIColor }
         set { self[\.backgroundColor] = newValue?.cgColor }
     }
     
@@ -93,8 +93,8 @@ extension PropertyAnimator where Object: CALayer {
     }
     
     /// The border color of the layer.
-    public var borderColor: WaveColor? {
-        get { self[\.borderColor]?.waveColor }
+    public var borderColor: NSUIColor? {
+        get { self[\.borderColor]?.nsUIColor }
         set { self[\.borderColor] = newValue?.cgColor }
     }
     
@@ -111,8 +111,8 @@ extension PropertyAnimator where Object: CALayer {
     }
     
     /// The shadow color of the layer.
-    public var shadowColor: WaveColor? {
-        get { self[\.shadowColor]?.waveColor }
+    public var shadowColor: NSUIColor? {
+        get { self[\.shadowColor]?.nsUIColor }
         set { self[\.shadowColor] = newValue?.cgColor }
     }
     
@@ -137,23 +137,23 @@ extension PropertyAnimator where Object: CATextLayer {
     }
     
     /// The text color of the layer.
-    public var textColor: WaveColor? {
+    public var textColor: NSUIColor? {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
 }
 
 fileprivate extension CATextLayer {
-    @objc var textColor: WaveColor? {
-        get { self.foregroundColor?.waveColor }
+    @objc var textColor: NSUIColor? {
+        get { self.foregroundColor?.nsUIColor }
         set { self.foregroundColor = newValue?.cgColor }
     }
 }
 
 extension PropertyAnimator where Object: CAShapeLayer {
     /// The color used to fill the shape’s path.
-    public var fillColor: WaveColor? {
-        get { self[\.fillColor]?.waveColor }
+    public var fillColor: NSUIColor? {
+        get { self[\.fillColor]?.nsUIColor }
         set { self[\.fillColor] = newValue?.cgColor }
     }
         
@@ -182,8 +182,8 @@ extension PropertyAnimator where Object: CAShapeLayer {
     }
         
     /// The color used to stroke the shape’s path.
-    public var strokeColor: WaveColor? {
-        get { self[\.strokeColor]?.waveColor }
+    public var strokeColor: NSUIColor? {
+        get { self[\.strokeColor]?.nsUIColor }
         set { self[\.strokeColor] = newValue?.cgColor }
     }
     
@@ -214,8 +214,8 @@ extension PropertyAnimator where Object: CAReplicatorLayer {
     }
     
     /// Defines the color used to multiply the source object.
-    public var instanceColor: WaveColor? {
-        get { self[\.instanceColor]?.waveColor }
+    public var instanceColor: NSUIColor? {
+        get { self[\.instanceColor]?.nsUIColor }
         set { self[\.instanceColor] = newValue?.cgColor }
     }
     
@@ -254,7 +254,7 @@ extension PropertyAnimator where Object: CATiledLayer {
 
 extension PropertyAnimator where Object: CAGradientLayer {
     /// The fill color of the layer.
-    public var colors: [WaveColor] {
+    public var colors: [NSUIColor] {
         get { colors(for: self[\._colors]) }
         set { self[\._colors] = animatableVector(for: newValue) }
     }
@@ -277,11 +277,11 @@ extension PropertyAnimator where Object: CAGradientLayer {
         set { self[\.endPoint] = newValue }
     }
     
-    internal func colors(for values: AnimatableVector) -> [WaveColor] {
-        values.chunked(size: 4).compactMap({ WaveColor(red: $0[0], green: $0[0], blue: $0[0], alpha: $0[0]) })
+    internal func colors(for values: AnimatableVector) -> [NSUIColor] {
+        values.chunked(size: 4).compactMap({ NSUIColor(red: $0[0], green: $0[0], blue: $0[0], alpha: $0[0]) })
     }
     
-    internal func animatableVector(for colors: [WaveColor]) -> AnimatableVector {
+    internal func animatableVector(for colors: [NSUIColor]) -> AnimatableVector {
         colors.compactMap({$0.rgbaComponents}).flatMap({ [$0.r, $0.g, $0.b, $0.a] })
     }
 }

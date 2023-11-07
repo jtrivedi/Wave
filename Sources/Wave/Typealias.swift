@@ -9,14 +9,16 @@ import SwiftUI
 
 #if os(macOS)
 import AppKit
-public typealias WaveColor = NSColor
-public typealias WaveView = NSView
-public typealias WaveTextField = NSTextField
-public typealias WaveScrollView = NSScrollView
+public typealias NSUIColor = NSColor
+public typealias NSUIView = NSView
+public typealias NSUITextField = NSTextField
+public typealias NSUIScrollView = NSScrollView
+internal typealias NSUIEdgeInsets = NSEdgeInsets
 #elseif canImport(UIKit)
 import UIKit
-public typealias WaveColor = UIColor
-public typealias WaveView = UIView
-public typealias WaveTextField = UITextField
-public typealias WaveScrollView = UIScrollView
+public typealias NSUIColor = UIColor
+public typealias NSUIView = UIView
+public typealias NSUITextField = UITextField
+public typealias NSUIScrollView = UIScrollView
+internal typealias NSUIEdgeInsets = UIEdgeInsets
 #endif

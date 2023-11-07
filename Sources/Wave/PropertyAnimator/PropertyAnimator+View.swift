@@ -12,11 +12,11 @@ import UIKit
 #endif
 import Decomposed
 
-extension WaveView: AnimatablePropertyProvider { }
+extension NSUIView: AnimatablePropertyProvider { }
 
-public typealias ViewAnimator = PropertyAnimator<WaveView>
+public typealias ViewAnimator = PropertyAnimator<NSUIView>
 
-extension PropertyAnimator where Object: WaveView {
+extension PropertyAnimator where Object: NSUIView {
     /// The bounds of the view.
     public var bounds: CGRect {
         get { self[\.bounds] }
@@ -48,7 +48,7 @@ extension PropertyAnimator where Object: WaveView {
     }
     
     /// The background color of the view.
-    public var backgroundColor: WaveColor? {
+    public var backgroundColor: NSUIColor? {
         get { object.optionalLayer?.animator.backgroundColor }
         set {
             object.optionalLayer?.animator.backgroundColor = newValue
@@ -68,7 +68,7 @@ extension PropertyAnimator where Object: WaveView {
     }
     
     /// The border color of the view.
-    public var borderColor: WaveColor? {
+    public var borderColor: NSUIColor? {
         get { object.optionalLayer?.animator.borderColor ?? .zero }
         set { object.optionalLayer?.animator.borderColor = newValue
         }
@@ -87,7 +87,7 @@ extension PropertyAnimator where Object: WaveView {
     }
     
     /// The shadow color of the view.
-    public var shadowColor: WaveColor? {
+    public var shadowColor: NSUIColor? {
         get { object.optionalLayer?.animator.shadowColor }
         set { object.optionalLayer?.animator.shadowColor = newValue }
     }
@@ -130,9 +130,9 @@ extension PropertyAnimator where Object: WaveView {
 }
 
 
-extension PropertyAnimator where Object: WaveTextField {
+extension PropertyAnimator where Object: NSUITextField {
     /// The text color of the text field.
-    public var textColor: WaveColor? {
+    public var textColor: NSUIColor? {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
@@ -144,14 +144,14 @@ extension PropertyAnimator where Object: WaveTextField {
     }
 }
 
-fileprivate extension WaveTextField {
+fileprivate extension NSUITextField {
     @objc var fontSize: CGFloat {
         get { font?.pointSize ?? 0.0 }
         set { font = font?.withSize(newValue) }
     }
 }
 
-extension PropertyAnimator where Object: WaveScrollView {
+extension PropertyAnimator where Object: NSUIScrollView {
     /// The point at which the origin of the content view is offset from the origin of the scroll view.
     public var contentOffset: CGPoint {
         get { self[\.contentOffset] }
@@ -177,7 +177,7 @@ extension PropertyAnimator where Object: WaveScrollView {
 #if os(macOS)
 extension PropertyAnimator where Object: NSImageView {
     /// The tint color of the image.
-    public var contentTintColor: WaveColor? {
+    public var contentTintColor: NSUIColor? {
         get { self[\.contentTintColor] }
         set { self[\.contentTintColor] = newValue }
     }
@@ -185,7 +185,7 @@ extension PropertyAnimator where Object: NSImageView {
 
 extension PropertyAnimator where Object: NSButton {
     /// The tint color of the button.
-    public var contentTintColor: WaveColor? {
+    public var contentTintColor: NSUIColor? {
         get { self[\.contentTintColor] }
         set { self[\.contentTintColor] = newValue }
     }
@@ -208,7 +208,7 @@ extension PropertyAnimator where Object: NSControl {
 #elseif canImport(UIKit)
 extension PropertyAnimator where Object: UIImageView {
     /// The tint color of the image.
-    public var tintColor: WaveColor {
+    public var tintColor: NSUIColor {
         get { self[\.tintColor] }
         set { self[\.tintColor] = newValue }
     }
@@ -216,7 +216,7 @@ extension PropertyAnimator where Object: UIImageView {
 
 extension PropertyAnimator where Object: UIButton {
     /// The tint color of the button.
-    public var tintColor: WaveColor {
+    public var tintColor: NSUIColor {
         get { self[\.tintColor] }
         set { self[\.tintColor] = newValue }
     }
@@ -224,7 +224,7 @@ extension PropertyAnimator where Object: UIButton {
 
 extension PropertyAnimator where Object: UILabel {
     /// The text color of the label.
-    public var textColor: WaveColor {
+    public var textColor: NSUIColor {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
@@ -238,7 +238,7 @@ extension PropertyAnimator where Object: UILabel {
 
 extension PropertyAnimator where Object: UITextView {
     /// The text color of the text view.
-    public var textColor: WaveColor? {
+    public var textColor: NSUIColor? {
         get { self[\.textColor] }
         set { self[\.textColor] = newValue }
     }
