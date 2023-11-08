@@ -36,6 +36,11 @@ extension PropertyAnimator where Object: NSWindow {
         get { frame.size }
         set { frame.sizeCentered = newValue }
     }
+    
+    /// The animator for the window's content view.
+    public var contentView: PropertyAnimator<NSView>? {
+        object.contentView?.animator
+    }
 }
 
 fileprivate extension NSWindow {

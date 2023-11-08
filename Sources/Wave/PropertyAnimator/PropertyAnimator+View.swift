@@ -231,8 +231,28 @@ extension PropertyAnimator where Object: NSUITextField {
     }
 }
 
+extension PropertyAnimator where Object: NSUITextView {
+    /// The font size of the text view.
+    public var fontSize: CGFloat {
+        get { self[\.fontSize] }
+        set { self[\.fontSize] = newValue }
+    }
+    
+    /// The text color of the text view.
+    public var textColor: NSUIColor? {
+        get { self[\.textColor] }
+        set { self[\.textColor] = newValue }
+    }
+}
 
 fileprivate extension NSUITextField {
+    @objc var fontSize: CGFloat {
+        get { font?.pointSize ?? 0.0 }
+        set { font = font?.withSize(newValue) }
+    }
+}
+
+fileprivate extension NSUITextView {
     @objc var fontSize: CGFloat {
         get { font?.pointSize ?? 0.0 }
         set { font = font?.withSize(newValue) }
@@ -292,6 +312,34 @@ extension PropertyAnimator where Object: NSControl {
         set { self[\.floatValue] = newValue }
     }
 }
+
+extension PropertyAnimator where Object: NSProgressIndicator {
+    /// The current value of the progress indicator.
+    public var doubleValue: Double {
+        get {  self[\.doubleValue] }
+        set { self[\.doubleValue] = newValue }
+    }
+    
+    /// The minimum value for the progress indicator.
+    public var minValue: Double {
+        get {  self[\.minValue] }
+        set { self[\.minValue] = newValue }
+    }
+    
+    /// The maximum value for the progress indicator.
+    public var maxValue: Double {
+        get {  self[\.maxValue] }
+        set { self[\.maxValue] = newValue }
+    }
+}
+
+extension PropertyAnimator where Object: NSColorWell {
+    /// The selected color for the color well.
+    public var color: NSColor {
+        get { self[\.color] }
+        set { self[\.color] = newValue }
+    }
+}
 #elseif canImport(UIKit)
 extension PropertyAnimator where Object: UIImageView {
     /// The tint color of the image.
@@ -323,20 +371,6 @@ extension PropertyAnimator where Object: UILabel {
     }
 }
 
-extension PropertyAnimator where Object: UITextView {
-    /// The text color of the text view.
-    public var textColor: NSUIColor? {
-        get { self[\.textColor] }
-        set { self[\.textColor] = newValue }
-    }
-    
-    /// The font size of the text view.
-    public var fontSize: CGFloat {
-        get { self[\.fontSize] }
-        set { self[\.fontSize] = newValue }
-    }
-}
-
 fileprivate extension UILabel {
     @objc var fontSize: CGFloat {
         get { font.pointSize }
@@ -344,10 +378,20 @@ fileprivate extension UILabel {
     }
 }
 
-fileprivate extension UITextView {
-    @objc var fontSize: CGFloat {
-        get { font?.pointSize ?? 0.0 }
-        set { font = font?.withSize(newValue) }
+@available(iOS 14.0, *)
+extension PropertyAnimator where Object: UIColorWell {
+    /// The selected color in the color picker.
+    public var selectedColor: NSUIColor? {
+        get { self[\.selectedColor] }
+        set { self[\.selectedColor] = newValue }
+    }
+}
+
+extension PropertyAnimator where Object: UIProgressView {
+    /// The current progress of the progress view.
+    public var progress: Float {
+        get { self[\.progress] }
+        set { self[\.progress] = newValue }
     }
 }
 #endif
