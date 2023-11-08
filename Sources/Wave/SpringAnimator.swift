@@ -165,6 +165,19 @@ public class SpringAnimator<T: AnimatableData>: AnimatorProviding   {
             target = value
         }
     }
+    
+    /// Stops the animation immediately at the specified target.
+    public func stop(at target: T) {
+        AnimationController.shared.stopPropertyAnimation(self)
+        value = target
+        self.target = value
+        state = .inactive
+        let callbackValue = integralizeValues ? target.scaledIntegral : target
+        valueChanged?(callbackValue)
+        if let completion = self.completion {
+            completion(.finished(at: target))
+        }
+    }
 
     /**
      How long the animation will take to complete, based off its `spring` property.

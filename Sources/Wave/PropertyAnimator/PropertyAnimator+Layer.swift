@@ -127,6 +127,81 @@ extension PropertyAnimator where Object: CALayer {
         get { self[\.shadowRadius] }
         set { self[\.shadowRadius] = newValue }
     }
+    
+    /// The property animators for the layer's sublayers.
+    public var sublayers: [PropertyAnimator<CALayer>] {
+        object.sublayers?.compactMap({$0.animator}) ?? []
+    }
+    
+    /// The property animator for the layer's superlayer.
+    public var superlayer: PropertyAnimator<CALayer>? {
+        object.superlayer?.animator
+    }
+    
+    /// The property animator for the layer's mask.
+    public var mask: PropertyAnimator<CALayer>? {
+        object.mask?.animator
+    }
+    
+    /**
+     Adds the specified layer animated. The sublayers's opacity gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the layer's sublayers doesn't contain the specified sublayer.
+     */
+    public func addSublayer(_ layer: CALayer) {
+        guard layer.superlayer != object else { return }
+        layer.opacity = 0.0
+        Wave.nonAnimate {
+            layer.animator.opacity = 0.0
+        }
+        object.addSublayer(layer)
+        layer.animator.opacity = 1.0
+    }
+    
+    /**
+     Inserts the layer at the specified index animated. The sublayers's opacity gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the layer's sublayers doesn't contain the specified sublayer.
+     */
+    public func insertSublayer(_ layer: CALayer, at index: UInt32) {
+        guard layer.superlayer != object else { return }
+        layer.opacity = 0.0
+        Wave.nonAnimate {
+            layer.animator.opacity = 0.0
+        }
+        object.insertSublayer(layer, at: index)
+        layer.animator.opacity = 1.0
+    }
+    
+    /**
+     Inserts the layer above a different sublayer animated. The sublayers's opacity gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the layer's sublayers doesn't contain the specified sublayer.
+     */
+    public func insertSublayer(_ layer: CALayer, above sibling: CALayer) {
+        guard layer.superlayer != object, object.sublayers?.contains(sibling) == true else { return }
+        layer.opacity = 0.0
+        Wave.nonAnimate {
+            layer.animator.opacity = 0.0
+        }
+        object.insertSublayer(layer, above: sibling)
+        layer.animator.opacity = 1.0
+    }
+    
+    /**
+     Inserts the layer below a different sublayer animated. The sublayers's opacity gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the layer's sublayers doesn't contain the specified sublayer.
+     */
+    public func insertSublayer(_ layer: CALayer, below sibling: CALayer) {
+        guard layer.superlayer != object, object.sublayers?.contains(sibling) == true else { return }
+        layer.opacity = 0.0
+        Wave.nonAnimate {
+            layer.animator.opacity = 0.0
+        }
+        object.insertSublayer(layer, below: sibling)
+        layer.animator.opacity = 1.0
+    }
 }
 
 extension PropertyAnimator where Object: CATextLayer {

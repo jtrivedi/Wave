@@ -31,10 +31,10 @@ extension PropertyAnimator where Object: NSWindow {
         set { self[\.frame_] = newValue }
     }
     
-    /// The size of the window.
+    /// The size of the window. Changing the value keeps the window centered. To change the size without centering use the window's frame size.
     public var size: CGSize {
         get { frame.size }
-        set { frame.size = newValue }
+        set { frame.sizeCentered = newValue }
     }
 }
 

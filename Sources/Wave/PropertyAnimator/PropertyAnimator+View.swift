@@ -29,7 +29,7 @@ extension PropertyAnimator where Object: NSUIView {
         set { self[\.frame] = newValue }
     }
     
-    /// The size of the view. Changing this value keeps the view centered.
+    /// The size of the view. Changing the value keeps the view centered. To change the size without centering use the view's frame size.
     public var size: CGSize {
         get { frame.size }
         set { frame.sizeCentered = newValue }
@@ -127,6 +127,93 @@ extension PropertyAnimator where Object: NSUIView {
         get { object.optionalLayer?.animator.translation ?? .zero }
         set { object.optionalLayer?.animator.translation = newValue }
     }
+    
+    /// The view's layer animator.
+    public var layer: LayerAnimator {
+        #if os(macOS)
+        self.object.wantsLayer = true
+        #endif
+        return self.object.optionalLayer!.animator
+    }
+    
+    /// The property animators for the view's subviews.
+    public var subviewa: [PropertyAnimator<NSUIView>] {
+        object.subviews.compactMap({ $0.animator })
+    }
+    
+    /// The property animator for the view's superview.
+    public var superview: PropertyAnimator<NSUIView>? {
+        object.superview?.animator
+    }
+    
+    /**
+     Adds the specified view animated. The subview's alpha value gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the view's subviews doesn't contain the specified subview.
+     */
+    public func addSubview(_ view: NSUIView) {
+        guard view.superview != object else { return }
+        Wave.nonAnimate {
+            view.animator.alpha = 0.0
+        }
+        object.addSubview(view)
+        view.animator.alpha = 1.0
+    }
+    
+    /**
+     Inserts the view at the specified index animated. The subview's alpha value gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the view's subviews doesn't contain the specified subview.
+     */
+    public func insertSubview(_ view: NSUIView, at index: Int) {
+        guard view.superview != object else { return }
+        Wave.nonAnimate {
+            view.animator.alpha = 0.0
+        }
+        object.insertSubview(view, at: index)
+        view.animator.alpha = 1.0
+    }
+    
+    /**
+     Inserts the view above another view animated. The subview's alpha value gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the view's subviews doesn't contain the specified subview.
+     */
+    public func insertSubview(_ view: NSUIView, aboveSubview siblingSubview: NSUIView) {
+        guard view.superview != object, object.subviews.contains(siblingSubview) else { return }
+        Wave.nonAnimate {
+            view.animator.alpha = 0.0
+        }
+        object.insertSubview(view, aboveSubview: siblingSubview)
+        view.animator.alpha = 1.0
+    }
+    
+    /**
+     Inserts the view below another view animated. The subview's alpha value gets animated to `1.0`.
+     
+     - Note: The animation only occurs if the view's subviews doesn't contain the specified subview.
+     */
+    public func insertSubview(_ view: NSUIView, belowSubview siblingSubview: NSUIView) {
+        guard view.superview != object, object.subviews.contains(siblingSubview) else { return }
+        Wave.nonAnimate {
+            view.animator.alpha = 0.0
+        }
+        object.insertSubview(view, belowSubview: siblingSubview)
+        view.animator.alpha = 1.0
+    }
+    
+    /**
+     Removes the view from it's superview animated. The view's alpha value gets animated to `0.0` and on completion removed from it's superview.
+     
+     - Note: The animation only occurs if the view's superview isn't `nil`.
+     */
+    public func removeFromSuperview() {
+        guard object.superview != nil else { return }
+        setValue(0.0, for: \.alpha, completion: { [weak self] in
+            guard let self = self else { return }
+            self.object.removeFromSuperview()
+        })
+    }
 }
 
 
@@ -143,6 +230,7 @@ extension PropertyAnimator where Object: NSUITextField {
         set { self[\.fontSize] = newValue }
     }
 }
+
 
 fileprivate extension NSUITextField {
     @objc var fontSize: CGFloat {
@@ -190,7 +278,6 @@ extension PropertyAnimator where Object: NSButton {
         set { self[\.contentTintColor] = newValue }
     }
 }
-
 
 extension PropertyAnimator where Object: NSControl {
     /// The double value of the control.

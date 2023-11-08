@@ -75,6 +75,10 @@ internal class AnimationController {
 
         animations[animation.id] = animation
     }
+    
+    func stopPropertyAnimation(_ animation: AnimatorProviding) {
+        animations[animation.id] = nil
+    }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {
         guard let uuid = uuid, let block = groupAnimationCompletionBlocks[uuid] else {
