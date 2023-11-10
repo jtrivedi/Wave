@@ -137,10 +137,6 @@ internal extension PropertyAnimator {
         animation.target = target
         animation.integralizeValues = integralizeValue
         animation.configure(withSettings: settings)
-        if let gestureVelocity = settings.gestureVelocity {
-            (animation as? SpringAnimator<CGPoint>)?.velocity = gestureVelocity
-            (animation as? SpringAnimator<CGRect>)?.velocity.origin = gestureVelocity
-        }
         if let keyPath = keyPath as? WritableKeyPath<Object, Value> {
             animation.valueChanged = { [weak self] value in
                 self?.object[keyPath: keyPath] = value
