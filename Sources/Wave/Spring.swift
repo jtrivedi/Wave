@@ -19,7 +19,7 @@ import SwiftUI
 
  Springs are created by providing a `dampingRatio` greater than zero, and _either_ a ``response`` or ``stiffness`` value. See the initializers ``init(dampingRatio:response:mass:)`` and ``init(dampingRatio:stiffness:mass:)`` for usage information.
  */
-public struct Spring: Equatable {
+public struct Spring: @unchecked Sendable, Hashable {
     // MARK: - Spring Properties
 
     /// The amount of oscillation the spring will exhibit (i.e. "springiness").
@@ -132,7 +132,7 @@ public struct Spring: Equatable {
      - Parameters:
         - settlingDuration: The approximate time it will take for the spring to come to rest.
         - dampingRatio: The amount of drag applied as a fraction of the amount needed to produce critical damping.
-        - epsilon: The threshhold for how small all subsequent values need to be before the spring is considered to have settled.
+        - epsilon: The threshold for how small all subsequent values need to be before the spring is considered to have settled.
      */
     @available(macOS 14.0, iOS 17, tvOS 17, *)
     public init(settlingDuration: TimeInterval, dampingRatio: Double, epsilon: Double = 0.001) {
@@ -217,9 +217,11 @@ public struct Spring: Equatable {
     
 
     // MARK: - Spring calculation
-
-    public static func == (lhs: Spring, rhs: Spring) -> Bool {
-        return lhs.dampingRatio == rhs.dampingRatio && lhs.response == rhs.response && lhs.mass == rhs.mass
+    
+    /// The SwiftUI representation of the spring.
+    @available(macOS 14.0, iOS 17, tvOS 17, *)
+    var swiftUI: SwiftUI.Spring {
+        SwiftUI.Spring.init(mass: mass, stiffness: stiffness, damping: damping, allowOverDamping: true)
     }
 
     static func stiffness(response: CGFloat, mass: CGFloat) -> CGFloat {
