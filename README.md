@@ -43,7 +43,7 @@ Note: To enable high frame-rate animations on ProMotion devices (i.e. 120 fps an
 
 ### Documentation
 
-There’s a full Wave [documentation site](https://Wave-jtrivedi.structure.sh) available for full API and usage documentation.
+There’s a full Wave [documentation site](https://jtrivedi.github.io/Wave/) available for full API and usage documentation.
 
 ### Getting Started
 
