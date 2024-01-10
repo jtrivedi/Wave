@@ -97,6 +97,19 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         }
     }
 
+    func testNonAnimatedBoundsSize() {
+        let v = UIView()
+
+        let initialBoundsSize = CGSize(width: 50, height: 50)
+        let targetFrameSize = CGSize(width: 25, height: 25)
+
+        v.bounds.size = initialBoundsSize
+        v.animator.scale = CGPoint(x: 0.5, y: 0.5)
+
+        XCTAssertEqual(v.bounds.size, initialBoundsSize)
+        XCTAssertEqual(v.frame.size, targetFrameSize)
+    }
+
     func testCenter() {
         let view = UIView()
 
@@ -228,11 +241,41 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
 
         XCTAssertEqual(view.alpha, initialValue)
         XCTAssertEqual(view.animator.alpha, targetValue)
+        XCTAssertEqual(Double(view.layer.animator.opacity), targetValue)
 
         wait(for: .defaultAnimated) {
             XCTAssertEqual(view.alpha, targetValue)
             XCTAssertEqual(view.animator.alpha, targetValue)
         }
+    }
+
+    func testNonAnimatedAlpha() {
+        let view = UIView()
+
+        let initialValue = 1.0
+        let targetValue = 0.5
+
+        view.alpha = initialValue
+
+        Wave.animate(withSpring: .defaultNonAnimated) {
+            view.animator.alpha = targetValue
+        }
+
+        XCTAssertEqual(view.alpha, targetValue)
+        XCTAssertEqual(view.animator.alpha, targetValue)
+
+        XCTAssertEqual(Double(view.layer.opacity), targetValue)
+        XCTAssertEqual(view.layer.animator.opacity, targetValue)
+
+        Wave.animate(withSpring: .defaultAnimated, mode: .nonAnimated) {
+            view.animator.alpha = initialValue
+        }
+
+        XCTAssertEqual(view.alpha, initialValue)
+        XCTAssertEqual(view.animator.alpha, initialValue)
+
+        XCTAssertEqual(Double(view.layer.opacity), initialValue)
+        XCTAssertEqual(view.layer.animator.opacity, initialValue)
     }
 
     func testPropertyAnimation() {

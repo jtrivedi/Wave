@@ -74,6 +74,8 @@ internal class AnimationController {
         }
 
         animations[animation.id] = animation
+
+        animation.updateAnimation(dt: .zero)
     }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {
