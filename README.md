@@ -66,6 +66,9 @@ if panGestureRecognizer.state == .ended {
     let animatedSpring = Spring(dampingRatio: 0.68, response: 0.80)
 
     // Get the gesture's lift-off velocity, and pass it into the Wave animation.
+    // `gestureVelocity` currently applies to `center` animations (and therefore
+    // the positional part of `frame` animations), not to `scale`, `translation`,
+    // or layer-backed properties.
     let gestureVelocity = panGestureRecognizer.velocity(in: view)
 
     Wave.animate(withSpring: animatedSpring, gestureVelocity: gestureVelocity) {
@@ -77,6 +80,8 @@ if panGestureRecognizer.state == .ended {
 ```
 
 Note that at _any_ time, you can _retarget_ the view’s `center` property to somewhere else, and it’ll gracefully animate.
+
+`gestureVelocity` is currently only applied to `UIView.animator.center`. Because `frame` animations are implemented in terms of `center` and `bounds`, the same velocity also affects the positional part of `frame` animations. It does not apply to `scale`, `translation`, `bounds`, or `CALayer` animator properties.
 
 ##### Supported Animatable Properties
 

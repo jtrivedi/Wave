@@ -41,7 +41,7 @@ public class Wave {
      
      - parameter delay: _Optional_.  A delay, in seconds, after which to start the animation.
      
-     - parameter gestureVelocity: _Optional_. If provided, this value will be used to set the `velocity` of whatever underlying animations run in the `animations` block. This should be primarily used to "inject" the velocity of a gesture recognizer (when the gesture ends) into the animations.
+     - parameter gestureVelocity: _Optional_. If provided, this value will be used to set the `velocity` of `UIView` `center` animations in the `animations` block. Since `frame` animations are implemented by animating `center` and `bounds`, this also affects the positional part of `frame` animations. It does not apply to `scale`, `translation`, or layer-backed properties. This should be primarily used to "inject" the velocity of a gesture recognizer (when the gesture ends) into the animations.
      
      - parameter animations: A block containing the changes to your views' animatable properties. Note that for animations to work correctly, you must set values on the view's `animator`, not just the view itself. For example, to animate a view's alpha, use `myView.animator.alpha = 1.0` instead of `myView.alpha = 1.0`.
      
