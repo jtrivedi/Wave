@@ -369,7 +369,7 @@ extension LayerAnimator {
             if let targetComponents = runningShadowColorAnimator?.target {
                 return targetComponents.uiColor.cgColor
             } else {
-                return layer.backgroundColor ?? WaveColor.clear.cgColor
+                return layer.shadowColor ?? WaveColor.clear.cgColor
             }
         }
 
