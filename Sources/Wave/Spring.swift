@@ -8,6 +8,12 @@
 import CoreGraphics
 import QuartzCore
 
+// Wave's `Spring` type conflicts with SwiftUI.Spring,
+// and Wave.Spring doesn't resolve correctly for some reason.
+//
+// So `WaveSpring` offers a conflict-free way to use `Wave.Spring`.
+typealias WaveSpring = Spring
+
 /**
  `Spring` determines the timing curve and settling duration of an animation.
  
