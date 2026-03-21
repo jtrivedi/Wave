@@ -29,7 +29,7 @@ internal class AnimationController {
             CATransaction.setDisableActions(true)
 
             for animation in strongSelf.animations.values {
-                if animation.state == .ended {
+                if animation.state != .running {
                     animation.reset()
                     strongSelf.animations.removeValue(forKey: animation.id)
                 } else {

@@ -135,6 +135,9 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
 
     /**
      Starts the animation (if not already running) with an optional delay.
+
+     If the animator previously ended, starting again begins a fresh run using the
+     current `value`, `target`, and `velocity` configured by the caller.
      
      - parameter delay: The amount of time (measured in seconds) to wait before starting the animation.
      */
@@ -144,6 +147,10 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         precondition(delay >= 0, "`delay` must be greater or equal to zero.")
 
         let start = {
+            if self.state == .ended {
+                self.prepareForRestart()
+            }
+
             AnimationController.shared.runPropertyAnimation(self)
         }
 
@@ -158,10 +165,14 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
 
     /**
      Stops the animation at the current value.
+
+     If `immediately` is `true`, the current `value` is frozen, `target` is left
+     unchanged for inspection/reuse, and `velocity` is reset to zero. Callers may
+     then assign new `value`, `target`, and `velocity` before starting again.
      */
     public func stop(immediately: Bool = true) {
         if immediately {
-            self.state = .ended
+            self.finishImmediately()
 
             if let value = value, let completion = completion {
                 completion(.finished(at: value))
@@ -195,9 +206,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
     }
 
     func reset() {
-        self.startTime = nil
-        self.velocity = .zero
-        self.state = .inactive
+        self.transitionToInactive(preservingVelocity: false)
     }
 
     func updateAnimation(dt: TimeInterval) {
@@ -229,6 +238,7 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         self.velocity = newVelocity
 
         let animationFinished = (runningTime >= settlingTime) || !isAnimated
+        let runStartTime = self.startTime
 
         if animationFinished {
             self.value = target
@@ -239,10 +249,46 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
             valueChanged?(callbackValue)
         }
 
-        if animationFinished {
-            // If an animation finishes on its own, call the completion handler with value `target`.
-            completion?(.finished(at: target))
-            self.state = .ended
+        if animationFinished,
+           self.state == .running,
+           self.target == target,
+           self.startTime == runStartTime {
+            // `animationFinished` is computed before `valueChanged` runs. Since
+            // that callback is reentrant, only finish if it returns with the
+            // same run still active.
+            finishNaturally(at: target)
+        }
+    }
+
+    private func finishNaturally(at target: T.ValueType) {
+        // A naturally finished run is a quiescent endpoint that can be safely
+        // observed or immediately reused from `.finished`.
+        clearRuntimeState(preservingVelocity: false)
+        self.state = .ended
+        completion?(.finished(at: target))
+    }
+
+    private func finishImmediately() {
+        // An immediate stop ends the current run and clears transient motion state.
+        clearRuntimeState(preservingVelocity: false)
+        self.state = .ended
+    }
+
+    private func prepareForRestart() {
+        // Restarting should clear stale timing without discarding caller-provided velocity.
+        transitionToInactive(preservingVelocity: true)
+    }
+
+    private func transitionToInactive(preservingVelocity: Bool) {
+        clearRuntimeState(preservingVelocity: preservingVelocity)
+        self.state = .inactive
+    }
+
+    private func clearRuntimeState(preservingVelocity: Bool) {
+        self.startTime = nil
+
+        if !preservingVelocity {
+            self.velocity = .zero
         }
     }
 }
