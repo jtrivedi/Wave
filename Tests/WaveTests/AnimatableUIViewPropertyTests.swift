@@ -278,6 +278,24 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.layer.animator.opacity, initialValue)
     }
 
+    func testRepeatedNonAnimatedCenterUpdatesDoNotKeepAnimationsScheduled() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+
+        for step in 1...12 {
+            let targetCenter = CGPoint(x: CGFloat(step * 15), y: CGFloat(step * 10))
+
+            Wave.animate(withSpring: .defaultAnimated, mode: .nonAnimated) {
+                view.animator.center = targetCenter
+            }
+
+            XCTAssertEqual(view.center, targetCenter)
+            XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+            XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+        }
+    }
+
     func testPropertyAnimation() {
         let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
         animator.value = 0

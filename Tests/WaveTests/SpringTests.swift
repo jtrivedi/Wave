@@ -118,6 +118,21 @@ final class SpringTests: XCTestCase {
         XCTAssertEqual(animator.state, .inactive)
     }
 
+    func testNonAnimatedStartDoesNotLeaveAnimatorScheduled() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
+        animator.mode = .nonAnimated
+        animator.value = 0
+        animator.target = 1
+
+        animator.start()
+
+        XCTAssertEqual(animator.value, 1)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
     func testInitialStartCallbackRunsWithImplicitAnimationsDisabled() {
         let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
         animator.value = 0

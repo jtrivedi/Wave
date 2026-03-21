@@ -19,4 +19,19 @@ public extension XCTestCase {
         }
     }
 
+    func waitForAnimationControllerToBecomeIdle(timeout: TimeInterval = 1.0) {
+        let deadline = Date().addingTimeInterval(timeout)
+
+        while Date() < deadline {
+            if AnimationController.shared.scheduledAnimationCount == 0,
+               !AnimationController.shared.isDisplayLinkRunning {
+                return
+            }
+
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
+        }
+
+        XCTFail("AnimationController did not become idle within \(timeout) seconds")
+    }
+
 }

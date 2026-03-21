@@ -27,18 +27,14 @@ internal class AnimationController {
 
             strongSelf.withoutImplicitAnimations {
                 for animation in strongSelf.animations.values {
-                    if animation.state != .running {
-                        animation.reset()
-                        strongSelf.animations.removeValue(forKey: animation.id)
-                    } else {
+                    if animation.state == .running {
                         animation.updateAnimation(dt: dt)
                     }
                 }
             }
 
-            if strongSelf.animations.isEmpty {
-                strongSelf.displayLinkProvider.stop()
-            }
+            strongSelf.pruneScheduledAnimations()
+            strongSelf.updateDisplayLinkState()
         }
     }()
 
@@ -66,10 +62,6 @@ internal class AnimationController {
     }
 
     func runPropertyAnimation(_ animation: AnimatorProviding) {
-        if animations.isEmpty {
-            displayLinkProvider.start()
-        }
-
         animations[animation.id] = animation
 
         // The initial `dt == 0` update should use the same disabled-actions
@@ -77,6 +69,11 @@ internal class AnimationController {
         withoutImplicitAnimations {
             animation.updateAnimation(dt: .zero)
         }
+
+        // Non-animated or immediately-finished runs should be unscheduled right
+        // away instead of lingering until a future display-link cleanup pass.
+        pruneScheduledAnimations()
+        updateDisplayLinkState()
     }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {
@@ -94,6 +91,35 @@ internal class AnimationController {
         CATransaction.setDisableActions(true)
         updates()
         CATransaction.commit()
+    }
+
+    private var hasRunningAnimations: Bool {
+        animations.values.contains { $0.state == .running }
+    }
+
+    internal var scheduledAnimationCount: Int {
+        animations.count
+    }
+
+    internal var isDisplayLinkRunning: Bool {
+        displayLinkProvider.isRunning
+    }
+
+    private func pruneScheduledAnimations() {
+        for animation in animations.values {
+            if animation.state != .running {
+                animation.reset()
+                animations.removeValue(forKey: animation.id)
+            }
+        }
+    }
+
+    private func updateDisplayLinkState() {
+        if hasRunningAnimations {
+            displayLinkProvider.start()
+        } else {
+            displayLinkProvider.stop()
+        }
     }
 
 }
