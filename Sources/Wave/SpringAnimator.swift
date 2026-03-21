@@ -134,33 +134,20 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
     }
 
     /**
-     Starts the animation (if not already running) with an optional delay.
+     Starts the animation (if not already running).
 
      If the animator previously ended, starting again begins a fresh run using the
      current `value`, `target`, and `velocity` configured by the caller.
-     
-     - parameter delay: The amount of time (measured in seconds) to wait before starting the animation.
      */
-    public func start(afterDelay delay: TimeInterval = 0) {
+    public func start() {
         precondition(value != nil, "Animation must have a non-nil `value` before starting.")
         precondition(target != nil, "Animation must have a non-nil `target` before starting.")
-        precondition(delay >= 0, "`delay` must be greater or equal to zero.")
 
-        let start = {
-            if self.state == .ended {
-                self.prepareForRestart()
-            }
-
-            AnimationController.shared.runPropertyAnimation(self)
+        if self.state == .ended {
+            self.prepareForRestart()
         }
 
-        if delay == .zero {
-            start()
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                start()
-            }
-        }
+        AnimationController.shared.runPropertyAnimation(self)
     }
 
     /**

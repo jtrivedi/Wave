@@ -38,9 +38,7 @@ public class Wave {
      - parameter spring: The `Spring` used to determine the timing curve and duration of the animation. See the initializer `Spring(dampingRatio:response:mass)` for more information on how to choose relevant spring values.
      
      - parameter mode: _Optional_. Determines if the `animations` block will be run with animation (default), or non-animatedly. See `AnimationMode` for information on when to use a non-animated mode.
-     
-     - parameter delay: _Optional_.  A delay, in seconds, after which to start the animation.
-     
+
      - parameter gestureVelocity: _Optional_. If provided, this value will be used to set the `velocity` of `UIView` `center` animations in the `animations` block. Since `frame` animations are implemented by animating `center` and `bounds`, this also affects the positional part of `frame` animations. It does not apply to `scale`, `translation`, or layer-backed properties. This should be primarily used to "inject" the velocity of a gesture recognizer (when the gesture ends) into the animations.
      
      - parameter animations: A block containing the changes to your views' animatable properties. Note that for animations to work correctly, you must set values on the view's `animator`, not just the view itself. For example, to animate a view's alpha, use `myView.animator.alpha = 1.0` instead of `myView.alpha = 1.0`.
@@ -50,7 +48,6 @@ public class Wave {
     public static func animate(
         withSpring spring: Spring,
         mode: AnimationMode = .animated,
-        delay: TimeInterval = 0,
         gestureVelocity: CGPoint? = nil,
         animations: (() -> Void),
         completion: ((_ finished: Bool, _ retargeted: Bool) -> Void)? = nil) {
@@ -60,7 +57,6 @@ public class Wave {
                 groupUUID: UUID(),
                 spring: (mode == .nonAnimated) ? .defaultNonAnimated : spring,
                 mode: (spring.response == 0) ? .nonAnimated : mode,
-                delay: delay,
                 gestureVelocity: gestureVelocity,
                 completion: completion
             )

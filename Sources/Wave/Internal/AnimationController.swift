@@ -104,7 +104,6 @@ extension AnimationController {
         let groupUUID: UUID
         let spring: Spring
         let mode: AnimationMode
-        let delay: CGFloat
         let gestureVelocity: CGPoint?
 
         let completion: ((_ finished: Bool, _ retargeted: Bool) -> Void)?

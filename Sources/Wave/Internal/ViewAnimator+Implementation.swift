@@ -123,7 +123,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -170,7 +170,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -218,7 +218,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -282,7 +282,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -407,7 +407,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -460,7 +460,7 @@ extension ViewAnimator {
                 }
             }
 
-            start(animation: animation, type: animationType, delay: settings.delay)
+            start(animation: animation, type: animationType)
         }
     }
 
@@ -470,9 +470,9 @@ extension ViewAnimator {
 
     // MARK: - Internal
 
-    private func start(animation: AnimatorProviding, type: AnimatableProperty, delay: TimeInterval) {
+    private func start(animation: AnimatorProviding, type: AnimatableProperty) {
         view.animators[type] = animation
-        animation.start(afterDelay: delay)
+        animation.start()
     }
 
     private var runningCenterAnimator: SpringAnimator<CGPoint>? {

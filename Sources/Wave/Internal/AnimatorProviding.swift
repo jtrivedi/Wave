@@ -15,7 +15,7 @@ internal protocol AnimatorProviding {
 
     func updateAnimation(dt: TimeInterval)
 
-    func start(afterDelay delay: TimeInterval)
+    func start()
     func stop(immediately: Bool)
 
     func reset()
