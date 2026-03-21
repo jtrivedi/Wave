@@ -117,6 +117,27 @@ final class SpringTests: XCTestCase {
         XCTAssertEqual(animator.state, .inactive)
     }
 
+    func testInitialStartCallbackRunsWithImplicitAnimationsDisabled() {
+        let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
+        animator.value = 0
+        animator.target = 1
+
+        let callbackExpectation = expectation(description: "Initial callback runs")
+        var disableActionsValues: [Bool] = []
+
+        animator.valueChanged = { _ in
+            disableActionsValues.append(CATransaction.disableActions())
+            animator.stop(immediately: true)
+            callbackExpectation.fulfill()
+        }
+
+        animator.start()
+
+        wait(for: [callbackExpectation], timeout: 1.0)
+
+        XCTAssertEqual(disableActionsValues, [true])
+    }
+
     func testImmediateStopFreezesValueAndZeroesVelocityUntilRestart() throws {
         let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
         animator.value = 0

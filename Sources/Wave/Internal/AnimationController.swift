@@ -25,19 +25,16 @@ internal class AnimationController {
         DisplayLinkProvider { [weak self] dt in
             guard let strongSelf = self else { return }
 
-            CATransaction.begin()
-            CATransaction.setDisableActions(true)
-
-            for animation in strongSelf.animations.values {
-                if animation.state != .running {
-                    animation.reset()
-                    strongSelf.animations.removeValue(forKey: animation.id)
-                } else {
-                    animation.updateAnimation(dt: dt)
+            strongSelf.withoutImplicitAnimations {
+                for animation in strongSelf.animations.values {
+                    if animation.state != .running {
+                        animation.reset()
+                        strongSelf.animations.removeValue(forKey: animation.id)
+                    } else {
+                        animation.updateAnimation(dt: dt)
+                    }
                 }
             }
-
-            CATransaction.commit()
 
             if strongSelf.animations.isEmpty {
                 strongSelf.displayLinkProvider.stop()
@@ -75,7 +72,11 @@ internal class AnimationController {
 
         animations[animation.id] = animation
 
-        animation.updateAnimation(dt: .zero)
+        // The initial `dt == 0` update should use the same disabled-actions
+        // transaction as display-link ticks so update blocks behave consistently.
+        withoutImplicitAnimations {
+            animation.updateAnimation(dt: .zero)
+        }
     }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {
@@ -86,6 +87,13 @@ internal class AnimationController {
         block(finished, retargeted)
 
         groupAnimationCompletionBlocks.removeValue(forKey: uuid)
+    }
+
+    private func withoutImplicitAnimations(_ updates: () -> Void) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        updates()
+        CATransaction.commit()
     }
 
 }
