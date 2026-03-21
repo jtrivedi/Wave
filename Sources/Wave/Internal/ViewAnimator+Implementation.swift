@@ -364,6 +364,10 @@ extension ViewAnimator {
             return runningScaleAnimator?.target ?? currentScale
         }
         set {
+            guard scale != newValue else {
+                return
+            }
+
             guard let settings = AnimationController.shared.currentAnimationParameters else {
                 Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
                     self.view.animator.scale = newValue
