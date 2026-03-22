@@ -26,10 +26,8 @@ internal class AnimationController {
             guard let strongSelf = self else { return }
 
             strongSelf.withoutImplicitAnimations {
-                for animation in strongSelf.animations.values {
-                    if animation.state == .running {
-                        animation.updateAnimation(dt: dt)
-                    }
+                for animation in Array(strongSelf.animations.values) where animation.state == .running {
+                    animation.updateAnimation(dt: dt)
                 }
             }
 
@@ -86,7 +84,12 @@ internal class AnimationController {
         groupAnimationCompletionBlocks.removeValue(forKey: uuid)
     }
 
-    private func withoutImplicitAnimations(_ updates: () -> Void) {
+    func performImmediatePropertyChange(groupUUID: UUID?, updates: () -> Void) {
+        withoutImplicitAnimations(updates)
+        executeHandler(uuid: groupUUID, finished: true, retargeted: false)
+    }
+
+    func withoutImplicitAnimations(_ updates: () -> Void) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         updates()
@@ -106,11 +109,9 @@ internal class AnimationController {
     }
 
     private func pruneScheduledAnimations() {
-        for animation in animations.values {
-            if animation.state != .running {
-                animation.reset()
-                animations.removeValue(forKey: animation.id)
-            }
+        for animation in Array(animations.values) where animation.state != .running {
+            animation.reset()
+            animations.removeValue(forKey: animation.id)
         }
     }
 

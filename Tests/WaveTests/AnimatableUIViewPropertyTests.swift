@@ -278,6 +278,77 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertEqual(view.layer.animator.opacity, initialValue)
     }
 
+    func testNonAnimatedCenterLeavesNoCachedAnimatorWhenNoAnimationExists() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let targetCenter = CGPoint(x: 120, y: 180)
+
+        Wave.animate(withSpring: .defaultAnimated, mode: .nonAnimated) {
+            view.animator.center = targetCenter
+        }
+
+        XCTAssertEqual(view.center, targetCenter)
+        XCTAssertTrue(view.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
+    func testAnimatedCenterSchedulesAndThenTearsDownControllerState() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let initialCenter = view.center
+        let targetCenter = CGPoint(x: 180, y: 90)
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.animator.center = targetCenter
+        }
+
+        XCTAssertEqual(view.center, initialCenter)
+        XCTAssertEqual(view.animator.center, targetCenter)
+        XCTAssertEqual(view.animators.count, 1)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 1)
+        XCTAssertTrue(AnimationController.shared.isDisplayLinkRunning)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.center, targetCenter)
+        }
+
+        waitForAnimationControllerToBecomeIdle()
+
+        XCTAssertTrue(view.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
+    func testNonAnimatedCenterStillOverridesExistingRunningAnimator() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let firstTarget = CGPoint(x: 220, y: 60)
+        let finalTarget = CGPoint(x: 40, y: 200)
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.animator.center = firstTarget
+        }
+
+        XCTAssertFalse(view.animators.isEmpty)
+
+        Wave.animate(withSpring: .defaultAnimated, mode: .nonAnimated) {
+            view.animator.center = finalTarget
+        }
+
+        XCTAssertEqual(view.center, finalTarget)
+        XCTAssertTrue(view.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.center, finalTarget)
+        }
+    }
+
     func testRepeatedNonAnimatedCenterUpdatesDoNotKeepAnimationsScheduled() {
         waitForAnimationControllerToBecomeIdle()
 

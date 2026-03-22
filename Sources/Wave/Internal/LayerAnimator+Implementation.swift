@@ -46,6 +46,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.cornerRadius
 
+            if applyImmediateValueIfPossible(existingAnimator: runningCornerRadiusAnimator, settings: settings, updates: {
+                self.layer.cornerRadius = targetValue
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningCornerRadiusAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -92,6 +98,12 @@ extension LayerAnimator {
             let targetValue = newValue
 
             let animationType = AnimatableProperty.opacity
+
+            if applyImmediateValueIfPossible(existingAnimator: runningOpacityAnimator, settings: settings, updates: {
+                self.layer.opacity = Float(clipUnit(value: targetValue))
+            }) {
+                return
+            }
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningOpacityAnimator?.groupUUID, finished: false, retargeted: true)
@@ -157,6 +169,12 @@ extension LayerAnimator {
             }
 
             let animationType = AnimatableProperty.backgroundColor
+
+            if applyImmediateValueIfPossible(existingAnimator: runningBackgroundColorAnimator, settings: settings, updates: {
+                self.layer.backgroundColor = targetValue.cgColor
+            }) {
+                return
+            }
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBackgroundColorAnimator?.groupUUID, finished: false, retargeted: true)
@@ -233,6 +251,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.borderColor
 
+            if applyImmediateValueIfPossible(existingAnimator: runningBorderColorAnimator, settings: settings, updates: {
+                self.layer.borderColor = targetValue.cgColor
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBorderColorAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -290,6 +314,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.borderWidth
 
+            if applyImmediateValueIfPossible(existingAnimator: runningBorderWidthAnimator, settings: settings, updates: {
+                self.layer.borderWidth = targetValue
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBorderWidthAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -336,6 +366,12 @@ extension LayerAnimator {
             let targetValue = newValue
 
             let animationType = AnimatableProperty.shadowOpacity
+
+            if applyImmediateValueIfPossible(existingAnimator: runningShadowOpacityAnimator, settings: settings, updates: {
+                self.layer.shadowOpacity = Float(clipUnit(value: targetValue))
+            }) {
+                return
+            }
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowOpacityAnimator?.groupUUID, finished: false, retargeted: true)
@@ -403,6 +439,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.shadowColor
 
+            if applyImmediateValueIfPossible(existingAnimator: runningShadowColorAnimator, settings: settings, updates: {
+                self.layer.shadowColor = targetValue.cgColor
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowColorAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -461,6 +503,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.shadowOffset
 
+            if applyImmediateValueIfPossible(existingAnimator: runningShadowOffsetAnimator, settings: settings, updates: {
+                self.layer.shadowOffset = targetValue
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowOffsetAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -508,6 +556,12 @@ extension LayerAnimator {
 
             let animationType = AnimatableProperty.shadowRadius
 
+            if applyImmediateValueIfPossible(existingAnimator: runningShadowRadiusAnimator, settings: settings, updates: {
+                self.layer.shadowRadius = max(0, targetValue)
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningShadowRadiusAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -539,6 +593,19 @@ extension LayerAnimator {
 extension LayerAnimator {
 
     // MARK: - Internal
+
+    private func applyImmediateValueIfPossible(
+        existingAnimator: AnimatorProviding?,
+        settings: AnimationController.AnimationParameters,
+        updates: () -> Void
+    ) -> Bool {
+        guard settings.mode == .nonAnimated, existingAnimator == nil else {
+            return false
+        }
+
+        AnimationController.shared.performImmediatePropertyChange(groupUUID: settings.groupUUID, updates: updates)
+        return true
+    }
 
     private func start(animation: AnimatorProviding, type: AnimatableProperty) {
         layer.animators[type] = animation

@@ -97,6 +97,12 @@ extension ViewAnimator {
 
             let animationType = AnimatableProperty.frameCenter
 
+            if applyImmediateValueIfPossible(existingAnimator: runningCenterAnimator, settings: settings, updates: {
+                self.view.center = targetValue
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningCenterAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -148,6 +154,12 @@ extension ViewAnimator {
 
             let animationType = AnimatableProperty.boundsOrigin
 
+            if applyImmediateValueIfPossible(existingAnimator: runningBoundsOriginAnimator, settings: settings, updates: {
+                self.view.bounds.origin = targetValue
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBoundsOriginAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -194,6 +206,12 @@ extension ViewAnimator {
             let targetValue = newValue
 
             let animationType = AnimatableProperty.boundsSize
+
+            if applyImmediateValueIfPossible(existingAnimator: runningBoundsSizeAnimator, settings: settings, updates: {
+                self.view.bounds = CGRect(origin: self.view.bounds.origin, size: targetValue)
+            }) {
+                return
+            }
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBoundsSizeAnimator?.groupUUID, finished: false, retargeted: true)
@@ -249,6 +267,12 @@ extension ViewAnimator {
             let targetValue = (newValue == UIColor.clear) ? backgroundColor.withAlphaComponent(0) : newValue
 
             let animationType = AnimatableProperty.backgroundColor
+
+            if applyImmediateValueIfPossible(existingAnimator: runningBackgroundColorAnimator, settings: settings, updates: {
+                self.view.backgroundColor = targetValue
+            }) {
+                return
+            }
 
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningBackgroundColorAnimator?.groupUUID, finished: false, retargeted: true)
@@ -380,6 +404,15 @@ extension ViewAnimator {
 
             let animationType = AnimatableProperty.scale
 
+            if applyImmediateValueIfPossible(existingAnimator: runningScaleAnimator, settings: settings, updates: {
+                var transform = self.view.transform
+                transform.a = max(targetValue.x, 0.0)
+                transform.d = max(targetValue.y, 0.0)
+                self.view.transform = transform
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningScaleAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -433,6 +466,15 @@ extension ViewAnimator {
 
             let animationType = AnimatableProperty.translation
 
+            if applyImmediateValueIfPossible(existingAnimator: runningTranslationAnimator, settings: settings, updates: {
+                var transform = self.view.transform
+                transform.tx = targetValue.x
+                transform.ty = targetValue.y
+                self.view.transform = transform
+            }) {
+                return
+            }
+
             // Re-targeting an animation.
             AnimationController.shared.executeHandler(uuid: runningTranslationAnimator?.groupUUID, finished: false, retargeted: true)
 
@@ -469,6 +511,19 @@ extension ViewAnimator {
 extension ViewAnimator {
 
     // MARK: - Internal
+
+    private func applyImmediateValueIfPossible(
+        existingAnimator: AnimatorProviding?,
+        settings: AnimationController.AnimationParameters,
+        updates: () -> Void
+    ) -> Bool {
+        guard settings.mode == .nonAnimated, existingAnimator == nil else {
+            return false
+        }
+
+        AnimationController.shared.performImmediatePropertyChange(groupUUID: settings.groupUUID, updates: updates)
+        return true
+    }
 
     private func start(animation: AnimatorProviding, type: AnimatableProperty) {
         view.animators[type] = animation
