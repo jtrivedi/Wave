@@ -83,6 +83,16 @@ internal class AnimationController {
             }
 
             animationSettingsStack.pop()
+
+            // A block that performs no animatable writes never routes back
+            // through the controller, so finish it here instead of retaining
+            // the completion handler indefinitely.
+            let hasPendingCompletion = groupAnimationCompletionBlocks[settings.groupUUID] != nil
+            let hasScheduledAnimationForGroup = self.animations.values.contains { $0.groupUUID == settings.groupUUID }
+
+            if hasPendingCompletion && !hasScheduledAnimationForGroup {
+                executeHandler(uuid: settings.groupUUID, finished: true, retargeted: false)
+            }
         }
 
     func runPropertyAnimation(_ animation: AnimatorProviding) {
@@ -136,6 +146,10 @@ internal class AnimationController {
 
     internal var scheduledAnimationCount: Int {
         animations.count
+    }
+
+    internal var pendingGroupAnimationCompletionCount: Int {
+        groupAnimationCompletionBlocks.count
     }
 
     internal var isDisplayLinkRunning: Bool {

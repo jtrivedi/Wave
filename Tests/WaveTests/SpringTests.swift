@@ -133,6 +133,50 @@ final class SpringTests: XCTestCase {
         XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
     }
 
+    func testAnimatedStartSchedulesAndThenTearsDownControllerState() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
+        animator.value = 0
+        animator.target = 1
+
+        animator.start()
+
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 1)
+        XCTAssertTrue(AnimationController.shared.isDisplayLinkRunning)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(animator.value ?? .nan, 1, accuracy: self.epsilon)
+        }
+
+        waitForAnimationControllerToBecomeIdle()
+
+        XCTAssertEqual(animator.state, .inactive)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
+    func testEmptyAnimationBlockInvokesCompletionAndDoesNotRetainControllerBookkeeping() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let completionExpectation = expectation(description: "No-op animation block completes immediately")
+        var completions: [(finished: Bool, retargeted: Bool)] = []
+
+        Wave.animate(withSpring: .defaultAnimated, animations: { }, completion: { finished, retargeted in
+            completions.append((finished, retargeted))
+            completionExpectation.fulfill()
+        })
+
+        wait(for: [completionExpectation], timeout: 0.1)
+
+        XCTAssertEqual(completions.count, 1)
+        XCTAssertEqual(completions.first?.finished, true)
+        XCTAssertEqual(completions.first?.retargeted, false)
+        XCTAssertEqual(AnimationController.shared.pendingGroupAnimationCompletionCount, 0)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
     func testInitialStartCallbackRunsWithImplicitAnimationsDisabled() {
         let animator = SpringAnimator<CGFloat>(spring: .defaultAnimated)
         animator.value = 0
