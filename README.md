@@ -63,7 +63,7 @@ For example, animating the above PiP view to its final destination is extremely 
 if panGestureRecognizer.state == .ended {
 
     // Create a spring with some bounciness. `response` affects the animation's duration.
-    let animatedSpring = Spring(dampingRatio: 0.68, response: 0.80)
+    let animatedSpring = WaveSpring(dampingRatio: 0.68, response: 0.80)
 
     // Get the gesture's lift-off velocity, and pass it into the Wave animation.
     // `gestureVelocity` currently applies to `center` animations (and therefore
