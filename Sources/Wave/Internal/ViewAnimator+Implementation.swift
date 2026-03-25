@@ -85,12 +85,7 @@ extension ViewAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.center = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = view.center
             let targetValue = newValue
@@ -142,12 +137,7 @@ extension ViewAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.bounds.origin = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = view.bounds.origin
             let targetValue = newValue
@@ -195,12 +185,7 @@ extension ViewAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.bounds.size = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = view.bounds.size
             let targetValue = newValue
@@ -253,12 +238,7 @@ extension ViewAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.backgroundColor = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero.
             let initialValue = view.backgroundColor ?? .clear
@@ -392,12 +372,7 @@ extension ViewAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.scale = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = CGPoint(x: view.transform.a, y: view.transform.d)
             let targetValue = newValue
@@ -450,12 +425,7 @@ extension ViewAnimator {
             return runningTranslationAnimator?.target ?? currentTranslation
         }
         set {
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.view.animator.translation = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             guard translation != newValue else {
                 return
@@ -511,6 +481,10 @@ extension ViewAnimator {
 extension ViewAnimator {
 
     // MARK: - Internal
+
+    private var resolvedAnimationSettings: AnimationController.AnimationParameters {
+        AnimationController.shared.currentAnimationParametersOrImplicitNonAnimated()
+    }
 
     private func applyImmediateValueIfPossible(
         existingAnimator: AnimatorProviding?,

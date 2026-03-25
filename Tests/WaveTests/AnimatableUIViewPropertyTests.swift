@@ -294,6 +294,20 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
     }
 
+    func testImplicitNonAnimatedCenterOutsideWaveAnimateLeavesNoCachedAnimatorWhenNoAnimationExists() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let targetCenter = CGPoint(x: 150, y: 210)
+
+        view.animator.center = targetCenter
+
+        XCTAssertEqual(view.center, targetCenter)
+        XCTAssertTrue(view.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
     func testAnimatedCenterSchedulesAndThenTearsDownControllerState() {
         waitForAnimationControllerToBecomeIdle()
 
@@ -338,6 +352,31 @@ final class UIViewAnimatablePropertyTests: XCTestCase {
         Wave.animate(withSpring: .defaultAnimated, mode: .nonAnimated) {
             view.animator.center = finalTarget
         }
+
+        XCTAssertEqual(view.center, finalTarget)
+        XCTAssertTrue(view.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+
+        wait(for: .defaultAnimated) {
+            XCTAssertEqual(view.center, finalTarget)
+        }
+    }
+
+    func testImplicitNonAnimatedCenterOutsideWaveAnimateStillOverridesExistingRunningAnimator() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let firstTarget = CGPoint(x: 220, y: 60)
+        let finalTarget = CGPoint(x: 40, y: 200)
+
+        Wave.animate(withSpring: .defaultAnimated) {
+            view.animator.center = firstTarget
+        }
+
+        XCTAssertFalse(view.animators.isEmpty)
+
+        view.animator.center = finalTarget
 
         XCTAssertEqual(view.center, finalTarget)
         XCTAssertTrue(view.animators.isEmpty)

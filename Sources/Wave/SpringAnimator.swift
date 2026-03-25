@@ -192,6 +192,15 @@ public class SpringAnimator<T: SpringInterpolatable>: AnimatorProviding {
         }
     }
 
+    var requiresInitialUpdateOnStart: Bool {
+        // First starts and immediate modes still need the `dt == 0` update so
+        // they publish their initial value synchronously. But when an animator
+        // is already running with a real spring, retargeting can wait for the
+        // next display-link tick instead of paying that extra work on every
+        // `start()`.
+        state != .running || mode == .nonAnimated || spring.response <= .zero
+    }
+
     func reset() {
         self.transitionToInactive(preservingVelocity: false)
     }

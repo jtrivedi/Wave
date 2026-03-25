@@ -34,12 +34,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.cornerRadius = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = layer.cornerRadius
             let targetValue = newValue
@@ -87,12 +82,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.opacity = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = CGFloat(layer.opacity)
             let targetValue = newValue
@@ -145,12 +135,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.backgroundColor = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
             let initialValue: WaveColor
@@ -226,12 +211,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.borderColor = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
             let initialValue: WaveColor
@@ -302,12 +282,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.borderWidth = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = layer.borderWidth
             let targetValue = newValue
@@ -355,12 +330,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.shadowOpacity = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = CGFloat(layer.shadowOpacity)
             let targetValue = newValue
@@ -414,12 +384,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.shadowColor = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             // `nil` and `.clear` are the same -- they both are represented by `.white` with an alpha of zero
             let initialValue: WaveColor
@@ -491,12 +456,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.shadowOffset = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = layer.shadowOffset
             let targetValue = newValue
@@ -544,12 +504,7 @@ extension LayerAnimator {
                 return
             }
 
-            guard let settings = AnimationController.shared.currentAnimationParameters else {
-                Wave.animate(withSpring: .defaultNonAnimated, mode: .nonAnimated) {
-                    self.layer.animator.shadowRadius = newValue
-                }
-                return
-            }
+            let settings = resolvedAnimationSettings
 
             let initialValue = CGFloat(layer.shadowRadius)
             let targetValue = newValue
@@ -593,6 +548,10 @@ extension LayerAnimator {
 extension LayerAnimator {
 
     // MARK: - Internal
+
+    private var resolvedAnimationSettings: AnimationController.AnimationParameters {
+        AnimationController.shared.currentAnimationParametersOrImplicitNonAnimated()
+    }
 
     private func applyImmediateValueIfPossible(
         existingAnimator: AnimatorProviding?,

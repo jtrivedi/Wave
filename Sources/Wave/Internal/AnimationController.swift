@@ -25,13 +25,18 @@ internal class AnimationController {
         DisplayLinkProvider { [weak self] dt in
             guard let strongSelf = self else { return }
 
+            let scheduledAnimations = Array(strongSelf.animations.values)
             strongSelf.withoutImplicitAnimations {
-                for animation in Array(strongSelf.animations.values) where animation.state == .running {
-                    animation.updateAnimation(dt: dt)
+                for animation in scheduledAnimations {
+                    // The snapshot can include animations that finished or
+                    // were reset earlier in this frame, before we prune them.
+                    if animation.state == .running {
+                        animation.updateAnimation(dt: dt)
+                    }
                 }
             }
 
-            strongSelf.pruneScheduledAnimations()
+            strongSelf.pruneScheduledAnimations(scheduledAnimations)
             strongSelf.updateDisplayLinkState()
         }
     }()
@@ -47,6 +52,23 @@ internal class AnimationController {
         animationSettingsStack.currentSettings
     }
 
+    func currentAnimationParametersOrImplicitNonAnimated() -> AnimationParameters {
+        if let settings = currentAnimationParameters {
+            return settings
+        }
+
+        // Using `.animator` outside an explicit `Wave.animate` block should not
+        // recursively create a brand new animation block per property write.
+        // Fall back to the default immediate semantics directly instead.
+        return AnimationParameters(
+            groupUUID: UUID(),
+            spring: .defaultNonAnimated,
+            mode: .nonAnimated,
+            gestureVelocity: nil,
+            completion: nil
+        )
+    }
+
     func runAnimationBlock(
         settings: AnimationParameters,
         animations: (() -> Void),
@@ -55,27 +77,43 @@ internal class AnimationController {
             groupAnimationCompletionBlocks[settings.groupUUID] = completion
 
             animationSettingsStack.push(settings: settings)
-            animations()
+
+            withoutImplicitAnimations {
+                animations()
+            }
+
             animationSettingsStack.pop()
-    }
+        }
 
     func runPropertyAnimation(_ animation: AnimatorProviding) {
         animations[animation.id] = animation
 
         // The initial `dt == 0` update should use the same disabled-actions
         // transaction as display-link ticks so update blocks behave consistently.
-        withoutImplicitAnimations {
-            animation.updateAnimation(dt: .zero)
+        if animation.requiresInitialUpdateOnStart {
+            withoutImplicitAnimations {
+                animation.updateAnimation(dt: .zero)
+            }
         }
 
-        // Non-animated or immediately-finished runs should be unscheduled right
-        // away instead of lingering until a future display-link cleanup pass.
-        pruneScheduledAnimations()
-        updateDisplayLinkState()
+        if animation.state == .running {
+            // The common path is a running animation or retarget, and in high-
+            // frequency gesture code there may be hundreds of these per update.
+            // Avoid a full controller rescan here; only ensure the display link
+            // is active for the running work we already know about.
+            displayLinkProvider.start()
+        } else {
+            // Non-animated or immediately-finished runs should be unscheduled
+            // right away instead of lingering until a future display-link
+            // cleanup pass.
+            pruneScheduledAnimations([animation])
+            updateDisplayLinkState()
+        }
+
     }
 
     internal func executeHandler(uuid: UUID?, finished: Bool, retargeted: Bool) {
-        guard let uuid = uuid, let block = groupAnimationCompletionBlocks[uuid] else {
+        guard let uuid, let block = groupAnimationCompletionBlocks[uuid] else {
             return
         }
 
@@ -96,10 +134,6 @@ internal class AnimationController {
         CATransaction.commit()
     }
 
-    private var hasRunningAnimations: Bool {
-        animations.values.contains { $0.state == .running }
-    }
-
     internal var scheduledAnimationCount: Int {
         animations.count
     }
@@ -108,21 +142,22 @@ internal class AnimationController {
         displayLinkProvider.isRunning
     }
 
-    private func pruneScheduledAnimations() {
-        for animation in Array(animations.values) where animation.state != .running {
-            animation.reset()
-            animations.removeValue(forKey: animation.id)
+    private func pruneScheduledAnimations(_ animationsToCheck: [AnimatorProviding]) {
+        for animation in animationsToCheck {
+            if animation.state != .running {
+                animation.reset()
+                animations.removeValue(forKey: animation.id)
+            }
         }
     }
 
     private func updateDisplayLinkState() {
-        if hasRunningAnimations {
-            displayLinkProvider.start()
-        } else {
+        if animations.isEmpty {
             displayLinkProvider.stop()
+        } else {
+            displayLinkProvider.start()
         }
     }
-
 }
 
 extension AnimationController {

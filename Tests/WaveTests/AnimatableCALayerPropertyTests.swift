@@ -144,6 +144,20 @@ final class CALayerAnimatablePropertyTests: XCTestCase {
         XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
     }
 
+    func testImplicitNonAnimatedOpacityOutsideWaveAnimateLeavesNoCachedAnimatorWhenNoAnimationExists() {
+        waitForAnimationControllerToBecomeIdle()
+
+        let view = UIView()
+        let targetValue: CGFloat = 0.4
+
+        view.layer.animator.opacity = targetValue
+
+        XCTAssertEqual(Float(view.layer.opacity), Float(targetValue), accuracy: 0.0001)
+        XCTAssertTrue(view.layer.animators.isEmpty)
+        XCTAssertEqual(AnimationController.shared.scheduledAnimationCount, 0)
+        XCTAssertFalse(AnimationController.shared.isDisplayLinkRunning)
+    }
+
     // MARK: - Shadows
 
     func testShadowOpacity() {

@@ -12,6 +12,7 @@ internal protocol AnimatorProviding {
     var groupUUID: UUID? { get }
 
     var state: AnimatorState { get }
+    var requiresInitialUpdateOnStart: Bool { get }
 
     func updateAnimation(dt: TimeInterval)
 
